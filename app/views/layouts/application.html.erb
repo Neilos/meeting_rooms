@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MeetingRooms</title>
+  <title>TakeoutTerror</title>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxKWONNuzbrvy_S_2HzBZnasiS0c1ZG1E&sensor=false"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+	<header>
+			<%= render 'layouts/navigation' %>
+			<%= render 'layouts/messages' %>
+	</header>
 
-<%= yield %>
+	<div>
+		<%= yield %>
+	</div>
 
+</div>
 </body>
 </html>

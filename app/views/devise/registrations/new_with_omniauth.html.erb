@@ -1,0 +1,21 @@
+<h2>Complete Sign In</h2>
+
+<%= form_for(@user, :url => complete_user_registration_with_omniauth_path) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+  
+  <%= hidden_field_tag 'uid', @uid %>
+
+  <%= hidden_field_tag 'provider', @provider %>
+  
+  <div><%= f.submit "Complete sign in" %></div>
+<% end %>
+
