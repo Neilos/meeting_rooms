@@ -33,3 +33,89 @@ Migrating to DeviseCreateUsers (20130906064519)
   [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
   [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
   [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130906064519')
+
+
+Started GET "/" for 127.0.0.1 at 2013-09-06 09:21:11 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_navigation.html.erb (11.2ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 524ms (Views: 506.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-06 09:21:12 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 09:21:18 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (55.2ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 91ms (Views: 63.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 09:21:20 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (3.8ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `name' for #<User:0x007fe8ffaceac8>):
+    4:   <%= devise_error_messages! %>
+    5: 
+    6:   <div><%= f.label :name %><br />
+    7:   <%= f.text_field :name, :autofocus => true %></div>
+    8: 
+    9:   <div><%= f.label :email %><br />
+   10:   <%= f.email_field :email, :autofocus => true %></div>
+  app/views/devise/registrations/new.html.erb:7:in `block in _app_views_devise_registrations_new_html_erb__505851012809043742_70319349342720'
+  app/views/devise/registrations/new.html.erb:3:in `_app_views_devise_registrations_new_html_erb__505851012809043742_70319349342720'
+
+
+  Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.7ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 09:21:20 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `name' for #<User:0x007fe8ff173c30>):
+    4:   <%= devise_error_messages! %>
+    5: 
+    6:   <div><%= f.label :name %><br />
+    7:   <%= f.text_field :name, :autofocus => true %></div>
+    8: 
+    9:   <div><%= f.label :email %><br />
+   10:   <%= f.email_field :email, :autofocus => true %></div>
+  app/views/devise/registrations/new.html.erb:7:in `block in _app_views_devise_registrations_new_html_erb__505851012809043742_70319349342720'
+  app/views/devise/registrations/new.html.erb:3:in `_app_views_devise_registrations_new_html_erb__505851012809043742_70319349342720'
+
+
+  Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.4ms)
