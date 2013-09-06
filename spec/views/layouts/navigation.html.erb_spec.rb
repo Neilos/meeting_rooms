@@ -4,7 +4,7 @@ describe "layouts/navigation.html.erb" do
 
   it "shows the brand" do
     render :partial => 'layouts/navigation'
-    rendered.should include("Takeout-Terro")
+    rendered.should include("Meeting Rooms")
   end
 
   context "when user not logged in" do
