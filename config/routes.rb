@@ -1,12 +1,25 @@
 MeetingRooms::Application.routes.draw do
-  devise_for :users
+
+  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',                                   :registrations      => "registrations"} 
+
+  devise_scope :user do
+    post '/users/new_with_omniauth' => 'users/omniauth_callbacks#new_with_omniauth', as: 'complete_user_registration_with_omniauth'
+  end
+  
+  authenticated :user do
+    get '/' => "users#show", as: "user_root"
+  end
+  
+  resources :users, only: [:index, :show]
+
+  root to: "application#initial_home"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-   root to: "application#initial_home"
-   
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
