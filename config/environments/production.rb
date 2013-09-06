@@ -1,6 +1,26 @@
 MeetingRooms::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  
+  # Want to actually send emails?
+  config.action_mailer.perform_deliveries = true
+
+  # Configure the mailer settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.sendgrid.net",
+   :port                 => 587,
+   :domain               => ENV['MAILER_DOMAIN'],
+   :user_name            => ENV['MAILER_USER_NAME'],
+   :password             => ENV['MAILER_PASSWORD'],
+   :authentication       => :plain,
+   :enable_starttls_auto => true  }
+
+  # required for devise
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -20,7 +40,7 @@ MeetingRooms::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier

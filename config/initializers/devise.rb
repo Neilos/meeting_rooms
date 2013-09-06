@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = "mentessi@gmail.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -14,6 +14,17 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
+
+  require "omniauth-facebook"
+  config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET']
+
+  require "omniauth-google-oauth2"
+  config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], { access_type: "offline", approval_prompt: "" }
+
+  require "omniauth-twitter"
+  config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+
+
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -92,7 +103,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "ad06646ddb4a1ce16f070227f7d9bce18beed441d28d0ed921468aadf2fb1faac2dee1e86a5c232d164c02ca659b3d6d3eac0ac522b2c71d35f3d22533c75a74"
+  # config.pepper = "37a92780dc1f678fa0ad92d60b6a9af3914d23154951daf92ab023ca7f4f0975e7ef4d59b77cc98cb3a6c3467b0d105a83ded9f9fe7118aba1f6857dbe23e190"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
