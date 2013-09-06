@@ -10,3 +10,5 @@ Started GET "/" for 127.0.0.1 at 2013-09-03 08:56:59 +0100
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/natkinson/.rvm/gems/ruby-2.0.0-p247/gems/railties-4.0.0/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
 Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (109.0ms)[0m  [1mDROP DATABASE IF EXISTS "meeting_rooms_test"[0m
+  [1m[35m (231.2ms)[0m  CREATE DATABASE "meeting_rooms_test" ENCODING = 'unicode'
