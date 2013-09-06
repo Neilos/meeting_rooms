@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -43,3 +43,27 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+
+gem 'rest-client'
+
+group :test, :development do 
+  gem 'debugger'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'mailcatcher'
+end
+
+gem 'devise'
+
+gem 'omniauth'
+
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+
