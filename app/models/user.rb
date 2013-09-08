@@ -8,5 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :omniauth_identities, :dependent => :destroy
   has_many :memberships, :dependent => :destroy, :inverse_of => :user
+  validates_associated :memberships
   has_many :organizations, :through => :memberships
+  validates_associated :organizations
+  validates :name, presence: :true
 end
