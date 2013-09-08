@@ -534,3 +534,56 @@ DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.fin
   [1m[35m (2.5ms)[0m  COMMIT
   [1m[36mOrganization Load (1.2ms)[0m  [1mSELECT "organizations".* FROM "organizations" INNER JOIN "memberships" ON "organizations"."id" = "memberships"."organization_id" WHERE "memberships"."user_id" = $1[0m  [["user_id", 1]]
   [1m[35mPermissionSet Load (0.5ms)[0m  SELECT "permission_sets".* FROM "permission_sets"
+  [1m[36mOrganization Load (0.7ms)[0m  [1mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1[0m
+PG::UndefinedTable: ERROR:  relation "locations" does not exist
+LINE 5:                WHERE a.attrelid = '"locations"'::regclass
+                                          ^
+:               SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+                FROM pg_attribute a LEFT JOIN pg_attrdef d
+                  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+               WHERE a.attrelid = '"locations"'::regclass
+                 AND a.attnum > 0 AND NOT a.attisdropped
+               ORDER BY a.attnum
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateLocations (20130908141757)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (7.4ms)[0m  [1mCREATE TABLE "locations" ("id" serial primary key, "name" character varying(255), "address_line_1" character varying(255), "address_line_2" character varying(255), "town_city" character varying(255), "county" character varying(255), "postcode" character varying(255), "country" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908141757"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateRooms (20130908142707)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "rooms" ("id" serial primary key, "name" character varying(255), "price_per_hour" decimal, "location_id" integer, "organization_id" integer, "people_capacity" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908142707"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCustomAttributes (20130908142946)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "custom_attributes" ("id" serial primary key, "name" character varying(255), "value" character varying(255), "room_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908142946"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddOrganizationIdToLocation (20130908145638)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "locations" ADD COLUMN "organization_id" integer[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908145638"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mOrganization Load (0.6ms)[0m  [1mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (3.9ms)[0m  [1mINSERT INTO "locations" ("created_at", "organization_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 14:57:18 UTC +00:00], ["organization_id", 1], ["updated_at", Sun, 08 Sep 2013 14:57:18 UTC +00:00]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36mLocation Load (0.8ms)[0m  [1mSELECT "locations".* FROM "locations" ORDER BY "locations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "rooms" ("created_at", "location_id", "organization_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 14:58:11 UTC +00:00], ["location_id", 1], ["organization_id", 1], ["updated_at", Sun, 08 Sep 2013 14:58:11 UTC +00:00]]
+  [1m[35m (1.9ms)[0m  COMMIT
+  [1m[36mRoom Load (0.7ms)[0m  [1mSELECT "rooms".* FROM "rooms" ORDER BY "rooms"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "custom_attributes" ("created_at", "name", "room_id", "updated_at", "value") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 14:59:06 UTC +00:00], ["name", "wifi"], ["room_id", 1], ["updated_at", Sun, 08 Sep 2013 14:59:06 UTC +00:00], ["value", "yes"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36mCustomAttribute Load (0.7ms)[0m  [1mSELECT "custom_attributes".* FROM "custom_attributes" ORDER BY "custom_attributes"."id" ASC LIMIT 1[0m
+  [1m[35mRoom Load (0.8ms)[0m  SELECT "rooms".* FROM "rooms" WHERE "rooms"."organization_id" = $1  [["organization_id", 1]]
+  [1m[36mLocation Load (0.9ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."organization_id" = $1[0m  [["organization_id", 1]]
+  [1m[35mRoom Load (0.8ms)[0m  SELECT "rooms".* FROM "rooms" WHERE "rooms"."location_id" = $1  [["location_id", 1]]
+  [1m[36mOrganization Load (0.9ms)[0m  [1mSELECT "organizations".* FROM "organizations" WHERE "organizations"."id" = $1 ORDER BY "organizations"."id" ASC LIMIT 1[0m  [["id", 1]]

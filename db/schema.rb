@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908114914) do
+ActiveRecord::Schema.define(version: 20130908145638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "custom_attributes", force: true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "room_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "town_city"
+    t.string   "county"
+    t.string   "postcode"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organization_id"
+  end
 
   create_table "memberships", force: true do |t|
     t.integer  "user_id"
@@ -41,6 +62,16 @@ ActiveRecord::Schema.define(version: 20130908114914) do
   create_table "permission_sets", force: true do |t|
     t.boolean  "create__organizations"
     t.boolean  "create__memberships"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rooms", force: true do |t|
+    t.string   "name"
+    t.decimal  "price_per_hour"
+    t.integer  "location_id"
+    t.integer  "organization_id"
+    t.integer  "people_capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
