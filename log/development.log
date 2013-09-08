@@ -144,3 +144,393 @@ Migrating to CreateOmniauthIdentities (20130906082716)
   [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906082716')[0m
   [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130906064519')
   [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906082604')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20130906064519)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (33.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130906064519"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddNameToUsers (20130906082604)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "users" ADD COLUMN "name" character varying(255)[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130906082604"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateOmniauthIdentities (20130906082716)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "omniauth_identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130906082716"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (116.2ms)[0m  [1mDROP DATABASE IF EXISTS "meeting_rooms_test"[0m
+  [1m[35m (342.9ms)[0m  CREATE DATABASE "meeting_rooms_test" ENCODING = 'unicode'
+  [1m[36mSQL (1.7ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (5.5ms)[0m  CREATE TABLE "omniauth_identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (3.4ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp, "name" character varying(255)) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" USING btree ("email")
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906082716')[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130906064519')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906082604')[0m
+
+
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:21:47 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 492ms (Views: 488.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:48 +0100
+
+
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:21:49 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.5ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+Completed 200 OK in 10ms (Views: 9.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:21:51 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (18.9ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 104ms (Views: 29.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users/auth/twitter" for 127.0.0.1 at 2013-09-06 10:21:53 +0100
+
+
+Started GET "/users/auth/twitter" for 127.0.0.1 at 2013-09-06 10:21:55 +0100
+
+
+Started GET "/users/auth/twitter/callback?oauth_token=blsDw4V79UiITNLshHuKgKng5IBUpdzB4rTvuOKxY&oauth_verifier=0rU9rld2WZQxoAI83CLRzwqkhgdk0WxGoY5k2caj9FQ" for 127.0.0.1 at 2013-09-06 10:21:56 +0100
+Processing by Users::OmniauthCallbacksController#twitter as HTML
+  Parameters: {"oauth_token"=>"blsDw4V79UiITNLshHuKgKng5IBUpdzB4rTvuOKxY", "oauth_verifier"=>"0rU9rld2WZQxoAI83CLRzwqkhgdk0WxGoY5k2caj9FQ"}
+  [1m[35mOmniauthIdentity Load (1.8ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'twitter' AND "omniauth_identities"."uid" = '113024235' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  Rendered devise/registrations/new_with_omniauth.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 142ms (Views: 13.6ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-06 10:21:58 +0100
+
+
+Started POST "/users/new_with_omniauth" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+Processing by Users::OmniauthCallbacksController#new_with_omniauth as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bK0k6ff7y+SHzash2d8kaFIJv2XVU0lQYSQEFLW+7xc=", "user"=>{"name"=>"Michael Mentessi", "email"=>"mentessi@gmail.com", "password"=>"[FILTERED]"}, "uid"=>"113024235", "provider"=>"twitter", "commit"=>"Complete sign in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'mentessi@gmail.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'mentessi@gmail.com' LIMIT 1
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00], ["email", "mentessi@gmail.com"], ["encrypted_password", "$2a$10$B/rvYvjDo12DX6FX3JrQhOfA4qe2WQWHooEVcOyhVr6pVyWHcma6S"], ["name", "Michael Mentessi"], ["updated_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00], ["provider", "twitter"], ["uid", "113024235"], ["updated_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00], ["user_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 1[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:22:09 UTC +00:00]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 116ms (ActiveRecord: 9.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 54ms (Views: 49.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-06 10:22:09 +0100
+
+
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:22:12 +0100
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+Processing by UsersController#show as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateOrganizations (20130908112728)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (28.1ms)[0m  [1mCREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908112728"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePermissionSets (20130908114807)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "permission_sets" ("id" serial primary key, "create__organizations" boolean, "create__memberships" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908114807"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMemberships (20130908114914)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "memberships" ("id" serial primary key, "user_id" integer, "organization_id" integer, "permission_set_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130908114914"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (3.6ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:06:41 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$10$ZMND0hXEyZWn.VaTqNte4eoPJGXGBDql5dX9f7QBRfF8Lg5EfLKHW"], ["name", "TestName"], ["updated_at", Sun, 08 Sep 2013 12:06:41 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "organizations" ("created_at", "name", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Sun, 08 Sep 2013 12:07:04 UTC +00:00], ["name", "MyString"], ["updated_at", Sun, 08 Sep 2013 12:07:04 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "permission_sets" ("create__memberships", "create__organizations", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["create__memberships", false], ["create__organizations", false], ["created_at", Sun, 08 Sep 2013 12:07:23 UTC +00:00], ["updated_at", Sun, 08 Sep 2013 12:07:23 UTC +00:00]]
+  [1m[35m (1.9ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.0ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mOmniauthIdentity Load (3.0ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."user_id" = $1  [["user_id", 1]]
+  [1m[36mSQL (1.6ms)[0m  [1mDELETE FROM "omniauth_identities" WHERE "omniauth_identities"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mOmniauthIdentity Load (42.0ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM "omniauth_identities" WHERE "omniauth_identities"."id" = $1  [["id", 1]]
+  [1m[36mOrganization Load (0.8ms)[0m  [1mSELECT "organizations".* FROM "organizations" INNER JOIN "memberships" ON "organizations"."id" = "memberships"."organization_id" WHERE "memberships"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "users" WHERE "users"."id" = $1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mOmniauthIdentity Load (0.3ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[35mOrganization Load (0.2ms)[0m  SELECT "organizations".* FROM "organizations" INNER JOIN "memberships" ON "organizations"."id" = "memberships"."organization_id" WHERE "memberships"."user_id" = $1  [["user_id", 2]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:19:34 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$10$odssKsSjvYjm0gApqbRER.nJoMY9Vc9gqE5YLwhPksScRPglze4Zi"], ["name", "TestName"], ["updated_at", Sun, 08 Sep 2013 12:19:34 UTC +00:00]]
+  [1m[35m (1.9ms)[0m  COMMIT
+  [1m[36mOrganization Load (0.8ms)[0m  [1mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "memberships" ("created_at", "organization_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:21:43 UTC +00:00], ["organization_id", 1], ["updated_at", Sun, 08 Sep 2013 12:21:43 UTC +00:00], ["user_id", 3]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mOrganization Load (0.4ms)[0m  [1mSELECT "organizations".* FROM "organizations" INNER JOIN "memberships" ON "organizations"."id" = "memberships"."organization_id" WHERE "memberships"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[35mMembership Load (0.4ms)[0m  SELECT "memberships".* FROM "memberships"
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mOrganization Load (0.4ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."organization_id" = $1[0m  [[nil, 1]]
+PG::UndefinedColumn: ERROR:  column users.organization_id does not exist
+LINE 1: SELECT "users".* FROM "users"  WHERE "users"."organization_i...
+                                             ^
+: SELECT "users".* FROM "users"  WHERE "users"."organization_id" = $1
+  [1m[35mUser Load (2.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "memberships" ON "users"."id" = "memberships"."user_id" WHERE "memberships"."organization_id" = $1  [["organization_id", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mOrganization Load (0.5ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mOrganization Load (0.5ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mOrganization Load (0.4ms)[0m  SELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1
+  [1m[36mUser Load (2.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "memberships" ON "users"."id" = "memberships"."user_id" WHERE "memberships"."organization_id" = $1[0m  [["organization_id", 1]]
+  [1m[35mMembership Load (0.9ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."organization_id" = $1  [["organization_id", 1]]
+  [1m[36mMembership Load (1.0ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1[0m  [["user_id", 3]]
+  [1m[35mMembership Load (0.6ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1  [["user_id", 3]]
+  [1m[36mPermissionSet Load (0.4ms)[0m  [1mSELECT "permission_sets".* FROM "permission_sets"[0m
+  [1m[35mMembership Load (0.7ms)[0m  SELECT "memberships".* FROM "memberships" ORDER BY "memberships"."id" ASC LIMIT 1
+  [1m[36mPermissionSet Load (0.7ms)[0m  [1mSELECT "permission_sets".* FROM "permission_sets" ORDER BY "permission_sets"."id" ASC LIMIT 1[0m
+  [1m[35mMembership Load (0.6ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1  [["user_id", 3]]
+  [1m[36mMembership Load (0.7ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1[0m  [["user_id", 3]]
+  [1m[35mMembership Load (0.6ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1  [["user_id", 3]]
+  [1m[36mMembership Load (0.7ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mMembership Load (0.8ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1[0m  [["user_id", 3]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (2.0ms)[0m  [1mUPDATE "memberships" SET "permission_set_id" = $1, "updated_at" = $2 WHERE "memberships"."id" = 1[0m  [["permission_set_id", 1], ["updated_at", Sun, 08 Sep 2013 12:42:08 UTC +00:00]]
+  [1m[35m (2.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mMembership Load (0.5ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1  [["user_id", 3]]
+  [1m[36mMembership Load (0.5ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1[0m  [["user_id", 3]]
+  [1m[35mMembership Load (0.6ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1 ORDER BY "memberships"."id" ASC LIMIT 1  [["user_id", 3]]
+  [1m[36mPermissionSet Load (0.7ms)[0m  [1mSELECT "permission_sets".* FROM "permission_sets" WHERE "permission_sets"."id" = $1 ORDER BY "permission_sets"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[36m (116.3ms)[0m  [1mDROP DATABASE IF EXISTS "meeting_rooms_development"[0m
+  [1m[35m (111.0ms)[0m  DROP DATABASE IF EXISTS "meeting_rooms_test"
+  [1m[36m (336.4ms)[0m  [1mCREATE DATABASE "meeting_rooms_development" ENCODING = 'unicode'[0m
+  [1m[35m (228.0ms)[0m  CREATE DATABASE "meeting_rooms_test" ENCODING = 'unicode'
+  [1m[36mSQL (1.3ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (4.9ms)[0m  CREATE TABLE "memberships" ("id" serial primary key, "user_id" integer, "organization_id" integer, "permission_set_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (2.6ms)[0m  [1mCREATE TABLE "omniauth_identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "permission_sets" ("id" serial primary key, "create__organizations" boolean, "create__memberships" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (3.2ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp, "name" character varying(255)) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130908114914')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906064519')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130906082604')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906082716')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130908112728')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130908114807')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from <top (required)> at /Users/user/Documents/projects/meeting_rooms/db/seeds.rb:8)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user1@example.com' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user1@example.com' LIMIT 1[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Sun, 08 Sep 2013 12:47:57 UTC +00:00], ["email", "user1@example.com"], ["encrypted_password", "$2a$10$S10.X5Dys6.oRJqntn75M.zDbBOz0vvS8PchMF/P3QvndB0Cn6BG."], ["name", "first person"], ["updated_at", Sun, 08 Sep 2013 12:47:57 UTC +00:00]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from <top (required)> at /Users/user/Documents/projects/meeting_rooms/db/seeds.rb:11)
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user2@example.com' ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user2@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:47:57 UTC +00:00], ["email", "user2@example.com"], ["encrypted_password", "$2a$10$ks6PXOUA/ZC5Bf/yGdZY.OdcpNU3yN3eYyQN7XxlbJ1WHqyN9hyXG"], ["name", "second person"], ["updated_at", Sun, 08 Sep 2013 12:47:57 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  COMMIT
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from <top (required)> at /Users/user/Documents/projects/meeting_rooms/db/seeds.rb:14)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user3@example.com' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user3@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Sun, 08 Sep 2013 12:47:57 UTC +00:00], ["email", "user3@example.com"], ["encrypted_password", "$2a$10$r6IWuWn7JReKPOTTmzhyk.J.c6Rufo/c/9d30Mg261ZPghepB.ZZi"], ["name", "third person"], ["updated_at", Sun, 08 Sep 2013 12:47:57 UTC +00:00]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mMembership Load (0.4ms)[0m  SELECT "memberships".* FROM "memberships"
+  [1m[36mOrganization Load (0.8ms)[0m  [1mSELECT "organizations".* FROM "organizations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "organizations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:50:50 UTC +00:00], ["updated_at", Sun, 08 Sep 2013 12:50:50 UTC +00:00]]
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (108.7ms)[0m  [1mDROP DATABASE IF EXISTS "meeting_rooms_development"[0m
+  [1m[35m (109.5ms)[0m  DROP DATABASE IF EXISTS "meeting_rooms_test"
+  [1m[36m (228.1ms)[0m  [1mCREATE DATABASE "meeting_rooms_development" ENCODING = 'unicode'[0m
+  [1m[35m (227.7ms)[0m  CREATE DATABASE "meeting_rooms_test" ENCODING = 'unicode'
+  [1m[36mSQL (1.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (4.5ms)[0m  CREATE TABLE "memberships" ("id" serial primary key, "user_id" integer, "organization_id" integer, "permission_set_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "omniauth_identities" ("id" serial primary key, "user_id" integer, "provider" character varying(255), "uid" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "organizations" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "permission_sets" ("id" serial primary key, "create__organizations" boolean, "create__memberships" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (3.3ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255) DEFAULT '' NOT NULL, "encrypted_password" character varying(255) DEFAULT '' NOT NULL, "reset_password_token" character varying(255), "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying(255), "last_sign_in_ip" character varying(255), "created_at" timestamp, "updated_at" timestamp, "name" character varying(255)) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130908114914')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906064519')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130906082604')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130906082716')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130908112728')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130908114807')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from <top (required)> at /Users/user/Documents/projects/meeting_rooms/db/seeds.rb:8)
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user1@example.com' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user1@example.com' LIMIT 1[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Sun, 08 Sep 2013 12:52:18 UTC +00:00], ["email", "user1@example.com"], ["encrypted_password", "$2a$10$W6EoZM7Hew6xxvcG6DMmsObR.JZyXGwCBWWey8/LMDOuML5il.88O"], ["name", "first person"], ["updated_at", Sun, 08 Sep 2013 12:52:18 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from <top (required)> at /Users/user/Documents/projects/meeting_rooms/db/seeds.rb:11)
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user2@example.com' ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user2@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:52:19 UTC +00:00], ["email", "user2@example.com"], ["encrypted_password", "$2a$10$NPVDcqZBxZCmDOFmfQEVUuYPcszNyH/odELlcCFeaR5dgcjgd6HfW"], ["name", "second person"], ["updated_at", Sun, 08 Sep 2013 12:52:19 UTC +00:00]]
+  [1m[35m (0.8ms)[0m  COMMIT
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.find_or_create_by(name: 'foo') instead. (called from <top (required)> at /Users/user/Documents/projects/meeting_rooms/db/seeds.rb:14)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user3@example.com' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user3@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Sun, 08 Sep 2013 12:52:19 UTC +00:00], ["email", "user3@example.com"], ["encrypted_password", "$2a$10$qTC/wFP230pm96e8sNnva.avqsyl7MUlJCGuquOr94IKCiqDbU7w6"], ["name", "third person"], ["updated_at", Sun, 08 Sep 2013 12:52:19 UTC +00:00]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (3.9ms)[0m  [1mINSERT INTO "organizations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 12:52:34 UTC +00:00], ["updated_at", Sun, 08 Sep 2013 12:52:34 UTC +00:00]]
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "memberships" ("created_at", "organization_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Sun, 08 Sep 2013 12:52:34 UTC +00:00], ["organization_id", 1], ["updated_at", Sun, 08 Sep 2013 12:52:34 UTC +00:00], ["user_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "permission_sets" ("create__memberships", "create__organizations", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["create__memberships", false], ["create__organizations", true], ["created_at", Sun, 08 Sep 2013 12:59:01 UTC +00:00], ["updated_at", Sun, 08 Sep 2013 12:59:01 UTC +00:00]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36mMembership Load (0.8ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mMembership Load (0.5ms)[0m  SELECT "memberships".* FROM "memberships" ORDER BY "memberships"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mMembership Load (0.6ms)[0m  [1mSELECT "memberships".* FROM "memberships" ORDER BY "memberships"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mMembership Load (0.6ms)[0m  SELECT "memberships".* FROM "memberships" ORDER BY "memberships"."id" ASC LIMIT 1
+  [1m[36mPermissionSet Load (0.6ms)[0m  [1mSELECT "permission_sets".* FROM "permission_sets" ORDER BY "permission_sets"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "memberships" SET "permission_set_id" = $1, "updated_at" = $2 WHERE "memberships"."id" = 1[0m  [["permission_set_id", 1], ["updated_at", Sun, 08 Sep 2013 13:04:52 UTC +00:00]]
+  [1m[35m (1.8ms)[0m  COMMIT
+  [1m[36mOrganization Load (0.6ms)[0m  [1mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "memberships" ("created_at", "permission_set_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", Sun, 08 Sep 2013 13:07:48 UTC +00:00], ["permission_set_id", 1], ["updated_at", Sun, 08 Sep 2013 13:07:48 UTC +00:00]]
+  [1m[35m (2.5ms)[0m  COMMIT
+  [1m[36mOrganization Load (1.2ms)[0m  [1mSELECT "organizations".* FROM "organizations" INNER JOIN "memberships" ON "organizations"."id" = "memberships"."organization_id" WHERE "memberships"."user_id" = $1[0m  [["user_id", 1]]
+  [1m[35mPermissionSet Load (0.5ms)[0m  SELECT "permission_sets".* FROM "permission_sets"

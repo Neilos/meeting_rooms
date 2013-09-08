@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook,:google_oauth2, :twitter]
 
   has_many :omniauth_identities, :dependent => :destroy
-	
+  has_many :memberships, :dependent => :destroy, :inverse_of => :user
+  has_many :organizations, :through => :memberships
 end

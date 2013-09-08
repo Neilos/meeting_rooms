@@ -23729,3 +23729,1448 @@ Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.7ms)
   [1m[35m (0.1ms)[0m  COMMIT
   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
   [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_navigation.html.erb (3.9ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 631ms (Views: 626.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (2.2ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (54.5ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 67ms (Views: 61.4ms | ActiveRecord: 1.8ms)
+Started POST "/users" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Smith", "email"=>"user34@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mUser Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (4.9ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:11 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$bo335QxZrKfYKEqmgrFra.G.y5tjmYqcD/uND1KEaCD9ET.CbT3wS"], ["name", "John Smith"], ["updated_at", Fri, 06 Sep 2013 09:20:11 UTC +00:00]]
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 1[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:11 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:11 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:11 UTC +00:00]]
+Redirected to http://www.example.com/users/1
+Completed 302 Found in 84ms (ActiveRecord: 7.2ms)
+Started GET "/users/1" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 3.6ms | ActiveRecord: 1.2ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2013-09-06 10:20:11 +0100
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Smith", "email"=>"invalid@h", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'invalid@h' LIMIT 1
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 6.8ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$SkCsAPSOhccbI5yC.ULPTewLS7N1wkB3ufn1ZvjLS3juq.zly5xM6"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Smith", "email"=>"user34@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_navigation.html.erb (48.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 59ms (Views: 53.9ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "users"
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Started GET "/users/auth/google_oauth2/callback" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#google_oauth2 as HTML
+  [1m[36mOmniauthIdentity Load (0.5ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'google_oauth2' AND "omniauth_identities"."uid" = '123456' ORDER BY "omniauth_identities"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$3XCAxnPy6RsmUu0.RVdtKelFNCOybWWoF3yeSYv6dOuYqXjOcliMq"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["user_id", 3]]
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 3  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 42ms (ActiveRecord: 5.0ms)
+Started GET "/users/3" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "3"]]
+  Rendered users/show.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.8ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users"
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Started GET "/users/auth/facebook/callback" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#failure as HTML
+Redirected to http://www.example.com/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 63ms (Views: 61.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users"
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Started GET "/users/auth/facebook/callback" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  [1m[36mOmniauthIdentity Load (0.5ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'facebook' AND "omniauth_identities"."uid" = '10101010' ORDER BY "omniauth_identities"."id" ASC LIMIT 1[0m
+Redirected to http://www.example.com/users/sign_in
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/twitter" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Started GET "/users/auth/twitter/callback" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#twitter as HTML
+  [1m[35mOmniauthIdentity Load (0.5ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'twitter' AND "omniauth_identities"."uid" = '123456' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  Rendered devise/registrations/new_with_omniauth.html.erb within layouts/application (3.6ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 15ms (Views: 9.5ms | ActiveRecord: 0.9ms)
+Started POST "/users/new_with_omniauth" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#new_with_omniauth as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Q Public", "email"=>"jon@example.com", "password"=>"[FILTERED]"}, "uid"=>"123456", "provider"=>"twitter", "commit"=>"Complete sign in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'jon@example.com' LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'jon@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "jon@example.com"], ["encrypted_password", "$2a$04$VD.sOMDScBhfJtf3Yn05XOhKGp7i1ecolV5JePvPE1kfUm8DebScy"], ["name", "John Q Public"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["provider", "twitter"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["user_id", 4]]
+  [1m[35mSQL (0.9ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 4  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Redirected to http://www.example.com/users/4
+Completed 302 Found in 10ms (ActiveRecord: 2.6ms)
+Started GET "/users/4" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "4"]]
+  Rendered users/show.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.9ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1
+Redirected to http://www.example.com/
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"jon@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'jon@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = 4  [["current_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["sign_in_count", 2], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Redirected to http://www.example.com/users/4
+Completed 302 Found in 10ms (ActiveRecord: 1.3ms)
+Started GET "/users/4" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "4"]]
+  Rendered users/show.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/twitter" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Started GET "/users/auth/twitter/callback" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#twitter as HTML
+  [1m[35mOmniauthIdentity Load (0.4ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'twitter' AND "omniauth_identities"."uid" = '123456' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  Rendered devise/registrations/new_with_omniauth.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 10ms (Views: 5.6ms | ActiveRecord: 0.6ms)
+Started POST "/users/new_with_omniauth" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Users::OmniauthCallbacksController#new_with_omniauth as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Q Public", "email"=>"jon@example.com", "password"=>"[FILTERED]"}, "uid"=>"123456", "provider"=>"twitter", "commit"=>"Complete sign in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'jon@example.com' LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'jon@example.com' LIMIT 1[0m
+  Rendered devise/registrations/new_with_omniauth.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  Rendered layouts/_messages.html.erb (0.5ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$87gXBf5Dr044mhQ2PJMJsek5K08wgvvlMLbrRbt3QfSks8W2nGneq"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 5  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Redirected to http://www.example.com/users/5
+Completed 302 Found in 7ms (ActiveRecord: 1.3ms)
+Started GET "/users/5" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "5"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.8ms)
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 5 ORDER BY "users"."id" ASC LIMIT 1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$Yt8OMz54zLm3UTP2pTOA3efSUX.Z2mTL3wwIdCTPpbwV22vyJRt8."], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$l5YIsYMpZGN0VAjLDKzxzeqBw9uCAPnfoZqXho/4tkIua7PlGxLF."], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["user_id", 7]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$qmsnmQrIINKUjNme/UH2iuKZyWLIWWVvabffFVeg0hJHRYUriEOIq"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["user_id", 8]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 6[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+Redirected to http://www.example.com/users/6
+Completed 302 Found in 7ms (ActiveRecord: 1.2ms)
+Started GET "/users/6" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 6 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "6"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$GkVEDqCMKKa8rMh1f5n0B.eyxjGB0Lh3XSdLVDXkm5DVj1eZNqL82"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$FWuooHGy/4sWwryEmxXJvuRjZSt/49hKtexMFCDn4MyFbQf.BIA5."], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["user_id", 10]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$uSi.W/Xt5I4wldESTeWEcufe3NVYVaNYxZ/vQ0.yrg6c3i6rXIsyy"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["user_id", 11]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:12 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+Completed 401 Unauthorized in 4ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$naaWsHXfaEdNM0G8SfiJMOoOtk6ZHMb6D7PL6xb0Plzw37IYrChiq"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:12 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$0m5BrF1RhCgG60R31wt/QOYNLY3OxhAm5dxZh5SHpB17K.d37TpNO"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 13]]
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$Le0S4Z.jiWV/dwvDxZdSZOoWMqTQ3FHixA5BYjkPz0rBFfSz9WWgC"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 14]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"somebody@anywhere.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'somebody@anywhere.com' LIMIT 1[0m
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"somebody@anywhere.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$fGMeHW77YKw8ZMlxZv.sJehA7bhb.TrwFFx4XffvhzgwRkU74wCOC"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$C7io61KOcwsqcpl8lENTHOd.HEIw6MP.1Ee9p8FI3Kizcm8J4v4Si"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 16]]
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$YBA05Kj8GDtk3Ys6LbHu2uTUEhfQhzM2E5SqjWiTqhSuHDzgmlRHq"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 17]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (2.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms)
+Started GET "/users/password/new" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::PasswordsController#new as HTML
+  Rendered devise/shared/_links.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.0ms)
+Started POST "/users/password" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::PasswordsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com"}, "commit"=>"Send me reset password instructions"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."reset_password_token" = 'm67D5id2EE2i8zsu6x2h' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "reset_password_token" = $1, "reset_password_sent_at" = $2, "updated_at" = $3 WHERE "users"."id" = 15  [["reset_password_token", "m67D5id2EE2i8zsu6x2h"], ["reset_password_sent_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+
+Sent mail to user34@example.com (11.8ms)
+Date: Fri, 06 Sep 2013 10:20:13 +0100
+From: mentessi@gmail.com
+Reply-To: mentessi@gmail.com
+To: user34@example.com
+Message-ID: <52299e4d2b5ed_179df3fe620c60674412aa@michaels-MacBook-Pro.local.mail>
+Subject: Reset password instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello user34@example.com!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/users/password/edit?reset_password_token=m67D5id2EE2i8zsu6x2h">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+Redirected to http://www.example.com/users/sign_in
+Completed 302 Found in 40ms (ActiveRecord: 1.5ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$aQZlcV9k/I2grUA/UnpJEOsHY8A8AgqzituNDS5LkxB98veJsVkd2"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$.yBaWmdbBQ0N7SyJ.kfFmeSF1Xrp.2LoYT2D2ynHRqq.t72kwwiU."], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 19]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$pgapz42RrviTX1Tye3DygOMU3F3R3nJ2VPJnXv83./3Z/4ATXWPNi"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 20]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/facebook/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#failure as HTML
+Redirected to http://www.example.com/users/sign_in
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$ItfmHEZkKBpsmG7PUM5ggOaybxE3yQtfHq7qXXpMpCM7/seB7LtCi"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$8ml77H1RVdV4B23mQDgtp.2cyJGV4FkdTRDKqLlxcFYr19VGt14Ca"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 22]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$39iP0Pu9hENUYWdUk4bunuQ2EyxMj0fq1LF13Gg/1PZmkik8BEmU."], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 23]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/facebook/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  [1m[35mOmniauthIdentity Load (0.5ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'facebook' AND "omniauth_identities"."uid" = '1234568' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "1234568"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 21]]
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 21[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+Redirected to http://www.example.com/users/21
+Completed 302 Found in 7ms (ActiveRecord: 2.2ms)
+Started GET "/users/21" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 21 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "21"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$J/Fr/j7t1zRY/NWyKkq4g.Y.C08gqoIQ9JzugpM7DmVpBslu2lTti"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$otryPGTka/uvdmaa.348yu/UZdiTzlYCGKf0VafnnEubBA/QlsDNm"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 25]]
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$qpq/99Bw2ev0/xC26wpY.uUiCRTUcusrd7Klfw/to2/BDWpDgVCke"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 26]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/google_oauth2/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#google_oauth2 as HTML
+  [1m[35mOmniauthIdentity Load (0.5ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'google_oauth2' AND "omniauth_identities"."uid" = '123456' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 26]]
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 26  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+Redirected to http://www.example.com/users/26
+Completed 302 Found in 11ms (ActiveRecord: 2.0ms)
+Started GET "/users/26" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"26"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 26 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "26"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$VuHM3pzJuaxTFjTr24IsOOyWHN5zIdq6t9zOKiEPvmSvjJeu2x5na"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$uPL5riSD3jD1ISrXoTiMeu52aggl7FbFKMi7653isaMkULMMr3zKm"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 28]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$FoKtLiZ6t7uYCAD7qEOp4uSxjY08KIyQIPzLB6U33DNiz8rwc9TZO"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 29]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/facebook/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  [1m[36mOmniauthIdentity Load (0.5ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'facebook' AND "omniauth_identities"."uid" = '654321' ORDER BY "omniauth_identities"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 28]]
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 28[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+Redirected to http://www.example.com/users/28
+Completed 302 Found in 5ms (ActiveRecord: 1.6ms)
+Started GET "/users/28" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 28 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "28"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$K/6FXQXnLo2DQmnjd2VJk.Uts7LJYdjt2TnDrSMe3pHZcwgriyRZG"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$WitMRHonlyEllVJbpGELX.ZmusixzEJBbGKOP9X6LCjOgOQMuQIBS"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 31]]
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$qgi5oSNBLgkc/Et7Q96h5elZ022BTSmvqlYebygC/VqzZUjIskokC"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 32]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (54.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 57ms (Views: 56.8ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/google_oauth2" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/google_oauth2/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#google_oauth2 as HTML
+  [1m[35mOmniauthIdentity Load (0.7ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'google_oauth2' AND "omniauth_identities"."uid" = '987654' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "987654"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 31]]
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 31[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+Redirected to http://www.example.com/users/31
+Completed 302 Found in 6ms (ActiveRecord: 2.1ms)
+Started GET "/users/31" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 31 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "31"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$o6nWNqJ2SYkwz9d0L3IcSOBb9wcVFv1Av.6XO9QcVCNoykmZwhe7e"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$JOwPclRF/gomVVnbrwEGOeHFzB3cOXAUX62EhW20xZLujI/mSPtDu"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 34]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$ZtBEz4v/5CD72w7FnoIgru4IFoefrMZtHGlniZfTWaph/ORoSd1/K"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 35]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/facebook/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  [1m[35mOmniauthIdentity Load (0.7ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'facebook' AND "omniauth_identities"."uid" = '10101010' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+Redirected to http://www.example.com/users/sign_in
+Completed 302 Found in 2ms (ActiveRecord: 0.7ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$VprN4Rru7p0n8IL4GZPkjOvDGa0EXa2umejeQQza1d01qETUGVSKW"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$gbEn0obDjRTRRmq1Z6BhXu1qidN.FIdjpduty65b8asYXh391Qw7u"], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 37]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$2F4WAjiB106MqqQgcGnfNek/tWEobY69Cw6/GSp..rGsaWJvqgEta"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 38]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/twitter" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Started GET "/users/auth/twitter/callback" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#twitter as HTML
+  [1m[36mOmniauthIdentity Load (0.5ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'twitter' AND "omniauth_identities"."uid" = '123456' ORDER BY "omniauth_identities"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT 1
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 11ms (Views: 5.8ms | ActiveRecord: 0.9ms)
+Started POST "/users/new_with_omniauth" for 127.0.0.1 at 2013-09-06 10:20:13 +0100
+Processing by Users::OmniauthCallbacksController#new_with_omniauth as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Q Public", "email"=>"user50@example.com", "password"=>"[FILTERED]"}, "uid"=>"123456", "provider"=>"twitter", "commit"=>"Complete sign in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["provider", "twitter"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["user_id", 37]]
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 37[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:13 UTC +00:00]]
+Redirected to http://www.example.com/users/37
+Completed 302 Found in 8ms (ActiveRecord: 2.0ms)
+Started GET "/users/37" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"37"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 37 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "37"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$lh1IjCZuexEh8o8e2/ut2Ot2IpQe0CfZNsdL/.pLjuW8Mv3kfW.w6"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user50@example.com"], ["encrypted_password", "$2a$04$KAATsn9sM4gl3tq368ia7.a92NnsrhtgigKjP.dppiD9HDuYAIFn."], ["name", "Ted Ted"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["provider", "facebook"], ["uid", "654321"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["user_id", 40]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user40@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user40@example.com"], ["encrypted_password", "$2a$04$AUQSEG5/ng6nJ.sK3aOUdOyBYp9HV9NrEYOeTY2V.OjDXHlVe/uN6"], ["name", "Neil Neil"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "omniauth_identities" ("created_at", "provider", "uid", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["provider", "google_oauth2"], ["uid", "123456"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["user_id", 41]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+Started GET "/users/auth/twitter" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Started GET "/users/auth/twitter/callback" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by Users::OmniauthCallbacksController#twitter as HTML
+  [1m[35mOmniauthIdentity Load (0.4ms)[0m  SELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."provider" = 'twitter' AND "omniauth_identities"."uid" = '123456' ORDER BY "omniauth_identities"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 11ms (Views: 6.0ms | ActiveRecord: 0.6ms)
+Started POST "/users/new_with_omniauth" for 127.0.0.1 at 2013-09-06 10:20:14 +0100
+Processing by Users::OmniauthCallbacksController#new_with_omniauth as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"John Q Public", "email"=>"user50@example.com", "password"=>"[FILTERED]"}, "uid"=>"123456", "provider"=>"twitter", "commit"=>"Complete sign in"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user50@example.com' LIMIT 1
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@foo.com' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'the_user@foo.bar.org' LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'first.last@foo.jp' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@foo,com' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user_at_foo.org' LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example.user@foo.' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user@example.com"], ["encrypted_password", "$2a$04$VgdqOpm71uCff8h9j/U7herwG4ILkkMoRhM07GwaKBjQi/7WHoViy"], ["name", "ExampleName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user@example.com"], ["encrypted_password", "$2a$04$p25K1asUdd2REWBHwjh/Wu0bBHl/9ruC7muONPP9WFRz5Mv2DUVti"], ["name", "ExampleName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user@example.com"], ["encrypted_password", "$2a$04$BV/4.vwrCDZLXGBt0LZpPO8v49zZQjrJp2EO696VnoFPLrgAXR3dy"], ["name", "ExampleName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user@example.com"], ["encrypted_password", "$2a$04$v5pS31RORRHE78tpu3IDWuDwVqHztft5mrbYIK/kbWvQYyxq/7YXu"], ["name", "ExampleName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user@example.com"], ["encrypted_password", "$2a$04$bDwICfN7s3L9cZZ6DwjJ7.h13i3UQsRMLPhonEtiGfU2L4gdF9IRK"], ["name", "ExampleName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  Rendered layouts/_navigation.html.erb (2.5ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$0kjUTOslm8.M4mgGPHaB8.q4nxZijpkf9ir/FtUX3FLFu2t0hwyNG"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 47 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$ztsViTtEaB/3d5i/c9Oicu9xgFOhmh/p0UVc9mHHcUuCXxmymi1Jm"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$r8h7n81bK2LuUewrB1H3/OTKpeXhQKgIavEMO9l9IpqKc.Iplem.."], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 49 ORDER BY "users"."id" ASC LIMIT 1
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$5F0hCTOJ6Pzj/zRoC425z.C50w9Wbka1XoVoXhLfAn.4DK9OM7XMq"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$XrlFDXOAEw5jCMu401bxyuYfXS3O3jusbp1./2kcFHA51r8LFtpvu"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 51 ORDER BY "users"."id" ASC LIMIT 1[0m
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$Zejk1ENVRR0mr80MepEynO8HjdEJLIGa9tqzX65Ebwc4u9lru0e6W"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$CkD7FKCJo6AAeGifpRuAj.H/yl4jvALVYq55AiD467llvn4TKfWAm"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 53 ORDER BY "users"."id" ASC LIMIT 1
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$QBQ3W4AhyJgp5bR2dD1/3O0YvwNrW4N29WAA356OUKAkef/1poecK"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$IZNwiV3MfvlqjsJArNLrg.MfGo.DGu7fkuIFehQypPCinFbIHO3nu"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"54"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 55 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "54"]]
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$Svj5F1dOBk8vXh1cVb/TkO5zpi/U/shlEW8MxN3mPX8k.8j2QJoiy"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$x7Hq6IcUElbuPdbFkkK7XuiYwnMLBKYzPFGzHQ19ot1tIYM2.h2Aq"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"56"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 57 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "56"]]
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$wbQ59gK/RkFwALneZNnsXOW2NSPuPIjWXUGBAGiYmAPQYZ3yUFj4q"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$59yDmgH5g7CGLC6KPRvtJuTnUs/S70eR3n8m/F2U0II8GC9idQmh."], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"58"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 59 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "58"]]
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$jH4BGMtV/C3VcLSeql5St.U1sJ18kOIeSHZo26uL1uenGRbg09wyW"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$wbBLt83dlQY73dAWKBda5OvNBU87HruyN2au6yUoGtw5t/AXCAUI6"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 61 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 61]]
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$osQqsrK2x5qBDjzJqZ.PxOSvsu8Wi0ioIPvGY4De/QyZ8H5tYBJuG"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$MYd6gIIXIsp8vNZFXS9giu3wrd/3sUoLt8HV44ezuyRVjVZMoYWT."], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 63 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 63]]
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.8ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "example@example.com"], ["encrypted_password", "$2a$04$clZGTS4d8bkEQPijPc8Xue7OYckVu.jrnNpfO1AbXwdY22sd5Xei."], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'dave@dave.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "dave@dave.com"], ["encrypted_password", "$2a$04$8S53cCG/2vGf21ubwa8/8u58bZ2dnIwh/.v16l7GTLWjbVFmZPqaC"], ["name", "TestName"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 65 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 65]]
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$EeRmtYS002aIgL8/3FqDgeBRypcU46DUUui.H4aHZB435mK8k42V6"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:14 UTC +00:00]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (2.5ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+Started GET "/assets/application.css" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Started GET "/assets/application.js" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.0ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 17ms (Views: 14.3ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (1.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 66  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:18 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:18 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:18 UTC +00:00]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:55749/users/66
+Completed 302 Found in 18ms (ActiveRecord: 8.6ms)
+Started GET "/users/66" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"66"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 66 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "66"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 9ms (Views: 2.0ms | ActiveRecord: 4.4ms)
+Started GET "/users/edit" for 127.0.0.1 at 2013-09-06 10:20:18 +0100
+Processing by RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 66 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered layouts/_navigation.html.erb (2.6ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 21ms (Views: 19.2ms | ActiveRecord: 0.7ms)
+Started DELETE "/users" for 127.0.0.1 at 2013-09-06 10:20:19 +0100
+Processing by RegistrationsController#destroy as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 66 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mOmniauthIdentity Load (0.6ms)[0m  [1mSELECT "omniauth_identities".* FROM "omniauth_identities" WHERE "omniauth_identities"."user_id" = $1[0m  [["user_id", 66]]
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM "users" WHERE "users"."id" = $1  [["id", 66]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:55749/
+Completed 302 Found in 68ms (ActiveRecord: 4.0ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:19 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  ALTER TABLE "omniauth_identities" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (1.2ms)[0m  [1mselect table_name from information_schema.views where table_schema = 'meeting_rooms_test'[0m
+  [1m[35m (6.0ms)[0m  TRUNCATE TABLE "omniauth_identities", "users" RESTART IDENTITY CASCADE;
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "omniauth_identities" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$C0d.qGH0uN4lQotyeEwmdOU.KiKHNeaO3JeILGtUPu9J986ChupWK"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 1  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/users/1
+Completed 302 Found in 8ms (ActiveRecord: 1.4ms)
+Started GET "/users/1" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.8ms)
+Started GET "/users/edit" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.5ms)
+Started PUT "/users" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"Mike Mike", "email"=>"user34@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Redirected to http://www.example.com/
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$uSD8lGocwdSAjcRNp5InAe1leJrIkjoUV.dwixOg6AnAqLQjbFJny"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 2[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/users/2
+Completed 302 Found in 6ms (ActiveRecord: 1.3ms)
+Started GET "/users/2" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.9ms)
+Started GET "/users/edit" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+Started PUT "/users" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"Mike Mike", "email"=>"user36@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE ("users"."email" = 'user36@example.com' AND "users"."id" != 2) LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 11ms (Views: 4.9ms | ActiveRecord: 1.2ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$XnIt5Xuae6w5Mhlip7F29e00ORLSVip7X4wTZBOcGOIjDaGgxK9dC"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 3[0m  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 6ms (ActiveRecord: 1.1ms)
+Started GET "/users/3" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "3"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.7ms)
+Started GET "/users/edit" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.4ms)
+Started PUT "/users" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"Mike Mike", "email"=>"user34@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "encrypted_password" = $1, "updated_at" = $2 WHERE "users"."id" = 3[0m  [["encrypted_password", "$2a$04$RmUh.10wvyG4ciuufnr8au3BDyR2.EuxoyZYhhSYm0dR1461HG96q"], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/
+Completed 302 Found in 59ms (ActiveRecord: 1.6ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.3ms)
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1
+Redirected to http://www.example.com/
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = 3  [["current_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["sign_in_count", 2], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/users/3
+Completed 302 Found in 6ms (ActiveRecord: 1.2ms)
+Started GET "/users/3" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "3"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.7ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["email", "user34@example.com"], ["encrypted_password", "$2a$04$q5mvjZ.rBtfIE3WBw7TA9.lay3Xks4ILFw/37b3JM/RqA3vHaFsLC"], ["name", "Mike Mike"], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"user34@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'user34@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 4  [["last_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["current_sign_in_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/users/4
+Completed 302 Found in 58ms (ActiveRecord: 1.4ms)
+Started GET "/users/4" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "4"]]
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.8ms)
+Started GET "/users/edit" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.5ms)
+Started PUT "/users" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+Processing by RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"New Name", "email"=>"user34@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "name" = $1, "updated_at" = $2 WHERE "users"."id" = 4  [["name", "New Name"], ["updated_at", Fri, 06 Sep 2013 09:20:20 UTC +00:00]]
+Redirected to http://www.example.com/
+Completed 302 Found in 4ms (ActiveRecord: 1.5ms)
+Started GET "/" for 127.0.0.1 at 2013-09-06 10:20:20 +0100
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1[0m
+Processing by UsersController#show as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered layouts/_navigation.html.erb (0.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
