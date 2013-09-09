@@ -13,6 +13,7 @@ MeetingRooms::Application.routes.draw do
   resources :users, only: [:index, :show]
   resources :organizations
   resources :permission_sets
+  resources :memberships
 
   root to: "application#initial_home"
 
