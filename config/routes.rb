@@ -11,6 +11,7 @@ MeetingRooms::Application.routes.draw do
   end
   
   resources :users, only: [:index, :show]
+  resources :organizations
 
   root to: "application#initial_home"
 
