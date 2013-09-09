@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @custom_attribute.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @custom_attribute.value %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @custom_attribute.room_id %>
+</p>
+
+<%= link_to 'Edit', edit_custom_attribute_path(@custom_attribute) %> |
+<%= link_to 'Back', custom_attributes_path %>

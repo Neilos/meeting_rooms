@@ -1,0 +1,31 @@
+<h1>Listing custom_attributes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Room</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_attributes.each do |custom_attribute| %>
+      <tr>
+        <td><%= custom_attribute.name %></td>
+        <td><%= custom_attribute.value %></td>
+        <td><%= custom_attribute.room_id %></td>
+        <td><%= link_to 'Show', custom_attribute %></td>
+        <td><%= link_to 'Edit', edit_custom_attribute_path(custom_attribute) %></td>
+        <td><%= link_to 'Destroy', custom_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Custom attribute', new_custom_attribute_path %>
