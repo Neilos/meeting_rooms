@@ -30,14 +30,6 @@ describe MembershipsController do
   # MembershipsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all memberships as @memberships" do
-      membership = Membership.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:memberships).should eq([membership])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested membership as @membership" do
       membership = Membership.create! valid_attributes
