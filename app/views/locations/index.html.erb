@@ -1,25 +1,27 @@
-<h1>Listing locations</h1>
-
-<table>
+<%- model_class = Location -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address line 1</th>
-      <th>Address line 2</th>
-      <th>Town city</th>
-      <th>County</th>
-      <th>Postcode</th>
-      <th>Country</th>
-      <th>Organization</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:address_line_1) %></th>
+      <th><%= model_class.human_attribute_name(:address_line_2) %></th>
+      <th><%= model_class.human_attribute_name(:town_city) %></th>
+      <th><%= model_class.human_attribute_name(:county) %></th>
+      <th><%= model_class.human_attribute_name(:postcode) %></th>
+      <th><%= model_class.human_attribute_name(:country) %></th>
+      <th><%= model_class.human_attribute_name(:organization_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @locations.each do |location| %>
       <tr>
+        <td><%= link_to location.id, location_path(location) %></td>
         <td><%= location.name %></td>
         <td><%= location.address_line_1 %></td>
         <td><%= location.address_line_2 %></td>
@@ -28,14 +30,21 @@
         <td><%= location.postcode %></td>
         <td><%= location.country %></td>
         <td><%= location.organization_id %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= location.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_location_path(location), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      location_path(location),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Location', new_location_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_location_path,
+            :class => 'btn btn-primary' %>

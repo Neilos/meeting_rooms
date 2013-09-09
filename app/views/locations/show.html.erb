@@ -1,44 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Location -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @location.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_line_1) %>:</strong></dt>
+  <dd><%= @location.address_line_1 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_line_2) %>:</strong></dt>
+  <dd><%= @location.address_line_2 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:town_city) %>:</strong></dt>
+  <dd><%= @location.town_city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:county) %>:</strong></dt>
+  <dd><%= @location.county %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:postcode) %>:</strong></dt>
+  <dd><%= @location.postcode %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
+  <dd><%= @location.country %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
+  <dd><%= @location.organization_id %></dd>
+</dl>
 
-<p>
-  <strong>Address line 1:</strong>
-  <%= @location.address_line_1 %>
-</p>
-
-<p>
-  <strong>Address line 2:</strong>
-  <%= @location.address_line_2 %>
-</p>
-
-<p>
-  <strong>Town city:</strong>
-  <%= @location.town_city %>
-</p>
-
-<p>
-  <strong>County:</strong>
-  <%= @location.county %>
-</p>
-
-<p>
-  <strong>Postcode:</strong>
-  <%= @location.postcode %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @location.country %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @location.organization_id %>
-</p>
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              locations_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_location_path(@location), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              location_path(@location),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
