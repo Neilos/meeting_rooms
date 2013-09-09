@@ -9,5 +9,6 @@ FactoryGirl.define do
     county "MyString"
     postcode "MyString"
     country "MyString"
+    organization_id 5
   end
 end
