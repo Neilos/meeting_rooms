@@ -1,31 +1,40 @@
-<h1>Listing custom_attributes</h1>
-
-<table>
+<%- model_class = CustomAttribute -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Value</th>
-      <th>Room</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:value) %></th>
+      <th><%= model_class.human_attribute_name(:room_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @custom_attributes.each do |custom_attribute| %>
       <tr>
+        <td><%= link_to custom_attribute.id, custom_attribute_path(custom_attribute) %></td>
         <td><%= custom_attribute.name %></td>
         <td><%= custom_attribute.value %></td>
         <td><%= custom_attribute.room_id %></td>
-        <td><%= link_to 'Show', custom_attribute %></td>
-        <td><%= link_to 'Edit', edit_custom_attribute_path(custom_attribute) %></td>
-        <td><%= link_to 'Destroy', custom_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= custom_attribute.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_custom_attribute_path(custom_attribute), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      custom_attribute_path(custom_attribute),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Custom attribute', new_custom_attribute_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_custom_attribute_path,
+            :class => 'btn btn-primary' %>

@@ -1,4 +1,4 @@
-<%= form_for(@custom_attribute) do |f| %>
+<%= form_for @custom_attribute, :html => { :class => 'form-horizontal' } do |f| %>
   <% if @custom_attribute.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@custom_attribute.errors.count, "error") %> prohibited this custom_attribute from being saved:</h2>
@@ -10,20 +10,29 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :value, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :room_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :room_id, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br>
-    <%= f.text_field :value %>
-  </div>
-  <div class="field">
-    <%= f.label :room_id %><br>
-    <%= f.number_field :room_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                custom_attributes_path, :class => 'btn' %>
   </div>
 <% end %>

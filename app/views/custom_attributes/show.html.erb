@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = CustomAttribute -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @custom_attribute.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @custom_attribute.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value) %>:</strong></dt>
+  <dd><%= @custom_attribute.value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:room_id) %>:</strong></dt>
+  <dd><%= @custom_attribute.room_id %></dd>
+</dl>
 
-<p>
-  <strong>Value:</strong>
-  <%= @custom_attribute.value %>
-</p>
-
-<p>
-  <strong>Room:</strong>
-  <%= @custom_attribute.room_id %>
-</p>
-
-<%= link_to 'Edit', edit_custom_attribute_path(@custom_attribute) %> |
-<%= link_to 'Back', custom_attributes_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              custom_attributes_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_custom_attribute_path(@custom_attribute), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              custom_attribute_path(@custom_attribute),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
