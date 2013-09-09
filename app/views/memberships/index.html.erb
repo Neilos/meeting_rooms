@@ -20,7 +20,7 @@
         <td><%= membership.user_id %></td>
         <td><%= membership.organization_id %></td>
         <td><%= membership.permission_set_id %></td>
-        <td><%=l membership.created_at %></td>
+        <td><%= membership.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_membership_path(membership), :class => 'btn btn-mini' %>
