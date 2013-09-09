@@ -1,31 +1,40 @@
-<h1>Listing memberships</h1>
-
-<table>
+<%- model_class = Membership -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Organization</th>
-      <th>Permission set</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:organization_id) %></th>
+      <th><%= model_class.human_attribute_name(:permission_set_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @memberships.each do |membership| %>
       <tr>
+        <td><%= link_to membership.id, membership_path(membership) %></td>
         <td><%= membership.user_id %></td>
         <td><%= membership.organization_id %></td>
         <td><%= membership.permission_set_id %></td>
-        <td><%= link_to 'Show', membership %></td>
-        <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
-        <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l membership.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_membership_path(membership), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      membership_path(membership),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Membership', new_membership_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_membership_path,
+            :class => 'btn btn-primary' %>

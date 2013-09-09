@@ -2345,3 +2345,668 @@ Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 10:57:08 +
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 10:57:08 +0100
+
+
+Started PATCH "/permission_sets/1" for 127.0.0.1 at 2013-09-09 11:17:56 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PermissionSetsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bK0k6ff7y+SHzash2d8kaFIJv2XVU0lQYSQEFLW+7xc=", "permission_set"=>{"create__organizations"=>"t", "create__memberships"=>"f"}, "commit"=>"Update Permission set", "id"=>"1"}
+  [1m[35mPermissionSet Load (0.9ms)[0m  SELECT "permission_sets".* FROM "permission_sets" WHERE "permission_sets"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mMembership Load (2.4ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."permission_set_id" = $1  [["permission_set_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  Rendered permission_sets/_form.html.erb (55.7ms)
+  Rendered permission_sets/edit.html.erb within layouts/application (60.2ms)
+  Rendered layouts/_navigation.html.erb (9.6ms)
+  Rendered layouts/_messages.html.erb (0.5ms)
+Completed 200 OK in 315ms (Views: 191.8ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:17:57 +0100
+
+
+Started GET "/permission_sets" for 127.0.0.1 at 2013-09-09 11:18:01 +0100
+Processing by PermissionSetsController#index as HTML
+  Rendered permission_sets/index.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    13:     </tr>
+    14:   </thead>
+    15:   <tbody>
+    16:     <% @permission_sets.each do |permission_set| %>
+    17:       <tr>
+    18:         <td><%= link_to permission_set.id, permission_set_path(permission_set) %></td>
+    19:         <td><%= permission_set.create__organizations %></td>
+  app/views/permission_sets/index.html.erb:16:in `_app_views_permission_sets_index_html_erb__4308246903087129833_70155100577100'
+
+
+  Rendered /Users/user/.rvm/gems/ruby-2.0.0-p0@rails-3.2.14/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/user/.rvm/gems/ruby-2.0.0-p0@rails-3.2.14/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/user/.rvm/gems/ruby-2.0.0-p0@rails-3.2.14/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 11.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:14 +0100
+
+
+Started GET "/memberships/new" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+Processing by MembershipsController#new as HTML
+  Rendered memberships/_form.html.erb (4.6ms)
+  Rendered memberships/new.html.erb within layouts/application (6.2ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 68ms (Views: 67.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:18:29 +0100
+
+
+Started GET "/memberships" for 127.0.0.1 at 2013-09-09 11:18:32 +0100
+Processing by MembershipsController#index as HTML
+  [1m[35mMembership Load (0.5ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered memberships/index.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/memberships/1/edit" for 127.0.0.1 at 2013-09-09 11:18:40 +0100
+Processing by MembershipsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMembership Load (3.0ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered memberships/_form.html.erb (3.7ms)
+  Rendered memberships/edit.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 23ms (Views: 18.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/memberships" for 127.0.0.1 at 2013-09-09 11:18:42 +0100
+Processing by MembershipsController#index as HTML
+  [1m[35mMembership Load (0.5ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered memberships/index.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_navigation.html.erb (47.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 62ms (Views: 61.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/memberships/1" for 127.0.0.1 at 2013-09-09 11:18:58 +0100
+Processing by MembershipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMembership Load (0.4ms)[0m  [1mSELECT "memberships".* FROM "memberships" WHERE "memberships"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered memberships/show.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 16ms (Views: 14.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/memberships/1/edit" for 127.0.0.1 at 2013-09-09 11:19:00 +0100
+Processing by MembershipsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMembership Load (0.6ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered memberships/_form.html.erb (2.7ms)
+  Rendered memberships/edit.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 19ms (Views: 17.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/memberships" for 127.0.0.1 at 2013-09-09 11:19:01 +0100
+Processing by MembershipsController#index as HTML
+  [1m[36mMembership Load (0.5ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered memberships/index.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 17ms (Views: 15.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/memberships/2" for 127.0.0.1 at 2013-09-09 11:19:03 +0100
+Processing by MembershipsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mMembership Load (0.5ms)[0m  SELECT "memberships".* FROM "memberships" WHERE "memberships"."id" = $1 LIMIT 1  [["id", "2"]]
+  Rendered memberships/show.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 16ms (Views: 14.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/memberships" for 127.0.0.1 at 2013-09-09 11:19:04 +0100
+Processing by MembershipsController#index as HTML
+  [1m[36mMembership Load (0.4ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered memberships/index.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_navigation.html.erb (46.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 62ms (Views: 60.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/memberships/new" for 127.0.0.1 at 2013-09-09 11:19:05 +0100
+Processing by MembershipsController#new as HTML
+  Rendered memberships/_form.html.erb (2.8ms)
+  Rendered memberships/new.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 18ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/memberships" for 127.0.0.1 at 2013-09-09 11:19:06 +0100
+Processing by MembershipsController#index as HTML
+  [1m[35mMembership Load (0.5ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered memberships/index.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 17ms (Views: 15.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-09-09 11:19:10 +0100
+Processing by ApplicationController#initial_home as HTML
+  Rendered application/initial_home.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 12ms (Views: 11.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/memberships/new" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MembershipsController#new as HTML
+  Rendered memberships/_form.html.erb (18.8ms)
+  Rendered memberships/new.html.erb within layouts/application (28.1ms)
+  Rendered layouts/_navigation.html.erb (9.0ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+Completed 200 OK in 264ms (Views: 237.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:09 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:10 +0100
+
+
+Started POST "/memberships" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+Processing by MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bK0k6ff7y+SHzash2d8kaFIJv2XVU0lQYSQEFLW+7xc=", "membership"=>{"user_id"=>"", "organization_id"=>"", "permission_set_id"=>""}, "commit"=>"Create Membership"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered memberships/_form.html.erb (2.8ms)
+  Rendered memberships/new.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 21ms (Views: 15.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:15 +0100
+
+
+Started POST "/memberships" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+Processing by MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bK0k6ff7y+SHzash2d8kaFIJv2XVU0lQYSQEFLW+7xc=", "membership"=>{"user_id"=>"", "organization_id"=>"", "permission_set_id"=>""}, "commit"=>"Create Membership"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered memberships/_form.html.erb (2.9ms)
+  Rendered memberships/new.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 21ms (Views: 16.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:19 +0100
+
+
+Started POST "/memberships" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+Processing by MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bK0k6ff7y+SHzash2d8kaFIJv2XVU0lQYSQEFLW+7xc=", "membership"=>{"user_id"=>"", "organization_id"=>"", "permission_set_id"=>""}, "commit"=>"Create Membership"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered memberships/_form.html.erb (5.3ms)
+  Rendered memberships/new.html.erb within layouts/application (6.4ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 22ms (Views: 17.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter_bootstrap_overides.css?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-09-09 11:20:46 +0100
