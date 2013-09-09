@@ -10,13 +10,29 @@ MeetingRooms::Application.routes.draw do
     get '/' => "users#show", as: "user_root"
   end
   
-  resources :users, only: [:index, :show]
-  resources :organizations
-  resources :permission_sets
-  resources :memberships
-  resources :locations
-  resources :rooms
+  resources :users, only: [:index, :show] do 
+    resources :memberships
+  end
+
+  resources :organizations do
+    resources :memberships
+    resources :rooms
+    resources :locations
+  end
+
+  resources :locations do
+    resources :rooms
+  end
+
+  resources :rooms do
+    resources :custom_attributes
+  end
+
   resources :custom_attributes
+
+  resources :memberships
+
+  resources :permission_sets
 
   root to: "application#initial_home"
 
