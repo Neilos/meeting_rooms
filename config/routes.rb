@@ -15,6 +15,7 @@ MeetingRooms::Application.routes.draw do
   resources :permission_sets
   resources :memberships
   resources :locations
+  resources :rooms
 
   root to: "application#initial_home"
 
