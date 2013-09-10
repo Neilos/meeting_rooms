@@ -1,3 +1,7 @@
 <h3>User</h3>
 <p>User: <%= @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
+
+<%= render "memberships/memberships_table" %>
+
+<%= link_to t(:new_organization), new_organization_path, :class => 'btn btn-primary' %>

@@ -21,3 +21,5 @@
 
 en:
   hello: "Hello world"
+  new_organization: "New Organization"
+  organization_details: "Organization Details"

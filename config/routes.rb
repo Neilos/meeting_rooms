@@ -7,9 +7,9 @@ MeetingRooms::Application.routes.draw do
   end
   
   authenticated :user do
-    get '/' => "users#show", as: "user_root"
+   root :to => "users#show", as: "user_root"
   end
-  
+
   resources :users, only: [:index, :show] do 
     resources :memberships
   end
@@ -34,6 +34,7 @@ MeetingRooms::Application.routes.draw do
 
   resources :permission_sets
 
+      
   root to: "application#initial_home"
 
   # The priority is based upon order of creation: first created -> highest priority.

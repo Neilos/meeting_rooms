@@ -26,9 +26,13 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-
     respond_to do |format|
       if @organization.save
+        permission_set = PermissionSet.get_admin_permission_set
+        permission_set.save
+        membership = Membership.create(permission_set_id: permission_set.id, 
+                                        user_id: current_user.id, 
+                                        organization_id: @organization.id)
         format.html { redirect_to user_path(current_user), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
