@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :omniauth_identity do
     user_id 1
-    provider "MyString"
-    uid "MyString"
+    provider "Facebook"
+    uid "123456"
   end
 end

@@ -2,13 +2,13 @@
 
 FactoryGirl.define do
   factory :location do
-    name "MyString"
-    address_line_1 "MyString"
-    address_line_2 "MyString"
-    town_city "MyString"
-    county "MyString"
-    postcode "MyString"
-    country "MyString"
+    name "Site 1"
+    address_line_1 "27 Example Road"
+    address_line_2 "Example Area"
+    town_city "Example Town"
+    county "Example County"
+    postcode "EXA MPLE"
+    country "United Kingdom"
     organization_id 5
   end
 end

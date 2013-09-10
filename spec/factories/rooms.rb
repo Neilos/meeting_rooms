@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :room do
-    name "MyString"
+    name "Room 1"
     price_per_hour "9.99"
     location_id 1
     organization_id 1
