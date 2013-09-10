@@ -23,23 +23,17 @@ feature "Logging in" do
 
   context "with email and password entered on login page" do
     scenario "with correct credentials" do
-      fill_in 'Email', :with => 'user34@example.com'
-      fill_in 'Password', :with => 'password'
-      click_button 'Sign in'
+      sign_in_with email: @mike.email, password: 'password'
       expect(page).to have_content 'Signed in successfully'
     end
 
     scenario "with an unrecognized password" do
-      fill_in 'Email', :with => 'user34@example.com'
-      fill_in 'Password', :with => 'unrecognized'
-      click_button'Sign in'
+      sign_in_with email: @mike.email, password: 'unrecognized'
       expect(page).to have_content 'Invalid email or password'
     end
 
     scenario "as an unrecognized user" do
-      fill_in 'Email', :with => 'somebody@anywhere.com'
-      fill_in 'Password', :with => 'password'
-      click_button 'Sign in'
+      sign_in_with email: 'somebody@anywhere.com', password: 'password'
       expect(page).to have_content 'Invalid email or password'
     end
 

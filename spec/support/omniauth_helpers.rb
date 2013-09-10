@@ -145,4 +145,14 @@ module OmniauthHelpers
     })
   end
 
+
+  # e.g. sign_in_with :email => @user, :password => 'whatever'
+  def sign_in_with(user_details={:email => 'user@example.com', :password => 'password'})
+    visit '/'
+    click_link 'Login'
+    fill_in 'Email', :with => user_details[:email]
+    fill_in 'Password', :with => user_details[:password]
+    click_button 'Sign in'
+  end
+
 end
