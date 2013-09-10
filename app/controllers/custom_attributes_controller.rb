@@ -1,4 +1,5 @@
 class CustomAttributesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_custom_attribute, only: [:show, :edit, :update, :destroy]
 
   # GET /custom_attributes

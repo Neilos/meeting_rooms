@@ -36,132 +36,217 @@ describe LocationsController do
   # in order to pass any filters (e.g. authentication) defined in
   # LocationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  
+  context "user NOT logged in" do
 
-  describe "GET index" do
-    it "assigns all locations as @locations" do
-      location = Location.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:locations).should eq([location])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested location as @location" do
-      location = Location.create! valid_attributes
-      get :show, {:id => location.to_param}, valid_session
-      assigns(:location).should eq(location)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new location as @location" do
-      get :new, {}, valid_session
-      assigns(:location).should be_a_new(Location)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested location as @location" do
-      location = Location.create! valid_attributes
-      get :edit, {:id => location.to_param}, valid_session
-      assigns(:location).should eq(location)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Location" do
-        expect {
-          post :create, {:location => valid_attributes}, valid_session
-        }.to change(Location, :count).by(1)
-      end
-
-      it "assigns a newly created location as @location" do
-        post :create, {:location => valid_attributes}, valid_session
-        assigns(:location).should be_a(Location)
-        assigns(:location).should be_persisted
-      end
-
-      it "redirects to the created location" do
-        post :create, {:location => valid_attributes}, valid_session
-        response.should redirect_to(Location.last)
+    describe "GET index" do
+      it "redirects to the home page" do
+        get :index, {}, valid_session
+        response.should redirect_to(new_user_session_path)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved location as @location" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Location.any_instance.stub(:save).and_return(false)
-        post :create, {:location => { "name" => "invalid value" }}, valid_session
-        assigns(:location).should be_a_new(Location)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Location.any_instance.stub(:save).and_return(false)
-        post :create, {:location => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested location" do
+    describe "GET show" do
+      it "redirects to the home page" do
         location = Location.create! valid_attributes
-        # Assuming there are no other locations in the database, this
-        # specifies that the Location created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Location.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, {:id => location.to_param, :location => { "name" => "MyString" }}, valid_session
+        get :show, {:id => location.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET new" do
+      it "redirects to the home page" do
+        get :new, {}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET edit" do
+      it "redirects to the home page" do
+        location = Location.create! valid_attributes
+        get :edit, {:id => location.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "POST create" do
+      it "does NOT create" do
+        expect {
+            post :create, {:location => valid_attributes}, valid_session
+          }.to_not change(Location, :count).by(1)
       end
 
+      it "redirects to the home page" do
+        post :create, {:location => valid_attributes}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "PUT update" do
+      it "does NOT update" do
+        location = Location.create! valid_attributes
+        put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+        Location.any_instance.should_not_receive(:update).with(valid_attributes)
+      end
+
+      it "redirects to the home page" do
+        location = Location.create! valid_attributes
+        put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "does NOT delete" do
+        location = Location.create! valid_attributes
+        delete :destroy, {:id => location.to_param}, valid_session
+        expect(Location.count).to eq 1
+      end
+
+      it "redirects to the home page" do
+        location = Location.create! valid_attributes
+        delete :destroy, {:id => location.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+
+  context "user logged in" do
+
+    before :each do
+      @request.env["devise.mapping"]= Devise.mappings[:user]
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    end
+
+    describe "GET index" do
+      it "assigns all locations as @locations" do
+        location = Location.create! valid_attributes
+        get :index, {}, valid_session
+        assigns(:locations).should eq([location])
+      end
+    end
+
+    describe "GET show" do
       it "assigns the requested location as @location" do
         location = Location.create! valid_attributes
-        put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+        get :show, {:id => location.to_param}, valid_session
         assigns(:location).should eq(location)
-      end
-
-      it "redirects to the location" do
-        location = Location.create! valid_attributes
-        put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
-        response.should redirect_to(location)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the location as @location" do
-        location = Location.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Location.any_instance.stub(:save).and_return(false)
-        put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
-        assigns(:location).should eq(location)
-      end
-
-      it "re-renders the 'edit' template" do
-        location = Location.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Location.any_instance.stub(:save).and_return(false)
-        put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+    describe "GET new" do
+      it "assigns a new location as @location" do
+        get :new, {}, valid_session
+        assigns(:location).should be_a_new(Location)
       end
     end
-  end
 
-  describe "DELETE destroy" do
-    it "destroys the requested location" do
-      location = Location.create! valid_attributes
-      expect {
+    describe "GET edit" do
+      it "assigns the requested location as @location" do
+        location = Location.create! valid_attributes
+        get :edit, {:id => location.to_param}, valid_session
+        assigns(:location).should eq(location)
+      end
+    end
+
+    describe "POST create" do
+      describe "with valid params" do
+        it "creates a new Location" do
+          expect {
+            post :create, {:location => valid_attributes}, valid_session
+          }.to change(Location, :count).by(1)
+        end
+
+        it "assigns a newly created location as @location" do
+          post :create, {:location => valid_attributes}, valid_session
+          assigns(:location).should be_a(Location)
+          assigns(:location).should be_persisted
+        end
+
+        it "redirects to the created location" do
+          post :create, {:location => valid_attributes}, valid_session
+          response.should redirect_to(Location.last)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns a newly created but unsaved location as @location" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Location.any_instance.stub(:save).and_return(false)
+          post :create, {:location => { "name" => "invalid value" }}, valid_session
+          assigns(:location).should be_a_new(Location)
+        end
+
+        it "re-renders the 'new' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Location.any_instance.stub(:save).and_return(false)
+          post :create, {:location => { "name" => "invalid value" }}, valid_session
+          response.should render_template("new")
+        end
+      end
+    end
+
+    describe "PUT update" do
+      describe "with valid params" do
+        it "updates the requested location" do
+          location = Location.create! valid_attributes
+          # Assuming there are no other locations in the database, this
+          # specifies that the Location created on the previous line
+          # receives the :update_attributes message with whatever params are
+          # submitted in the request.
+          Location.any_instance.should_receive(:update).with({ "name" => "MyString" })
+          put :update, {:id => location.to_param, :location => { "name" => "MyString" }}, valid_session
+        end
+
+        it "assigns the requested location as @location" do
+          location = Location.create! valid_attributes
+          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+          assigns(:location).should eq(location)
+        end
+
+        it "redirects to the location" do
+          location = Location.create! valid_attributes
+          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+          response.should redirect_to(location)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns the location as @location" do
+          location = Location.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Location.any_instance.stub(:save).and_return(false)
+          put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
+          assigns(:location).should eq(location)
+        end
+
+        it "re-renders the 'edit' template" do
+          location = Location.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Location.any_instance.stub(:save).and_return(false)
+          put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
+          response.should render_template("edit")
+        end
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "destroys the requested location" do
+        location = Location.create! valid_attributes
+        expect {
+          delete :destroy, {:id => location.to_param}, valid_session
+        }.to change(Location, :count).by(-1)
+      end
+
+      it "redirects to the locations list" do
+        location = Location.create! valid_attributes
         delete :destroy, {:id => location.to_param}, valid_session
-      }.to change(Location, :count).by(-1)
+        response.should redirect_to(locations_url)
+      end
     end
 
-    it "redirects to the locations list" do
-      location = Location.create! valid_attributes
-      delete :destroy, {:id => location.to_param}, valid_session
-      response.should redirect_to(locations_url)
-    end
   end
 
 end

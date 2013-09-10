@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
   # GET /organizations
@@ -28,7 +29,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        format.html { redirect_to user_path(current_user), notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
         format.html { render action: 'new' }

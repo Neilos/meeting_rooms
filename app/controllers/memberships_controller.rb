@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
 
   # GET /memberships/1

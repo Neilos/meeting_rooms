@@ -29,134 +29,217 @@ describe CustomAttributesController do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # CustomAttributesController. Be sure to keep this updated too.
+  # OrganizationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all custom_attributes as @custom_attributes" do
-      custom_attribute = CustomAttribute.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:custom_attributes).should eq([custom_attribute])
-    end
-  end
+  context "user NOT logged in" do
 
-  describe "GET show" do
-    it "assigns the requested custom_attribute as @custom_attribute" do
-      custom_attribute = CustomAttribute.create! valid_attributes
-      get :show, {:id => custom_attribute.to_param}, valid_session
-      assigns(:custom_attribute).should eq(custom_attribute)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new custom_attribute as @custom_attribute" do
-      get :new, {}, valid_session
-      assigns(:custom_attribute).should be_a_new(CustomAttribute)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested custom_attribute as @custom_attribute" do
-      custom_attribute = CustomAttribute.create! valid_attributes
-      get :edit, {:id => custom_attribute.to_param}, valid_session
-      assigns(:custom_attribute).should eq(custom_attribute)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new CustomAttribute" do
-        expect {
-          post :create, {:custom_attribute => valid_attributes}, valid_session
-        }.to change(CustomAttribute, :count).by(1)
-      end
-
-      it "assigns a newly created custom_attribute as @custom_attribute" do
-        post :create, {:custom_attribute => valid_attributes}, valid_session
-        assigns(:custom_attribute).should be_a(CustomAttribute)
-        assigns(:custom_attribute).should be_persisted
-      end
-
-      it "redirects to the created custom_attribute" do
-        post :create, {:custom_attribute => valid_attributes}, valid_session
-        response.should redirect_to(CustomAttribute.last)
+    describe "GET index" do
+      it "redirects to the home page" do
+        get :index, {}, valid_session
+        response.should redirect_to(new_user_session_path)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved custom_attribute as @custom_attribute" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        CustomAttribute.any_instance.stub(:save).and_return(false)
-        post :create, {:custom_attribute => { "name" => "invalid value" }}, valid_session
-        assigns(:custom_attribute).should be_a_new(CustomAttribute)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        CustomAttribute.any_instance.stub(:save).and_return(false)
-        post :create, {:custom_attribute => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested custom_attribute" do
+    describe "GET show" do
+      it "redirects to the home page" do
         custom_attribute = CustomAttribute.create! valid_attributes
-        # Assuming there are no other custom_attributes in the database, this
-        # specifies that the CustomAttribute created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        CustomAttribute.any_instance.should_receive(:update).with({ "name" => "MyString" })
-        put :update, {:id => custom_attribute.to_param, :custom_attribute => { "name" => "MyString" }}, valid_session
+        get :show, {:id => custom_attribute.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET new" do
+      it "redirects to the home page" do
+        get :new, {}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET edit" do
+      it "redirects to the home page" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        get :edit, {:id => custom_attribute.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "POST create" do
+      it "does NOT create" do
+        expect {
+            post :create, {:custom_attribute => valid_attributes}, valid_session
+          }.to_not change(CustomAttribute, :count).by(1)
       end
 
+      it "redirects to the home page" do
+        post :create, {:custom_attribute => valid_attributes}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "PUT update" do
+      it "does NOT update" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        put :update, {:id => custom_attribute.to_param, :custom_attribute => valid_attributes}, valid_session
+        CustomAttribute.any_instance.should_not_receive(:update).with(valid_attributes)
+      end
+
+      it "redirects to the home page" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        put :update, {:id => custom_attribute.to_param, :custom_attribute => valid_attributes}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "does NOT delete" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        delete :destroy, {:id => custom_attribute.to_param}, valid_session
+        expect(CustomAttribute.count).to eq 1
+      end
+
+      it "redirects to the home page" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        delete :destroy, {:id => custom_attribute.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+
+  context "user logged in" do
+
+    before :each do
+      @request.env["devise.mapping"]= Devise.mappings[:user]
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    end
+
+    describe "GET index" do
+      it "assigns all custom_attributes as @custom_attributes" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        get :index, {}, valid_session
+        assigns(:custom_attributes).should eq([custom_attribute])
+      end
+    end
+
+    describe "GET show" do
       it "assigns the requested custom_attribute as @custom_attribute" do
         custom_attribute = CustomAttribute.create! valid_attributes
-        put :update, {:id => custom_attribute.to_param, :custom_attribute => valid_attributes}, valid_session
+        get :show, {:id => custom_attribute.to_param}, valid_session
         assigns(:custom_attribute).should eq(custom_attribute)
-      end
-
-      it "redirects to the custom_attribute" do
-        custom_attribute = CustomAttribute.create! valid_attributes
-        put :update, {:id => custom_attribute.to_param, :custom_attribute => valid_attributes}, valid_session
-        response.should redirect_to(custom_attribute)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the custom_attribute as @custom_attribute" do
-        custom_attribute = CustomAttribute.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        CustomAttribute.any_instance.stub(:save).and_return(false)
-        put :update, {:id => custom_attribute.to_param, :custom_attribute => { "name" => "invalid value" }}, valid_session
-        assigns(:custom_attribute).should eq(custom_attribute)
-      end
-
-      it "re-renders the 'edit' template" do
-        custom_attribute = CustomAttribute.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        CustomAttribute.any_instance.stub(:save).and_return(false)
-        put :update, {:id => custom_attribute.to_param, :custom_attribute => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+    describe "GET new" do
+      it "assigns a new custom_attribute as @custom_attribute" do
+        get :new, {}, valid_session
+        assigns(:custom_attribute).should be_a_new(CustomAttribute)
       end
     end
-  end
 
-  describe "DELETE destroy" do
-    it "destroys the requested custom_attribute" do
-      custom_attribute = CustomAttribute.create! valid_attributes
-      expect {
+    describe "GET edit" do
+      it "assigns the requested custom_attribute as @custom_attribute" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        get :edit, {:id => custom_attribute.to_param}, valid_session
+        assigns(:custom_attribute).should eq(custom_attribute)
+      end
+    end
+
+    describe "POST create" do
+      describe "with valid params" do
+        it "creates a new CustomAttribute" do
+          expect {
+            post :create, {:custom_attribute => valid_attributes}, valid_session
+          }.to change(CustomAttribute, :count).by(1)
+        end
+
+        it "assigns a newly created custom_attribute as @custom_attribute" do
+          post :create, {:custom_attribute => valid_attributes}, valid_session
+          assigns(:custom_attribute).should be_a(CustomAttribute)
+          assigns(:custom_attribute).should be_persisted
+        end
+
+        it "redirects to the created custom_attribute" do
+          post :create, {:custom_attribute => valid_attributes}, valid_session
+          response.should redirect_to(CustomAttribute.last)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns a newly created but unsaved custom_attribute as @custom_attribute" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          CustomAttribute.any_instance.stub(:save).and_return(false)
+          post :create, {:custom_attribute => { "name" => "invalid value" }}, valid_session
+          assigns(:custom_attribute).should be_a_new(CustomAttribute)
+        end
+
+        it "re-renders the 'new' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          CustomAttribute.any_instance.stub(:save).and_return(false)
+          post :create, {:custom_attribute => { "name" => "invalid value" }}, valid_session
+          response.should render_template("new")
+        end
+      end
+    end
+
+    describe "PUT update" do
+      describe "with valid params" do
+        it "updates the requested custom_attribute" do
+          custom_attribute = CustomAttribute.create! valid_attributes
+          # Assuming there are no other custom_attributes in the database, this
+          # specifies that the CustomAttribute created on the previous line
+          # receives the :update_attributes message with whatever params are
+          # submitted in the request.
+          CustomAttribute.any_instance.should_receive(:update).with({ "name" => "MyString" })
+          put :update, {:id => custom_attribute.to_param, :custom_attribute => { "name" => "MyString" }}, valid_session
+        end
+
+        it "assigns the requested custom_attribute as @custom_attribute" do
+          custom_attribute = CustomAttribute.create! valid_attributes
+          put :update, {:id => custom_attribute.to_param, :custom_attribute => valid_attributes}, valid_session
+          assigns(:custom_attribute).should eq(custom_attribute)
+        end
+
+        it "redirects to the custom_attribute" do
+          custom_attribute = CustomAttribute.create! valid_attributes
+          put :update, {:id => custom_attribute.to_param, :custom_attribute => valid_attributes}, valid_session
+          response.should redirect_to(custom_attribute)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns the custom_attribute as @custom_attribute" do
+          custom_attribute = CustomAttribute.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          CustomAttribute.any_instance.stub(:save).and_return(false)
+          put :update, {:id => custom_attribute.to_param, :custom_attribute => { "name" => "invalid value" }}, valid_session
+          assigns(:custom_attribute).should eq(custom_attribute)
+        end
+
+        it "re-renders the 'edit' template" do
+          custom_attribute = CustomAttribute.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          CustomAttribute.any_instance.stub(:save).and_return(false)
+          put :update, {:id => custom_attribute.to_param, :custom_attribute => { "name" => "invalid value" }}, valid_session
+          response.should render_template("edit")
+        end
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "destroys the requested custom_attribute" do
+        custom_attribute = CustomAttribute.create! valid_attributes
+        expect {
+          delete :destroy, {:id => custom_attribute.to_param}, valid_session
+        }.to change(CustomAttribute, :count).by(-1)
+      end
+
+      it "redirects to the custom_attributes list" do
+        custom_attribute = CustomAttribute.create! valid_attributes
         delete :destroy, {:id => custom_attribute.to_param}, valid_session
-      }.to change(CustomAttribute, :count).by(-1)
-    end
-
-    it "redirects to the custom_attributes list" do
-      custom_attribute = CustomAttribute.create! valid_attributes
-      delete :destroy, {:id => custom_attribute.to_param}, valid_session
-      response.should redirect_to(custom_attributes_url)
+        response.should redirect_to(custom_attributes_url)
+      end
     end
   end
-
 end

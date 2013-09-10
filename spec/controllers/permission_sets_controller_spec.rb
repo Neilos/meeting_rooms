@@ -31,64 +31,122 @@ describe PermissionSetsController do
   let(:valid_session) { {} }
 
 
-  describe "GET show" do
-    it "assigns the requested permission_set as @permission_set" do
-      permission_set = PermissionSet.create! valid_attributes
-      get :show, {:id => permission_set.to_param}, valid_session
-      assigns(:permission_set).should eq(permission_set)
+  context "user NOT logged in" do
+
+    describe "GET index" do
+      it "redirects to the home page" do
+        get :index, {}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
     end
-  end
 
-
-  describe "GET edit" do
-    it "assigns the requested permission_set as @permission_set" do
-      permission_set = PermissionSet.create! valid_attributes
-      get :edit, {:id => permission_set.to_param}, valid_session
-      assigns(:permission_set).should eq(permission_set)
-    end
-  end
-
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested permission_set" do
+    describe "GET show" do
+      it "redirects to the home page" do
         permission_set = PermissionSet.create! valid_attributes
-        # Assuming there are no other permission_sets in the database, this
-        # specifies that the PermissionSet created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        PermissionSet.any_instance.should_receive(:update).with({ "create__organizations" => "false" })
-        put :update, {:id => permission_set.to_param, :permission_set => { "create__organizations" => "false" }}, valid_session
+        get :show, {:id => permission_set.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET new" do
+      it "redirects to the home page" do
+        get :new, {}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET edit" do
+      it "redirects to the home page" do
+        permission_set = PermissionSet.create! valid_attributes
+        get :edit, {:id => permission_set.to_param}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "PUT update" do
+      it "does NOT update" do
+        permission_set = PermissionSet.create! valid_attributes
+        put :update, {:id => permission_set.to_param, :permission_set => valid_attributes}, valid_session
+        PermissionSet.any_instance.should_not_receive(:update).with(valid_attributes)
       end
 
+      it "redirects to the home page" do
+        permission_set = PermissionSet.create! valid_attributes
+        put :update, {:id => permission_set.to_param, :permission_set => valid_attributes}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+    
+  end
+
+
+  context "user logged in" do
+
+    before :each do
+      @request.env["devise.mapping"]= Devise.mappings[:user]
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    end
+
+    describe "GET show" do
       it "assigns the requested permission_set as @permission_set" do
         permission_set = PermissionSet.create! valid_attributes
-        put :update, {:id => permission_set.to_param, :permission_set => valid_attributes}, valid_session
+        get :show, {:id => permission_set.to_param}, valid_session
         assigns(:permission_set).should eq(permission_set)
-      end
-
-      it "redirects to the permission_set" do
-        permission_set = PermissionSet.create! valid_attributes
-        put :update, {:id => permission_set.to_param, :permission_set => valid_attributes}, valid_session
-        response.should redirect_to(permission_set)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the permission_set as @permission_set" do
+
+    describe "GET edit" do
+      it "assigns the requested permission_set as @permission_set" do
         permission_set = PermissionSet.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        PermissionSet.any_instance.stub(:save).and_return(false)
-        put :update, {:id => permission_set.to_param, :permission_set => { "create__organizations" => "invalid value" }}, valid_session
+        get :edit, {:id => permission_set.to_param}, valid_session
         assigns(:permission_set).should eq(permission_set)
       end
+    end
 
-      it "re-renders the 'edit' template" do
-        permission_set = PermissionSet.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        PermissionSet.any_instance.stub(:save).and_return(false)
-        put :update, {:id => permission_set.to_param, :permission_set => { "create__organizations" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+
+    describe "PUT update" do
+      describe "with valid params" do
+        it "updates the requested permission_set" do
+          permission_set = PermissionSet.create! valid_attributes
+          # Assuming there are no other permission_sets in the database, this
+          # specifies that the PermissionSet created on the previous line
+          # receives the :update_attributes message with whatever params are
+          # submitted in the request.
+          PermissionSet.any_instance.should_receive(:update).with({ "create__organizations" => "false" })
+          put :update, {:id => permission_set.to_param, :permission_set => { "create__organizations" => "false" }}, valid_session
+        end
+
+        it "assigns the requested permission_set as @permission_set" do
+          permission_set = PermissionSet.create! valid_attributes
+          put :update, {:id => permission_set.to_param, :permission_set => valid_attributes}, valid_session
+          assigns(:permission_set).should eq(permission_set)
+        end
+
+        it "redirects to the permission_set" do
+          permission_set = PermissionSet.create! valid_attributes
+          put :update, {:id => permission_set.to_param, :permission_set => valid_attributes}, valid_session
+          response.should redirect_to(permission_set)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns the permission_set as @permission_set" do
+          permission_set = PermissionSet.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          PermissionSet.any_instance.stub(:save).and_return(false)
+          put :update, {:id => permission_set.to_param, :permission_set => { "create__organizations" => "invalid value" }}, valid_session
+          assigns(:permission_set).should eq(permission_set)
+        end
+
+        it "re-renders the 'edit' template" do
+          permission_set = PermissionSet.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          PermissionSet.any_instance.stub(:save).and_return(false)
+          put :update, {:id => permission_set.to_param, :permission_set => { "create__organizations" => "invalid value" }}, valid_session
+          response.should render_template("edit")
+        end
       end
     end
   end
