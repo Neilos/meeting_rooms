@@ -15,7 +15,9 @@ feature "editing organization" do
 	context "completing an update" do
 		scenario "via the user#show page" do
 			page.first(:link, 'Organization Details').click
-			click_link('Edit')
+			within("#organization-details") do
+				click_link('Edit')
+			end
 			fill_in 'Name', :with => 'NewName'
 			click_button('Update Organization')
 			expect(page).to have_content('Organization was successfully updated.')
@@ -38,8 +40,12 @@ feature "editing organization" do
 
 	context "cancelling the update" do
 		scenario "via the user#show page" do
-			page.first(:link, 'Organization Details').click
-			click_link('Edit')
+			within("#memberships-table") do
+				page.first(:link, 'Organization Details').click
+			end
+			within("#organization-details") do
+				click_link('Edit')
+			end
 			click_link('Cancel')
 			page.should have_content('techhub')
 			page.should have_content('New Bamboo')

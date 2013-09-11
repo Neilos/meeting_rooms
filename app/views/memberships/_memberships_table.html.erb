@@ -1,10 +1,17 @@
 <%- model_class = Membership -%>
 
-<h4>Memberships</h4>
-<table class="table table-striped">
+<div class="page-header">
+  <h2><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h2>
+</div>
+
+<table class="table table-striped" id="memberships-table">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:organization) %></th>
+
+      <th>
+        <%= model_class.human_attribute_name(:member) if @organization %>
+        <%= model_class.human_attribute_name(:organization) if @user %>
+      </th>
       <th></th>
       <th><%=t '.permissions', :default => t("helpers.permissions") %></th>
     </tr>
@@ -12,10 +19,18 @@
   <tbody>
     <% @memberships.each do |membership| %>
       <tr>
-        <td><%= membership.organization.name %></td>
-        <td><%= link_to t(:organization_details),
-                      organization_path(membership.organization), 
+        <% if @user %>
+          <td><%= membership.organization.name %></td>
+          <td><%= link_to t(:organization_details),
+                        organization_path(membership.organization), 
+                        :class => 'btn btn-primary' %></td>
+        <% end %>
+        <% if @organization %>
+          <td><%= membership.user.name %></td>
+          <td><%= link_to t(:user_details),
+                      user_path(membership.user), 
                       :class => 'btn btn-primary' %></td>
+        <% end %>
         <td>
           <%= link_to t('.view', :default => t("helpers.links.view")),
                       membership_path(membership), 
@@ -33,3 +48,7 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_membership_path,
+            :class => 'btn btn-primary' %>

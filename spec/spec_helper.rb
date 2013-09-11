@@ -39,8 +39,8 @@ RSpec.configure do |config|
   config.include(EmailSpec::Matchers)
 
 
-  # include Omniauth helper methods in rspec
-  config.include OmniauthHelpers
+  config.include AuthenticationHelper
+  config.include NavigationHelper
 
   # ## Mock Framework
   #

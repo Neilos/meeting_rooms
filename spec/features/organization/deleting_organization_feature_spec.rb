@@ -15,7 +15,9 @@ feature "deleting organization" do
 
 	scenario "from the organization#show page", js: true do
 		page.first(:link, 'Organization Details').click
-		click_link('Delete')
+		within("#organization-details") do
+			click_link('Delete')
+		end
 		page.driver.browser.switch_to.alert.accept
 		expect(page).to have_content('Organizations')
 		page.should_not have_content('techhub')

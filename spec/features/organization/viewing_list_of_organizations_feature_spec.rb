@@ -13,7 +13,7 @@ feature "viewing list of organizations" do
 		sign_in_with email: @user.email, password: @password
 	end
 
-	scenario "clicking organizations link in NavBar" do
+	scenario "by clicking organizations link in NavBar" do
 		within(".navbar") do
 			click_link('Organizations')
 		end
