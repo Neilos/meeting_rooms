@@ -28,5 +28,8 @@ feature "viewing_organization" do
 		end
 		page.should have_content('techhub')
 		page.should_not have_content('New Bamboo')
+		click_link('Back')
+		page.should have_content('techhub')
+		page.should have_content('New Bamboo')
 	end
 end

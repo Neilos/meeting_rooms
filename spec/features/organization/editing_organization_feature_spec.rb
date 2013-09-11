@@ -12,25 +12,49 @@ feature "editing organization" do
 		sign_in_with email: @user.email, password: @password
 	end
 
-	scenario "via the user#show page" do
-		page.first(:link, 'Organization Details').click
-		click_link('Edit')
-		fill_in 'Name', :with => 'NewName'
-		click_button('Update Organization')
-		expect(page).to have_content('Organization was successfully updated.')
-		page.should have_content('NewName')
+	context "completing an update" do
+		scenario "via the user#show page" do
+			page.first(:link, 'Organization Details').click
+			click_link('Edit')
+			fill_in 'Name', :with => 'NewName'
+			click_button('Update Organization')
+			expect(page).to have_content('Organization was successfully updated.')
+			page.should have_content('NewName')
+		end
+
+		scenario "via the organizations page" do
+			within(".navbar") do
+				click_link('Organizations')
+			end
+			within(".table") do 
+				page.first(:link, 'Edit').click
+			end
+			fill_in 'Name', :with => 'NewName'
+			click_button('Update Organization')
+			expect(page).to have_content('Organization was successfully updated.')
+			page.should have_content('NewName')
+		end
 	end
 
-	scenario "via the organizations page" do
-		within(".navbar") do
-			click_link('Organizations')
+	context "cancelling the update" do
+		scenario "via the user#show page" do
+			page.first(:link, 'Organization Details').click
+			click_link('Edit')
+			click_link('Cancel')
+			page.should have_content('techhub')
+			page.should have_content('New Bamboo')
 		end
-		within(".table") do 
-			page.first(:link, 'Edit').click
+
+		scenario "via the organizations page" do
+			within(".navbar") do
+				click_link('Organizations')
+			end
+			within(".table") do 
+				page.first(:link, 'Edit').click
+			end
+			click_link('Cancel')
+			page.should have_content('techhub')
+			page.should have_content('New Bamboo')
 		end
-		fill_in 'Name', :with => 'NewName'
-		click_button('Update Organization')
-		expect(page).to have_content('Organization was successfully updated.')
-		page.should have_content('NewName')
 	end
 end
