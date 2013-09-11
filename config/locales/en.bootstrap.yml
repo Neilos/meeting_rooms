@@ -5,6 +5,7 @@ en:
   helpers:
     actions: "Actions"
     links:
+      view: "View"
       back: "Back"
       cancel: "Cancel"
       confirm: "Are you sure?"
