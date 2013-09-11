@@ -10,6 +10,5 @@ class User < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy, :inverse_of => :user
   validates_associated :memberships
   has_many :organizations, :through => :memberships
-  validates_associated :organizations
   validates :name, presence: :true
 end

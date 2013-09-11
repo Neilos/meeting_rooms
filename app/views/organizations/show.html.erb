@@ -10,9 +10,9 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              organizations_path, :class => 'btn'  %>
+              organizations_path, :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_organization_path(@organization), :class => 'btn' %>
+              edit_organization_path(@organization), :class => 'btn btn-default' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               organization_path(@organization),
               :method => 'delete',
