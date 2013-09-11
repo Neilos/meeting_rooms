@@ -15,7 +15,7 @@ feature "creating organization" do
 		expect(page).to have_content "Organization was successfully created."
 		expect(page).to have_content @user.name
 		expect(page).to have_content @user.email
-		expect(page).to have_content "TechHub"
+		expect(page).to have_content "TechHub" # should show that the user is a member of the new organization
 	end
 
 end
