@@ -28,7 +28,6 @@ feature "deleting location" do
     within('#locations-table') do 
       page.should_not have_content('Old Street')
     end
-		page.should_not have_content('Old Street')
 	end
 
 	scenario "from the location show page", js: true do 
@@ -50,7 +49,6 @@ feature "deleting location" do
     within('#locations-table') do 
       page.should_not have_content('Old Street')
     end
-		page.should_not have_content('Old Street')
 	end
 
 end

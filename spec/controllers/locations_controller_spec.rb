@@ -206,10 +206,10 @@ describe LocationsController do
           assigns(:location).should eq(location)
         end
 
-        it "redirects to the location" do
+        it "redirects to the organization show page" do
           location = Location.create! valid_attributes
           put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
-          response.should redirect_to(location)
+          response.should redirect_to(organization_path(location.organization_id))
         end
       end
 

@@ -28,7 +28,7 @@ feature "editing organization" do
 			within(".navbar") do
 				click_link('Organizations')
 			end
-			within(".table") do 
+			within(".organizations-table") do 
 				page.first(:link, 'Edit').click
 			end
 			fill_in 'Name', :with => 'NewName'
@@ -55,7 +55,7 @@ feature "editing organization" do
 			within(".navbar") do
 				click_link('Organizations')
 			end
-			within(".table") do 
+			within(".organizations-table") do 
 				page.first(:link, 'Edit').click
 			end
 			click_link('Cancel')

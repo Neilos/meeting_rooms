@@ -17,9 +17,9 @@
         <td><%= location.address_line_1 %>&hellip;</td>
         <td>
           <%= link_to t('.view', :default => t("helpers.links.view")),
-                      location_path(location), :class => 'btn btn-default' %>
+                      organization_location_path(@organization,location), :class => 'btn btn-default' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_location_path(location), :class => 'btn btn-default' %>
+                      edit_organization_location_path(@organization,location), :class => 'btn btn-default' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       location_path(location),
                       :method => :delete,

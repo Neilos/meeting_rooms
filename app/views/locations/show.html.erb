@@ -26,7 +26,7 @@
   <%= link_to t('.back', :default => t("helpers.links.back")),
               locations_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_location_path(@location), :class => 'btn' %>
+              edit_organization_location_path(@location.organization_id, @location), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               location_path(@location),
               :method => 'delete',
