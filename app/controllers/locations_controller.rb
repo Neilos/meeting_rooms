@@ -16,20 +16,23 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    @organization = Organization.find(params[:organization_id])
   end
 
   # GET /locations/1/edit
   def edit
+    @location = Location.find(params[:id])
+    @organization = @location.organization_id
   end
 
   # POST /locations
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-
+    @organization = @location.organization_id
     respond_to do |format|
       if @location.save
-        format.html { redirect_to organization_path(@location.organization_id), notice: 'Location was successfully created.' }
+        format.html { redirect_to organization_path(@organization), notice: 'Location was successfully created.' }
         format.json { render action: 'show', status: :created, location: @location }
       else
         format.html { render action: 'new' }

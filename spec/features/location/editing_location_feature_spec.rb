@@ -11,50 +11,71 @@ feature "editing location" do
 	end
 
 	context "completing an update" do
-		scenario "via the organizations#show page" do
-			within(".navbar") do
-				click_link('Organizations')
+		context "with valid details" do
+			scenario "via the organizations#show page" do
+				within(".navbar") do
+					click_link('Organizations')
+				end
+				within("#organizations-table") do 
+					page.first(:link, 'View').click
+				end
+				within("#locations-table") do 
+					page.first(:link, 'Edit').click
+				end
+				fill_in 'Name', :with => 'NewName'
+				click_button('Update Location')
+				expect(page).to have_content('Location was successfully updated.')
+				expect(page).to have_content 'techhub'
+	    	expect(page).to have_selector '#organization-details'
+	   	 	expect(page).to have_selector '#locations-table'
+	   		within('#locations-table') do 
+	   			page.should have_content('NewName')
+	   	  	page.should_not have_content('Old Street')
+	    	end
 			end
-			within("#organizations-table") do 
-				page.first(:link, 'View').click
+
+			scenario "via the locations#show page" do
+				within(".navbar") do
+					click_link('Organizations')
+				end
+				within("#organizations-table") do 
+					page.first(:link, 'View').click
+				end
+				within("#locations-table") do 
+					page.first(:link, 'View').click
+				end
+				click_link 'Edit'
+				fill_in 'Name', :with => 'NewName'
+				click_button('Update Location')
+				expect(page).to have_content('Location was successfully updated.')
+				expect(page).to have_content 'techhub'
+	    	expect(page).to have_selector '#organization-details'
+	   	 	expect(page).to have_selector '#locations-table'
+	   		within('#locations-table') do 
+	   			page.should have_content('NewName')
+	   	  	page.should_not have_content('Old Street')
+	    	end
 			end
-			within("#locations-table") do 
-				page.first(:link, 'Edit').click
-			end
-			fill_in 'Name', :with => 'NewName'
-			click_button('Update Location')
-			expect(page).to have_content('Location was successfully updated.')
-			expect(page).to have_content 'techhub'
-    	expect(page).to have_selector '#organization-details'
-   	 	expect(page).to have_selector '#locations-table'
-   		within('#locations-table') do 
-   			page.should have_content('NewName')
-   	  	page.should_not have_content('Old Street')
-    	end
 		end
 
-		scenario "via the locations#show page" do
-			within(".navbar") do
-				click_link('Organizations')
-			end
-			within("#organizations-table") do 
-				page.first(:link, 'View').click
-			end
-			within("#locations-table") do 
-				page.first(:link, 'View').click
-			end
-			click_link 'Edit'
-			fill_in 'Name', :with => 'NewName'
-			click_button('Update Location')
-			expect(page).to have_content('Location was successfully updated.')
-			expect(page).to have_content 'techhub'
-    	expect(page).to have_selector '#organization-details'
-   	 	expect(page).to have_selector '#locations-table'
-   		within('#locations-table') do 
-   			page.should have_content('NewName')
-   	  	page.should_not have_content('Old Street')
-    	end
-		end
+    context "with INvalid/missing details" do
+      scenario "from the organizations#show page" do
+				within(".navbar") do
+					click_link('Organizations')
+				end
+				within("#organizations-table") do 
+					page.first(:link, 'View').click
+				end
+				within("#locations-table") do 
+					page.first(:link, 'View').click
+				end
+				click_link 'Edit'
+				fill_in 'Name', :with => ''
+				click_button('Update Location')
+        expect(page).to have_content 'error prohibited this location from being saved:'
+        expect(page).to have_content 'Edit Location'
+      end
+    end
 	end
 
 	context "cancelling the update" do

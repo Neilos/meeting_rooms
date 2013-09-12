@@ -138,7 +138,7 @@ describe LocationsController do
 
     describe "GET new" do
       it "assigns a new location as @location" do
-        get :new, {}, valid_session
+        get :new, {:organization_id => 1}, valid_session
         assigns(:location).should be_a_new(Location)
       end
     end
