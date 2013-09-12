@@ -76,7 +76,7 @@ describe LocationsController do
           }.to_not change(Location, :count).by(1)
       end
 
-      it "redirects to the home page" do
+      it "redirects to the owning organizations show page" do
         post :create, {:location => valid_attributes}, valid_session
         response.should redirect_to(new_user_session_path)
       end
@@ -167,7 +167,7 @@ describe LocationsController do
 
         it "redirects to the created location" do
           post :create, {:location => valid_attributes}, valid_session
-          response.should redirect_to(Location.last)
+          response.should redirect_to(organization_path(valid_attributes[:organization_id]))
         end
       end
 
