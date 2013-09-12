@@ -11,6 +11,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @custom_attributes = @room.custom_attributes
   end
 
   # GET /rooms/new
