@@ -23,4 +23,16 @@ feature "deleting organization" do
 		page.should_not have_content('techhub')
 	end
 
+	scenario "from the organizations#index page", js: true do
+		within(".navbar") do
+			click_link('Organizations')
+		end
+		within("#organizations-table") do
+			page.first(:link, 'Delete').click
+		end
+		page.driver.browser.switch_to.alert.accept
+		expect(page).to have_content('Organizations')
+		page.should_not have_content('techhub')
+	end
+
 end

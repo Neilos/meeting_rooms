@@ -240,10 +240,10 @@ describe LocationsController do
         }.to change(Location, :count).by(-1)
       end
 
-      it "redirects to the locations list" do
+      it "redirects to the Organization show page" do
         location = Location.create! valid_attributes
         delete :destroy, {:id => location.to_param}, valid_session
-        response.should redirect_to(locations_url)
+        response.should redirect_to(organization_path(location.organization_id))
       end
     end
 
