@@ -64,6 +64,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                organization_path(params[:organization_id]), :class => 'btn' %>
+                organization_path(@organization), :class => 'btn' %>
   </div>
 <% end %>

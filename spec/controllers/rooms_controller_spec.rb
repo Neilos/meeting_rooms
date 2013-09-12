@@ -135,7 +135,8 @@ describe RoomsController do
 
     describe "GET new" do
       it "assigns a new room as @room" do
-        get :new, {}, valid_session
+        organization = FactoryGirl.create(:organization)
+        get :new, {:organization_id => organization.id}, valid_session
         assigns(:room).should be_a_new(Room)
       end
     end
@@ -162,9 +163,9 @@ describe RoomsController do
           assigns(:room).should be_persisted
         end
 
-        it "redirects to the created room" do
+        it "redirects to the Organization show page" do
           post :create, {:room => valid_attributes}, valid_session
-          response.should redirect_to(Room.last)
+          response.should redirect_to(organization_path(valid_attributes[:organization_id]))
         end
       end
 

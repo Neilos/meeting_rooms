@@ -1,4 +1,4 @@
-<%= form_for @room, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for(@room , :url => organization_room_path(@organization, @room), :html => { :class => 'form-horizontal' }) do |f| %>
   <% if @room.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
@@ -18,21 +18,22 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :location_id, :class => 'control-label' %>
+    <div class="controls">
+       <!-- f.text_field :location_id, :class => 'text_field' -->
+       <%= select('room', 'location_id', Location.all.collect {|l| [l.name, l.id]}, {prompt: 'SELECT', include_blanks: 'None'})%>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :price_per_hour, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :price_per_hour, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :location_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :location_id, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
     <%= f.label :organization_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :organization_id, :class => 'text_field' %>
+      <%= f.text_field :organization_id, :class => 'text_field', :value => params[:organization_id] %>
     </div>
   </div>
   <div class="control-group">
@@ -45,6 +46,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                rooms_path, :class => 'btn' %>
+                organization_path(@organization), :class => 'btn' %>
   </div>
 <% end %>

@@ -14,6 +14,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     @locations = @organization.locations
     @memberships = @organization.memberships
+    @rooms = @organization.rooms
   end
 
   # GET /organizations/new
