@@ -18,6 +18,7 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @organization = Organization.find(params[:organization_id])
+    2.times { @room.custom_attributes.build }
   end
 
   # GET /rooms/1/edit
@@ -75,6 +76,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :price_per_hour, :location_id, :organization_id, :people_capacity)
+      params.require(:room).permit(:name, :price_per_hour, :location_id, :organization_id, :people_capacity, :custom_attributes_attributes => [:id, :room_id, :name, :value])
     end
 end

@@ -20,7 +20,10 @@ context "completing the creation of a room" do
 	      page.first(:link, 'View').click
 	    end
 	    click_link 'New Room'
-	    fill_in 'Name', :with => 'Room 1'
+      within('#room-fields') do 
+        fill_in ('Name'), :with => 'Room 1'
+      end
+      
 	    select(@location1.name, :from => 'Location')
 	    fill_in 'Price per hour', :with => '3.99'
 			fill_in 'People capacity', :with => '12'

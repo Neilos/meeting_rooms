@@ -1,3 +1,4 @@
+
 <%= form_for(@room , :url => organization_room_path(@organization, @room), :html => { :class => 'form-horizontal' }) do |f| %>
   <% if @room.errors.any? %>
     <div id="error_explanation">
@@ -11,37 +12,73 @@
     </div>
   <% end %>
   
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
+  <div id="room-fields">
+  <div class="form-group">
+    <%= f.label :name, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :location_id, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :location_id, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
        <!-- f.text_field :location_id, :class => 'text_field' -->
        <%= select('room', 'location_id', Location.all.collect {|l| [l.name, l.id]}, {prompt: 'SELECT', include_blanks: 'None'})%>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :price_per_hour, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :price_per_hour, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
       <%= f.text_field :price_per_hour, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :organization_id, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :organization_id, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
       <%= f.text_field :organization_id, :class => 'text_field', :value => @organization.id %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :people_capacity, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :people_capacity, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
       <%= f.text_field :people_capacity, :class => 'text_field' %>
     </div>
   </div>
+  </div>
+  
+  <h3>Custom Attributes</h3>
+  <%= f.fields_for :custom_attributes do |builder| %>
+
+    <div class="control-group">
+      <%= builder.label :id, :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_field :id, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= builder.label :room_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_field :room_id, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= builder.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_field :name, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= builder.label :value, :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_field :value, :class => 'text_field' %>
+      </div>
+    </div>
+
+  <% end %>
+
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

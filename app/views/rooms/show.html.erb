@@ -29,7 +29,7 @@
 </div>
 
 <dl class="dl-horizontal">
-  <% @custom_attributes.each do |c| %>
+  <% @room.custom_attributes.each do |c| %>
     <dt><strong><%= c.name %>:</strong></dt>
     <dd><%= c.value %></dd>
   <% end %>
