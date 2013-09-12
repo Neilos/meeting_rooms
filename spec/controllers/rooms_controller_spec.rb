@@ -241,10 +241,10 @@ describe RoomsController do
         }.to change(Room, :count).by(-1)
       end
 
-      it "redirects to the rooms list" do
+      it "redirects to the ORganization show page" do
         room = Room.create! valid_attributes
         delete :destroy, {:id => room.to_param}, valid_session
-        response.should redirect_to(rooms_url)
+        response.should redirect_to(organization_path(room.organization))
       end
     end
 
