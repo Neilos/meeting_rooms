@@ -22,14 +22,14 @@ class LocationsController < ApplicationController
   # GET /locations/1/edit
   def edit
     @location = Location.find(params[:id])
-    @organization = @location.organization_id
+    @organization = @location.organization
   end
 
   # POST /locations
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-    @organization = @location.organization_id
+    @organization = @location.organization
     respond_to do |format|
       if @location.save
         format.html { redirect_to organization_path(@organization), notice: 'Location was successfully created.' }
@@ -44,9 +44,10 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
+    @organization = @location.organization
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to organization_path(@location.organization_id), notice: 'Location was successfully updated.' }
+        format.html { redirect_to organization_path(@organization), notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

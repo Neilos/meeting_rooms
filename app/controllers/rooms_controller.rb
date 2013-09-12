@@ -21,13 +21,15 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
+    @room = Room.find(params[:id])
+    @organization = @room.organization
   end
 
   # POST /rooms
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
-    @organization = @room.organization_id
+    @organization = @room.organization
     respond_to do |format|
       if @room.save
         format.html { redirect_to organization_path(@organization), notice: 'Room was successfully created.' }

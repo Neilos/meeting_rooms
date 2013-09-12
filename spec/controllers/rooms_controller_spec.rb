@@ -20,14 +20,17 @@ require 'spec_helper'
 
 describe RoomsController do
 
+  let(:organization) { FactoryGirl.create(:organization)}
+  let(:location) { FactoryGirl.create(:location)}
+
   # This should return the minimal set of attributes required to create a valid
   # Room. As you add validations to Room, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { {  name: "MyString",
                               price_per_hour: 9.99,
-                              location_id: 11,
-                              organization_id: 9,
-                              people_capacity: 15 } }
+                              location_id: location.id,
+                              organization_id: organization.id,
+                              people_capacity: 12 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
