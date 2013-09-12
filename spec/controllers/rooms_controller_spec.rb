@@ -210,7 +210,7 @@ describe RoomsController do
         it "redirects to the room" do
           room = Room.create! valid_attributes
           put :update, {:id => room.to_param, :room => valid_attributes}, valid_session
-          response.should redirect_to(room)
+          response.should redirect_to(room.organization)
         end
       end
 
