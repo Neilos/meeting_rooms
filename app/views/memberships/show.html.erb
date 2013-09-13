@@ -5,11 +5,15 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @membership.user_id %></dd>
+  <dd><%= @membership.user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @membership.organization_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:permission_set_id) %>:</strong></dt>
-  <dd><%= @membership.permission_set_id %></dd>
+  <dd><%= @membership.organization.name %></dd>
+  <% @membership.permission_set.attributes.each do |ability, allowed| %>
+    <% unless %w[created_at updated_at id].include? ability %>
+      <dt><strong><%= model_class.human_attribute_name(ability) %>:</strong></dt>
+      <dd><%= allowed %></dd>
+    <% end %>
+  <% end %>
 </dl>
 
 <div class="form-actions">

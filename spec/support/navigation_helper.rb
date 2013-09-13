@@ -29,4 +29,13 @@ module NavigationHelper
     end
   end
 
+  def visit_show_page_of_first_organization_in_organizations_table
+    within(".navbar") do
+      click_link('Organizations')
+    end
+    within('#organizations-table') do 
+      page.first(:link, 'View').click
+    end
+  end
+
 end
