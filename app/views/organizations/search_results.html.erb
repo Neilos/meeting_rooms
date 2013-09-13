@@ -11,7 +11,7 @@
     </thead>
     <tbody id="search_results_table_body">
       <% @organizations.each do |organization| %>
-        <tr class="results_row" id=<%= organization.id %>>
+        <tr id=<%= organization.id %> class="results_row">
           <td><%= organization.name %></td>
         </tr>
       <% end %>
