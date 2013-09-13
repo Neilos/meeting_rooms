@@ -1,0 +1,43 @@
+<h3>Custom Attributes</h3>
+
+<div id="custom_attributes_section">
+  <%= f.fields_for :custom_attributes do |builder| %>
+    <div class="custom-attribute">
+      <div class="control-group">
+        <%= builder.label :id, :class => 'control-label' %>
+        <div class="controls">
+          <%= builder.text_field :id, :class => 'text_field' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= builder.label :room_id, :class => 'control-label' %>
+        <div class="controls">
+          <%= builder.text_field :room_id, :class => 'text_field' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= builder.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= builder.text_field :name, :class => 'text_field' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= builder.label :value, :class => 'control-label' %>
+        <div class="controls">
+          <%= builder.text_field :value, :class => 'text_field' %>
+        </div>
+      </div>
+
+      <%= link_to "Delete attribute", custom_attribute_path(builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger' %>
+    </div>
+
+  <% end %>
+
+  <div>
+    <input class="btn btn-default" id="btn_new_attribute" type="button" value="New attribute", onclick="addCustomAttributeToPage()">
+  </div>
+
+</div>

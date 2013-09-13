@@ -12,12 +12,18 @@ MeetingRooms::Application.routes.draw do
 
   resources :users, only: [:index, :show] do 
     resources :memberships
+    collection do
+      get 'search_by_email'
+    end
   end
 
   resources :organizations do
     resources :memberships
     resources :rooms
     resources :locations
+    collection do
+      get 'search_by_name'
+    end
   end
 
   resources :locations do

@@ -114,7 +114,7 @@ describe MembershipsController do
     end
 
     describe "GET show" do
-      it "assigns the requested membership as @membership" do
+      it "assigns the right membership as @membership" do
         membership = Membership.create! valid_attributes
         get :show, {:id => membership.to_param}, valid_session
         assigns(:membership).should eq(membership)
@@ -122,9 +122,10 @@ describe MembershipsController do
     end
 
     describe "GET new" do
-      it "assigns a new membership as @membership" do
+      it "assigns @membership and @permission_set" do
         get :new, {}, valid_session
         assigns(:membership).should be_a_new(Membership)
+        assigns(:permission_set).should be_a_new(PermissionSet)
       end
     end
 

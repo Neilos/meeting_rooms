@@ -32,6 +32,13 @@ describe OrganizationsController do
 
   context "user NOT logged in" do
 
+    describe "GET search" do
+      it "redirects to the home page" do
+        get :search_by_name, {}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
     describe "GET index" do
       it "redirects to the home page" do
         get :index, {}, valid_session
@@ -112,6 +119,20 @@ describe OrganizationsController do
       @request.env["devise.mapping"]= Devise.mappings[:user]
       @user = FactoryGirl.create(:user)
       sign_in @user
+    end
+
+    describe "GET search" do
+      it "assigns found organizations as @organizations" do
+        organization = Organization.create! valid_attributes
+        get :search_by_name, {:name => organization.name}, valid_session
+        assigns(:organizations).should eq([organization])
+      end
+
+      it "renders the search_results page" do
+        organization = Organization.create! valid_attributes
+        get :search_by_name, {:name => organization.name}, valid_session
+        response.should render_template("search_results")
+      end
     end
 
     describe "GET index" do

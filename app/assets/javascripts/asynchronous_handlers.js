@@ -12,3 +12,23 @@ function addCustomAttributeToPage(){
 
 }
 
+
+function searchForOrganizationByName(){
+	var search_results_div = $("#search_results")
+	var search_string = document.getElementById('org_search_box').value;
+	var jqxhr = $.get("/organizations/search_by_name", {name: search_string}, function(data) {
+	  search_results_div.empty();
+	  search_results_div.append(data);
+	})
+
+	.fail(function() { alert("Could not return search results"); })
+
+}
+
+window.onload = function(){
+	$('#search_results').on('click', 'tr.results_row', function(e){
+		$('#membership_organization_id').val(this.id)
+		$('tr.results_row').removeClass("active")
+		$(this).addClass("active")
+	});
+}

@@ -8,6 +8,11 @@ class OrganizationsController < ApplicationController
     @organizations = Organization.all
   end
 
+  def search_by_name
+    @organizations = Organization.where('name like ?', "%#{params[:name]}%")
+    render 'search_results', :layout => false
+  end
+
   # GET /organizations/1
   # GET /organizations/1.json
   def show

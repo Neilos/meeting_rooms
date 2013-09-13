@@ -9,7 +9,10 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
-    @membership = Membership.new
+    @membership = Membership.new(:user_id => params[:user_id], :organization_id => params[:organization_id])
+    @permission_set = PermissionSet.get_admin_permission_set
+    # @user = User.where(id: params[:user_id]).first_or_initialize
+    # @organization = Organization.where(id: params[:organization_id]).first_or_initialize
   end
 
   # GET /memberships/1/edit
@@ -19,8 +22,9 @@ class MembershipsController < ApplicationController
   # POST /memberships
   # POST /memberships.json
   def create
-    @membership = Membership.new(membership_params)
-
+    @permission_set = PermissionSet.where(params[:permission_set]).first_or_create
+    mparams = membership_params.merge(permission_set_id: @permission_set.id)
+    @membership = Membership.new(mparams)
     respond_to do |format|
       if @membership.save
         format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
