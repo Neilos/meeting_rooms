@@ -26,6 +26,11 @@ feature "viewing membership permission set" do
     		expect(page).to have_content ActiveRecord::Base.human_attribute_name(ability)
     	end
     end
+    click_link('Back')
+    expect(page).to have_content @organization.name
+    expect(page).to have_selector '#organization-details'
+ 	 	expect(page).to have_selector '#locations-table'
+    expect(page).to have_selector '#memberships-table'
 	end
 
 	scenario "from the user show page" do 
@@ -41,6 +46,10 @@ feature "viewing membership permission set" do
     	else
     		expect(page).to have_content ActiveRecord::Base.human_attribute_name(ability)
     	end
-    end
+  	end
+    click_link('Back')
+    expect(page).to have_content @user.email
+    expect(page).to have_content @user.name
+    expect(page).to have_selector '#memberships-table'
 	end
 end

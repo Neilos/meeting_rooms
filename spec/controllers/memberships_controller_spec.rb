@@ -218,6 +218,11 @@ describe MembershipsController do
     end
 
     describe "DELETE destroy" do
+      before :each do 
+        @referer = "back_where_we_came_from"
+        request.env["HTTP_REFERER"] = @referer
+      end
+
       it "destroys the requested membership" do
         membership = Membership.create! valid_attributes
         expect {
@@ -225,10 +230,10 @@ describe MembershipsController do
         }.to change(Membership, :count).by(-1)
       end
 
-      it "redirects to the memberships list" do
+      it "redirects to the previous page" do
         membership = Membership.create! valid_attributes
         delete :destroy, {:id => membership.to_param}, valid_session
-        response.should redirect_to(memberships_url)
+        response.should redirect_to @referer
       end
     end
   end
