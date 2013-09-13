@@ -27,4 +27,20 @@ feature "viewing membership permission set" do
     	end
     end
 	end
+
+	scenario "from the user show page" do 
+		within("#memberships-table") do 
+			page.first(:link, 'View').click
+		end
+		expect(page).to have_content "Membership"
+    expect(page).to have_content @user.name
+    expect(page).to have_content @organization.name
+    @permission_set.attributes.each do |ability, allowed| 
+    	if %w[created_at updated_at id].include? ability
+    		expect(page).to have_no_content ActiveRecord::Base.human_attribute_name(ability)
+    	else
+    		expect(page).to have_content ActiveRecord::Base.human_attribute_name(ability)
+    	end
+    end
+	end
 end
