@@ -234,12 +234,6 @@ describe CustomAttributesController do
           delete :destroy, {:id => custom_attribute.to_param}, valid_session
         }.to change(CustomAttribute, :count).by(-1)
       end
-
-      it "redirects to the custom_attributes list" do
-        custom_attribute = CustomAttribute.create! valid_attributes
-        delete :destroy, {:id => custom_attribute.to_param}, valid_session
-        response.should redirect_to(custom_attributes_url)
-      end
     end
   end
 end

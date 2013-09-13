@@ -18,7 +18,6 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @organization = Organization.find(params[:organization_id])
-    2.times { @room.custom_attributes.build }
   end
 
   # GET /rooms/1/edit

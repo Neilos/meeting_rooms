@@ -56,10 +56,7 @@ class CustomAttributesController < ApplicationController
   # DELETE /custom_attributes/1.json
   def destroy
     @custom_attribute.destroy
-    respond_to do |format|
-      format.html { redirect_to custom_attributes_url }
-      format.json { head :no_content }
-    end
+    render :text => 'Deleted successfully'
   end
 
   private
