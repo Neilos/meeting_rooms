@@ -14,12 +14,7 @@ feature "editing room" do
 	context "completing an update" do
 		context "with valid details" do
 			scenario "via the organizations#show page" do
-				within(".navbar") do
-					click_link('Organizations')
-				end
-				within("#organizations-table") do 
-					page.first(:link, 'View').click
-				end
+				visit_show_page_of_first_organization_in_organizations_table
 				within("#rooms-table") do 
 					page.first(:link, 'Edit').click
 				end
@@ -56,6 +51,48 @@ feature "editing room" do
 	   			page.should have_content('NewName')
 	   	  	page.should_not have_content('Room 1')
 	    	end
+			end
+			
+			context "custom attributes" do
+
+				before :each do
+			  	@custom_attribute = @room.custom_attributes.create(:name => 'toilets', :value => '1 toilet')
+			    edit_first_room_in_rooms_table
+				end
+			  
+			  scenario "updating the room's custom attributes", :js => true  do
+			    within('#custom_attributes_section') do
+			      fill_in "Name", :with => "number of toilets"
+			      fill_in "Value", :with => "3 toilets"
+			    end
+			    click_button 'Update Room'
+			    expect(page).to have_content @organization.name
+			    expect(page).to have_selector '#organization-details'
+			    expect(page).to have_selector '#rooms-table'
+			    within('#rooms-table') do
+			      page.first(:link, 'View').click
+			    end
+			    expect(page).to have_no_content @custom_attribute.value
+			    expect(page).to have_content 'number of toilets'
+			    expect(page).to have_content '3 toilets'
+			  end
+
+			  # scenario "updating the room after having deleted a custom_attribute", :js => true do
+			  # 	within('#custom_attributes_section') do
+			  #     page.first(:link, 'Delete').click
+			  #   end
+			  #   click_button 'Update Room'
+			  #   expect(page).to have_content('Room was successfully updated.')
+			  #   expect(page).to have_content @organization.name
+			  #   expect(page).to have_selector '#organization-details'
+			  #   expect(page).to have_selector '#rooms-table'
+			  #   within('#rooms-table') do
+			  #     page.first(:link, 'View').click
+			  #   end
+			  #   expect(page).to have_no_content @custom_attribute.value
+			  #   expect(page).to have_no_content @custom_attribute.name
+			  # end
+
 			end
 		end
 
@@ -119,4 +156,6 @@ feature "editing room" do
     	end
 		end
 	end
+
+
 end
