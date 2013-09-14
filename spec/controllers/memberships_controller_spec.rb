@@ -30,6 +30,11 @@ describe MembershipsController do
   # MembershipsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do 
+    @referer = "back_where_we_came_from"
+    request.env["HTTP_REFERER"] = @referer
+  end
+  
   context "user NOT logged in" do
 
     describe "GET index" do
@@ -219,10 +224,6 @@ describe MembershipsController do
     end
 
     describe "DELETE destroy" do
-      before :each do 
-        @referer = "back_where_we_came_from"
-        request.env["HTTP_REFERER"] = @referer
-      end
 
       it "destroys the requested membership" do
         membership = Membership.create! valid_attributes

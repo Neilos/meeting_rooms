@@ -15,7 +15,7 @@
     <div class="input-group">
       <%= search_field(:organization, :name, :class => "form-control", :id => "org_search_box") %>
       <span class="input-group-btn">
-        <button  class="btn btn-default" type="button" onclick="searchForOrganizationByName()">Search for organization by name</button>
+        <button  class="btn btn-default" type="button" onclick="searchForOrganizationByName()">Search</button>
       </span>
     </div>
   </div>
@@ -73,7 +73,12 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                memberships_path, :class => 'btn' %>
+    <% if @membership.user %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                user_path(@membership.user), :class => 'btn' %>
+    <% elsif @membership.organization %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                organization_path(@membership.organization), :class => 'btn' %>
+    <% end %>
   </div>
 <% end %>

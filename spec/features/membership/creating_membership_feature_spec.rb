@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "creating membership" do
+feature "creating membership", :js => true do
 	
 	before :each do 
 		@password = "password"
@@ -12,36 +12,63 @@ feature "creating membership" do
 	context "completing the creation" do
 		context "with valid details" do
 			scenario "from the user show page" do
-				click_link('New Membership') 
+				click_link('New Membership')
+				fill_in 'organization[name]', :with => @organization.name 
+				click_button 'Search'
+				within("#search_results") do
+					page.should have_selector('tr')
+					page.first('.results_row').click
+				end
 				check('Create organizations')
 				check('Create memberships')
+				click_button('Create Membership')
+				page.should have_content("Membership was successfully created.")
+				page.should have_content(@user.name)
+				page.should have_content(@user.email)
+				expect(page).to have_selector '#memberships-table'
 			end
 		
 			scenario "from the organization show page" do 
-				pending
+				visit_show_page_of_first_organization_in_organizations_table
+				click_link('New Membership')
+				fill_in 'user[email]', :with => @user.email 
+				click_button 'Search'
+				within("#search_results") do
+					page.first('.results_row').click
+				end
+				check('Create organizations')
+				check('Create memberships')
+				click_button('Create Membership')
+				page.should have_content("Membership was successfully created.")
+				page.should have_content(@organization.name)
+				expect(page).to have_selector '#memberships-table'
+				expect(page).to have_selector '#rooms-table'
+				expect(page).to have_selector '#locations-table'
 			end
 		end
 
 		context "with invalid details" do
-			scenario "from the user show page" do 
-			  pending
-			end
-		
-			scenario "from the organization show page" do 
-				pending
-			end
+			#form cannot be completed with invalid details
 		end
 	end
 
 	context "cancelling the creation of a membership" do
 		scenario "from the user show page" do 
-			pending  
+			click_link('New Membership')
+			click_link('Cancel')
+			page.should have_content(@user.name)
+			page.should have_content(@user.email)
+			expect(page).to have_selector '#memberships-table'	
 		end
 	
 		scenario "from the organization show page" do 
-			pending
+			visit_show_page_of_first_organization_in_organizations_table
+			click_link('New Membership')
+			click_link('Cancel')
+			page.should have_content(@organization.name)
+			expect(page).to have_selector '#memberships-table'
+			expect(page).to have_selector '#rooms-table'
+			expect(page).to have_selector '#locations-table'	
 		end
-	
-
 	end
 end
