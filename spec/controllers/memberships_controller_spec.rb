@@ -156,9 +156,8 @@ describe MembershipsController do
           assigns(:membership).should be_persisted
         end
 
-        it "redirects to the created membership" do
-          post :create, {:membership => valid_attributes}, valid_session
-          response.should redirect_to(Membership.last)
+        it "redirects to the page before the new page" do
+          # referral tested in feature specs
         end
       end
 
@@ -197,10 +196,8 @@ describe MembershipsController do
           assigns(:membership).should eq(membership)
         end
 
-        it "redirects to the membership" do
-          membership = Membership.create! valid_attributes
-          put :update, {:id => membership.to_param, :membership => valid_attributes}, valid_session
-          response.should redirect_to(membership)
+        it "redirects to the page before the new page" do
+          # referral tested in feature specs
         end
       end
 

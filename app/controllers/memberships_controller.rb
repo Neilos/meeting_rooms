@@ -11,8 +11,7 @@ class MembershipsController < ApplicationController
   def new
     @membership = Membership.new(:user_id => params[:user_id], :organization_id => params[:organization_id])
     @permission_set = PermissionSet.get_admin_permission_set
-    # @user = User.where(id: params[:user_id]).first_or_initialize
-    # @organization = Organization.where(id: params[:organization_id]).first_or_initialize
+    session[:previous_url] = request.referer
   end
 
   # GET /memberships/1/edit
@@ -27,7 +26,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(mparams)
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to session[:previous_url], notice: 'Membership was successfully created.' }
         format.json { render action: 'show', status: :created, location: @membership }
       else
         format.html { render action: 'new' }
