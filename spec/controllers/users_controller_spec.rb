@@ -17,6 +17,13 @@ describe UsersController do
 
   context "user NOT logged in" do
 
+    describe "GET search" do
+      it "redirects to the home page" do
+        get :search_by_email, {}, valid_session
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
     describe "GET index" do
       it "redirects to the home page" do
         get :index, {}, valid_session
@@ -41,6 +48,20 @@ describe UsersController do
       @user = FactoryGirl.create(:user)
       @signed_in_user = FactoryGirl.create(:user, :email => "dave@dave.com")
       sign_in @signed_in_user
+    end
+
+    describe "GET search" do
+      it "assigns found users as @users" do
+        user = User.create! valid_attributes
+        get :search_by_email, {:email => user.email}, valid_session
+        assigns(:users).should eq([user])
+      end
+
+      it "renders the search_results page" do
+        user = User.create! valid_attributes
+        get :search_by_email, {:email => user.email}, valid_session
+        response.should render_template("search_results")
+      end
     end
 
     describe "GET 'index'" do 

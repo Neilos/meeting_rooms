@@ -2,9 +2,9 @@
 <% unless @membership.user %>
   <div class="col-lg-6">
     <div class="input-group">
-      <%= search_field(:user, :email, :class => "form-control") %>
+      <%= search_field(:user, :email, :class => "form-control", :id => 'email_search_box') %>
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search for user by email</button>
+        <button class="btn btn-default" type="button" onclick="searchForUserByEmail()">Search</button>
       </span>
     </div>
   </div>

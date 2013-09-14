@@ -21,15 +21,28 @@ function searchForOrganizationByName(){
 	  search_results_div.empty();
 	  search_results_div.append(data);
 	})
-
 	.fail(function() { alert("Could not return search results"); })
+}
 
+function searchForUserByEmail(){
+	var search_results_div = $("#search_results")
+	var search_string = document.getElementById('email_search_box').value;
+	var jqxhr = $.get("/users/search_by_email", {email: search_string}, function(data) {
+	  search_results_div.empty();
+	  search_results_div.append(data);
+	})
+	.fail(function() { alert("Could not return search results"); })
 }
 
 function page_ready(){
-	$('#search_results').on('click', 'tr.results_row', function(e){
+	$('#search_results').on('click', 'tr.organization_results_row', function(e){
 		$('#membership_organization_id').val(this.id)
-		$('tr.results_row').removeClass("active")
+		$('tr.organization_results_row').removeClass("active")
+		$(this).addClass("active")
+	});
+	$('#search_results').on('click', 'tr.user_results_row', function(e){
+		$('#membership_user_id').val(this.id)
+		$('tr.user_results_row').removeClass("active")
 		$(this).addClass("active")
 	});
 };

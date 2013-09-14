@@ -11,4 +11,9 @@ class UsersController < ApplicationController
 	    @memberships = @user.memberships
 	  end
 
+	  def search_by_email
+	    @users = User.where('email like ?', "%#{params[:email]}%")
+	    render 'search_results', :layout => false
+  	end
+
 end

@@ -17,7 +17,7 @@ feature "creating membership", :js => true do
 				click_button 'Search'
 				within("#search_results") do
 					page.should have_selector('tr')
-					page.first('.results_row').click
+					page.first('.organization_results_row').click
 				end
 				check('Create organizations')
 				check('Create memberships')
@@ -34,7 +34,7 @@ feature "creating membership", :js => true do
 				fill_in 'user[email]', :with => @user.email 
 				click_button 'Search'
 				within("#search_results") do
-					page.first('.results_row').click
+					page.first('.user_results_row').click
 				end
 				check('Create organizations')
 				check('Create memberships')
