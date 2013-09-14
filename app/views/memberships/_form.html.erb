@@ -73,10 +73,10 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <% if @membership.user %>
+    <% if params[:user_id] %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 user_path(@membership.user), :class => 'btn' %>
-    <% elsif @membership.organization %>
+    <% elsif params[:organization_id] %>
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 organization_path(@membership.organization), :class => 'btn' %>
     <% end %>

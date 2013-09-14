@@ -24,6 +24,8 @@ describe MembershipsController do
   # Membership. As you add validations to Membership, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { "user_id" => "2", "organization_id" => "3", "permission_set_id" => "5" } }
+  let(:submitted_params) { { :membership => { "user_id" => "2", "organization_id" => "3"}, 
+                            :permission_set => { "create__memberships" => "true", "create__organizations" => "true" } } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -70,12 +72,12 @@ describe MembershipsController do
     describe "POST create" do
       it "does NOT create" do
         expect {
-            post :create, {:membership => valid_attributes}, valid_session
+            post :create, submitted_params, valid_session
           }.to_not change(Membership, :count).by(1)
       end
 
       it "redirects to the home page" do
-        post :create, {:membership => valid_attributes}, valid_session
+        post :create, submitted_params, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -83,13 +85,13 @@ describe MembershipsController do
     describe "PUT update" do
       it "does NOT update" do
         membership = Membership.create! valid_attributes
-        put :update, {:id => membership.to_param, :membership => valid_attributes}, valid_session
-        Membership.any_instance.should_not_receive(:update).with(valid_attributes)
+        put :update, {:id => membership.to_param}.merge(submitted_params), valid_session
+        Membership.any_instance.should_not_receive(:update)
       end
 
       it "redirects to the home page" do
         membership = Membership.create! valid_attributes
-        put :update, {:id => membership.to_param, :membership => valid_attributes}, valid_session
+        put :update, {:id => membership.to_param}.merge(submitted_params), valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -146,12 +148,12 @@ describe MembershipsController do
       describe "with valid params" do
         it "creates a new Membership" do
           expect {
-            post :create, {:membership => valid_attributes}, valid_session
+            post :create, submitted_params, valid_session
           }.to change(Membership, :count).by(1)
         end
 
         it "assigns a newly created membership as @membership" do
-          post :create, {:membership => valid_attributes}, valid_session
+          post :create, submitted_params, valid_session
           assigns(:membership).should be_a(Membership)
           assigns(:membership).should be_persisted
         end
@@ -186,13 +188,13 @@ describe MembershipsController do
           # specifies that the Membership created on the previous line
           # receives the :update_attributes message with whatever params are
           # submitted in the request.
-          Membership.any_instance.should_receive(:update).with({ "user_id" => "1" })
-          put :update, {:id => membership.to_param, :membership => { "user_id" => "1" }}, valid_session
+          Membership.any_instance.should_receive(:update)
+          put :update, {:id => membership.to_param}.merge(submitted_params), valid_session
         end
 
         it "assigns the requested membership as @membership" do
           membership = Membership.create! valid_attributes
-          put :update, {:id => membership.to_param, :membership => valid_attributes}, valid_session
+          put :update, {:id => membership.to_param}.merge(submitted_params), valid_session
           assigns(:membership).should eq(membership)
         end
 

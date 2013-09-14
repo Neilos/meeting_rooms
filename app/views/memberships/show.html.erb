@@ -19,6 +19,12 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               :back, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_membership_path(@membership), :class => 'btn' %>
+
+  <% if params[:user_id] %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_membership_path(@membership.user, @membership), :class => 'btn' %>
+  <% elsif params[:organization_id] %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_organization_membership_path(@membership.organization, @membership), :class => 'btn' %>
+  <% end %>
 </div>

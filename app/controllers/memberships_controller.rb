@@ -16,6 +16,9 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/1/edit
   def edit
+    @membership = Membership.find(params[:id])
+    @permission_set = @membership.permission_set
+    session[:previous_url] = request.referer
   end
 
   # POST /memberships
@@ -38,9 +41,11 @@ class MembershipsController < ApplicationController
   # PATCH/PUT /memberships/1
   # PATCH/PUT /memberships/1.json
   def update
+    @permission_set = PermissionSet.where(params[:permission_set]).first_or_create
+    mparams = { permission_set_id: @permission_set.id }
     respond_to do |format|
-      if @membership.update(membership_params)
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
+      if @membership.update(mparams)
+        format.html { redirect_to session[:previous_url], notice: 'Membership was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
