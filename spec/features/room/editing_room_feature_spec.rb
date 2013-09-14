@@ -77,21 +77,21 @@ feature "editing room" do
 			    expect(page).to have_content '3 toilets'
 			  end
 
-			  # scenario "updating the room after having deleted a custom_attribute", :js => true do
-			  # 	within('#custom_attributes_section') do
-			  #     page.first(:link, 'Delete').click
-			  #   end
-			  #   click_button 'Update Room'
-			  #   expect(page).to have_content('Room was successfully updated.')
-			  #   expect(page).to have_content @organization.name
-			  #   expect(page).to have_selector '#organization-details'
-			  #   expect(page).to have_selector '#rooms-table'
-			  #   within('#rooms-table') do
-			  #     page.first(:link, 'View').click
-			  #   end
-			  #   expect(page).to have_no_content @custom_attribute.value
-			  #   expect(page).to have_no_content @custom_attribute.name
-			  # end
+			  scenario "updating the room after having deleted a custom_attribute", :js => true do
+			  	within('#custom_attributes_section') do
+			      page.first(:link, 'Delete').click
+			    end
+			    click_button 'Update Room'
+			    expect(page).to have_content('Room was successfully updated.')
+			    expect(page).to have_content @organization.name
+			    expect(page).to have_selector '#organization-details'
+			    expect(page).to have_selector '#rooms-table'
+			    within('#rooms-table') do
+			      page.first(:link, 'View').click
+			    end
+			    expect(page).to have_no_content @custom_attribute.value
+			    expect(page).to have_no_content @custom_attribute.name
+			  end
 
 			end
 		end

@@ -46,6 +46,9 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     @organization = @room.organization
+    puts "******************************"
+    puts "params: #{room_params}"
+    puts "******************************"
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to organization_path(@organization), notice: 'Room was successfully updated.' }

@@ -1,7 +1,7 @@
 <h3>Custom Attributes</h3>
 
 <div id="custom_attributes_section">
-  <%= f.fields_for :custom_attributes do |builder| %>
+  <%= f.fields_for(:custom_attributes, :include_id => false) do |builder| %>
     <div class="custom-attribute">
       <div class="control-group">
         <%= builder.label :id, :class => 'control-label' %>
