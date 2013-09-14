@@ -37,10 +37,7 @@ MeetingRooms::Application.routes.draw do
   resources :custom_attributes
 
   resources :memberships
-
-  resources :permission_sets
-
-      
+  
   root to: "application#initial_home"
 
   # The priority is based upon order of creation: first created -> highest priority.
