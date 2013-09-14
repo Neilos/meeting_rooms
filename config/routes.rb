@@ -31,13 +31,11 @@ MeetingRooms::Application.routes.draw do
   end
 
   resources :rooms do
-    resources :custom_attributes
+    resources :custom_attributes, :only => [:destroy]
   end
 
-  resources :custom_attributes
-
   resources :memberships
-  
+
   root to: "application#initial_home"
 
   # The priority is based upon order of creation: first created -> highest priority.
