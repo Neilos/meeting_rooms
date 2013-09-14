@@ -1,4 +1,5 @@
 
+
 var counter = document.getElementsByClassName("classname").length
 
 function addCustomAttributeToPage(){
@@ -25,10 +26,13 @@ function searchForOrganizationByName(){
 
 }
 
-window.onload = function(){
+function page_ready(){
 	$('#search_results').on('click', 'tr.results_row', function(e){
 		$('#membership_organization_id').val(this.id)
 		$('tr.results_row').removeClass("active")
 		$(this).addClass("active")
 	});
-}
+};
+
+$(document).ready(page_ready)
+$(document).on('page:load', page_ready)
