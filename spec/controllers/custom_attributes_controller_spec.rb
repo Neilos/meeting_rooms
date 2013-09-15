@@ -37,13 +37,13 @@ describe CustomAttributesController do
     describe "DELETE destroy" do
       it "does NOT delete" do
         custom_attribute = CustomAttribute.create! valid_attributes
-        delete :destroy, {:id => custom_attribute.to_param}, valid_session
+        delete :destroy, {:id => custom_attribute.to_param, :room_id => valid_attributes[:room_id]}, valid_session
         expect(CustomAttribute.count).to eq 1
       end
 
       it "redirects to the home page" do
         custom_attribute = CustomAttribute.create! valid_attributes
-        delete :destroy, {:id => custom_attribute.to_param}, valid_session
+        delete :destroy, {:id => custom_attribute.to_param, :room_id => valid_attributes[:room_id]}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -62,7 +62,7 @@ describe CustomAttributesController do
       it "destroys the requested custom_attribute" do
         custom_attribute = CustomAttribute.create! valid_attributes
         expect {
-          delete :destroy, {:id => custom_attribute.to_param}, valid_session
+          delete :destroy, {:id => custom_attribute.to_param, :room_id => valid_attributes[:room_id]}, valid_session
         }.to change(CustomAttribute, :count).by(-1)
       end
     end

@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <%= link_to "Delete attribute", custom_attribute_path(builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger' %>
+      <%= link_to "Delete attribute", room_custom_attribute_path(@room, builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger' %>
     </div>
 
   <% end %>
