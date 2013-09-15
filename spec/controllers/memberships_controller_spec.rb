@@ -24,7 +24,9 @@ describe MembershipsController do
   # Membership. As you add validations to Membership, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { "user_id" => "2", "organization_id" => "3", "permission_set_id" => "5" } }
-  let(:submitted_params) { { :membership => { "user_id" => "2", "organization_id" => "3"}, 
+  let(:org_id) { 1 }
+  let(:submitted_params) { { :organization_id => :org_id, 
+                            :membership => { "user_id" => "2", "organization_id" => "3"}, 
                             :permission_set => { "create__memberships" => "true", "create__organizations" => "true" } } }
 
   # This should return the minimal set of values that should be in the session
@@ -39,24 +41,17 @@ describe MembershipsController do
   
   context "user NOT logged in" do
 
-    describe "GET index" do
-      it "redirects to the home page" do
-        get :index, {}, valid_session
-        response.should redirect_to(new_user_session_path)
-      end
-    end
-
     describe "GET show" do
       it "redirects to the home page" do
         membership = Membership.create! valid_attributes
-        get :show, {:id => membership.to_param}, valid_session
+        get :show, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
 
     describe "GET new" do
       it "redirects to the home page" do
-        get :new, {}, valid_session
+        get :new, {:organization_id => :org_id}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -64,7 +59,7 @@ describe MembershipsController do
     describe "GET edit" do
       it "redirects to the home page" do
         membership = Membership.create! valid_attributes
-        get :edit, {:id => membership.to_param}, valid_session
+        get :edit, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -85,13 +80,13 @@ describe MembershipsController do
     describe "PUT update" do
       it "does NOT update" do
         membership = Membership.create! valid_attributes
-        put :update, {:id => membership.to_param}.merge(submitted_params), valid_session
+        put :update, {:organization_id => :org_id, :id => membership.to_param}.merge(submitted_params), valid_session
         Membership.any_instance.should_not_receive(:update)
       end
 
       it "redirects to the home page" do
         membership = Membership.create! valid_attributes
-        put :update, {:id => membership.to_param}.merge(submitted_params), valid_session
+        put :update, {:organization_id => :org_id, :id => membership.to_param}.merge(submitted_params), valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -99,13 +94,13 @@ describe MembershipsController do
     describe "DELETE destroy" do
       it "does NOT delete" do
         membership = Membership.create! valid_attributes
-        delete :destroy, {:id => membership.to_param}, valid_session
+        delete :destroy, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         expect(Membership.count).to eq 1
       end
 
       it "redirects to the home page" do
         membership = Membership.create! valid_attributes
-        delete :destroy, {:id => membership.to_param}, valid_session
+        delete :destroy, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -123,14 +118,14 @@ describe MembershipsController do
     describe "GET show" do
       it "assigns the right membership as @membership" do
         membership = Membership.create! valid_attributes
-        get :show, {:id => membership.to_param}, valid_session
+        get :show, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         assigns(:membership).should eq(membership)
       end
     end
 
     describe "GET new" do
       it "assigns @membership and @permission_set" do
-        get :new, {}, valid_session
+        get :new, {:organization_id => :org_id}, valid_session
         assigns(:membership).should be_a_new(Membership)
         assigns(:permission_set).should be_a_new(PermissionSet)
       end
@@ -139,7 +134,7 @@ describe MembershipsController do
     describe "GET edit" do
       it "assigns the requested membership as @membership" do
         membership = Membership.create! valid_attributes
-        get :edit, {:id => membership.to_param}, valid_session
+        get :edit, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         assigns(:membership).should eq(membership)
       end
     end
@@ -167,14 +162,14 @@ describe MembershipsController do
         it "assigns a newly created but unsaved membership as @membership" do
           # Trigger the behavior that occurs when invalid params are submitted
           Membership.any_instance.stub(:save).and_return(false)
-          post :create, {:membership => { "user_id" => "invalid value" }}, valid_session
+          post :create, {:organization_id => :org_id, :membership => { "user_id" => "invalid value" }}, valid_session
           assigns(:membership).should be_a_new(Membership)
         end
 
         it "re-renders the 'new' template" do
           # Trigger the behavior that occurs when invalid params are submitted
           Membership.any_instance.stub(:save).and_return(false)
-          post :create, {:membership => { "user_id" => "invalid value" }}, valid_session
+          post :create, {:organization_id => :org_id, :membership => { "user_id" => "invalid value" }}, valid_session
           response.should render_template("new")
         end
       end
@@ -208,7 +203,7 @@ describe MembershipsController do
           membership = Membership.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
           Membership.any_instance.stub(:save).and_return(false)
-          put :update, {:id => membership.to_param, :membership => { "user_id" => "invalid value" }}, valid_session
+          put :update, {:organization_id => :org_id, :id => membership.to_param, :membership => { "user_id" => "invalid value" }}, valid_session
           assigns(:membership).should eq(membership)
         end
 
@@ -216,7 +211,7 @@ describe MembershipsController do
           membership = Membership.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
           Membership.any_instance.stub(:save).and_return(false)
-          put :update, {:id => membership.to_param, :membership => { "user_id" => "invalid value" }}, valid_session
+          put :update, {:organization_id => :org_id, :id => membership.to_param, :membership => { "user_id" => "invalid value" }}, valid_session
           response.should render_template("edit")
         end
       end
@@ -227,13 +222,13 @@ describe MembershipsController do
       it "destroys the requested membership" do
         membership = Membership.create! valid_attributes
         expect {
-          delete :destroy, {:id => membership.to_param}, valid_session
+          delete :destroy, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         }.to change(Membership, :count).by(-1)
       end
 
       it "redirects to the previous page" do
         membership = Membership.create! valid_attributes
-        delete :destroy, {:id => membership.to_param}, valid_session
+        delete :destroy, {:organization_id => :org_id, :id => membership.to_param}, valid_session
         response.should redirect_to @referer
       end
     end

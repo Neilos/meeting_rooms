@@ -11,14 +11,14 @@ MeetingRooms::Application.routes.draw do
   end
 
   resources :users, only: [:index, :show] do 
-    resources :memberships
+    resources :memberships, :only => [:show, :edit, :update, :new, :create, :destroy]
     collection do
       get 'search_by_email'
     end
   end
 
   resources :organizations do
-    resources :memberships
+    resources :memberships, :only => [:show, :edit, :update, :new, :create, :destroy]
     resources :rooms
     resources :locations, :only => [:show, :edit, :update, :new, :create, :destroy]
     collection do
@@ -30,7 +30,7 @@ MeetingRooms::Application.routes.draw do
     resources :custom_attributes, :only => [:destroy]
   end
 
-  resources :memberships
+  # resources :memberships
 
   root to: "application#initial_home"
 

@@ -30,7 +30,7 @@
   <dd><%= @membership.organization.name if @membership.organization %> </dd>
 </dl>
 
-<%= form_for @membership, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [@membership.organization || @membership.user, @membership], :html => { :class => 'form-horizontal' } do |f| %>
   <% if @membership.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
