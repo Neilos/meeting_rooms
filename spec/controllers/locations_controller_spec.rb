@@ -41,24 +41,17 @@ describe LocationsController do
   
   context "user NOT logged in" do
 
-    describe "GET index" do
-      it "redirects to the home page" do
-        get :index, {}, valid_session
-        response.should redirect_to(new_user_session_path)
-      end
-    end
-
     describe "GET show" do
       it "redirects to the home page" do
         location = Location.create! valid_attributes
-        get :show, {:id => location.to_param}, valid_session
+        get :show, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
 
     describe "GET new" do
       it "redirects to the home page" do
-        get :new, {}, valid_session
+        get :new, {:organization_id => valid_attributes[:organization_id]}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -66,7 +59,7 @@ describe LocationsController do
     describe "GET edit" do
       it "redirects to the home page" do
         location = Location.create! valid_attributes
-        get :edit, {:id => location.to_param}, valid_session
+        get :edit, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -74,12 +67,12 @@ describe LocationsController do
     describe "POST create" do
       it "does NOT create" do
         expect {
-            post :create, {:location => valid_attributes}, valid_session
+            post :create, {:organization_id => valid_attributes[:organization_id], :location => valid_attributes}, valid_session
           }.to_not change(Location, :count).by(1)
       end
 
       it "redirects to the owning organizations show page" do
-        post :create, {:location => valid_attributes}, valid_session
+        post :create, {:organization_id => valid_attributes[:organization_id], :location => valid_attributes}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -87,13 +80,13 @@ describe LocationsController do
     describe "PUT update" do
       it "does NOT update" do
         location = Location.create! valid_attributes
-        put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+        put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => valid_attributes}, valid_session
         Location.any_instance.should_not_receive(:update).with(valid_attributes)
       end
 
       it "redirects to the home page" do
         location = Location.create! valid_attributes
-        put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+        put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => valid_attributes}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -101,13 +94,13 @@ describe LocationsController do
     describe "DELETE destroy" do
       it "does NOT delete" do
         location = Location.create! valid_attributes
-        delete :destroy, {:id => location.to_param}, valid_session
+        delete :destroy, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         expect(Location.count).to eq 1
       end
 
       it "redirects to the home page" do
         location = Location.create! valid_attributes
-        delete :destroy, {:id => location.to_param}, valid_session
+        delete :destroy, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -122,18 +115,10 @@ describe LocationsController do
       sign_in @user
     end
 
-    describe "GET index" do
-      it "assigns all locations as @locations" do
-        location = Location.create! valid_attributes
-        get :index, {}, valid_session
-        assigns(:locations).should eq([location])
-      end
-    end
-
     describe "GET show" do
       it "assigns the requested location as @location" do
         location = Location.create! valid_attributes
-        get :show, {:id => location.to_param}, valid_session
+        get :show, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         assigns(:location).should eq(location)
       end
     end
@@ -149,7 +134,7 @@ describe LocationsController do
     describe "GET edit" do
       it "assigns the requested location as @location" do
         location = Location.create! valid_attributes
-        get :edit, {:id => location.to_param}, valid_session
+        get :edit, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         assigns(:location).should eq(location)
       end
     end
@@ -158,18 +143,18 @@ describe LocationsController do
       describe "with valid params" do
         it "creates a new Location" do
           expect {
-            post :create, {:location => valid_attributes}, valid_session
+            post :create, {:organization_id => valid_attributes[:organization_id], :location => valid_attributes}, valid_session
           }.to change(Location, :count).by(1)
         end
 
         it "assigns a newly created location as @location" do
-          post :create, {:location => valid_attributes}, valid_session
+          post :create, {:organization_id => valid_attributes[:organization_id], :location => valid_attributes}, valid_session
           assigns(:location).should be_a(Location)
           assigns(:location).should be_persisted
         end
 
         it "redirects to the created location" do
-          post :create, {:location => valid_attributes}, valid_session
+          post :create, {:organization_id => valid_attributes[:organization_id], :location => valid_attributes}, valid_session
           response.should redirect_to(organization_path(valid_attributes[:organization_id]))
         end
       end
@@ -178,14 +163,14 @@ describe LocationsController do
         it "assigns a newly created but unsaved location as @location" do
           # Trigger the behavior that occurs when invalid params are submitted
           Location.any_instance.stub(:save).and_return(false)
-          post :create, {:location => { "name" => "invalid value" }}, valid_session
+          post :create, {:organization_id => valid_attributes[:organization_id], :location => { "name" => "invalid value" }}, valid_session
           assigns(:location).should be_a_new(Location)
         end
 
         it "re-renders the 'new' template" do
           # Trigger the behavior that occurs when invalid params are submitted
           Location.any_instance.stub(:save).and_return(false)
-          post :create, {:location => { "name" => "invalid value" }}, valid_session
+          post :create, {:organization_id => valid_attributes[:organization_id], :location => { "name" => "invalid value" }}, valid_session
           response.should render_template("new")
         end
       end
@@ -200,18 +185,18 @@ describe LocationsController do
           # receives the :update_attributes message with whatever params are
           # submitted in the request.
           Location.any_instance.should_receive(:update).with({ "name" => "MyString" })
-          put :update, {:id => location.to_param, :location => { "name" => "MyString" }}, valid_session
+          put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => { "name" => "MyString" }}, valid_session
         end
 
         it "assigns the requested location as @location" do
           location = Location.create! valid_attributes
-          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+          put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => valid_attributes}, valid_session
           assigns(:location).should eq(location)
         end
 
         it "redirects to the organization show page" do
           location = Location.create! valid_attributes
-          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+          put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => valid_attributes}, valid_session
           response.should redirect_to(organization_path(location.organization_id))
         end
       end
@@ -221,7 +206,7 @@ describe LocationsController do
           location = Location.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
           Location.any_instance.stub(:save).and_return(false)
-          put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
+          put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
           assigns(:location).should eq(location)
         end
 
@@ -229,7 +214,7 @@ describe LocationsController do
           location = Location.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
           Location.any_instance.stub(:save).and_return(false)
-          put :update, {:id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
+          put :update, {:organization_id => valid_attributes[:organization_id], :id => location.to_param, :location => { "name" => "invalid value" }}, valid_session
           response.should render_template("edit")
         end
       end
@@ -239,13 +224,13 @@ describe LocationsController do
       it "destroys the requested location" do
         location = Location.create! valid_attributes
         expect {
-          delete :destroy, {:id => location.to_param}, valid_session
+          delete :destroy, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         }.to change(Location, :count).by(-1)
       end
 
       it "redirects to the Organization show page" do
         location = Location.create! valid_attributes
-        delete :destroy, {:id => location.to_param}, valid_session
+        delete :destroy, {:organization_id => valid_attributes[:organization_id], :id => location.to_param}, valid_session
         response.should redirect_to(organization_path(location.organization_id))
       end
     end

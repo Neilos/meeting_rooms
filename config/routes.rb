@@ -20,14 +20,10 @@ MeetingRooms::Application.routes.draw do
   resources :organizations do
     resources :memberships
     resources :rooms
-    resources :locations
+    resources :locations, :only => [:show, :edit, :update, :new, :create, :destroy]
     collection do
       get 'search_by_name'
     end
-  end
-
-  resources :locations do
-    resources :rooms
   end
 
   resources :rooms do
