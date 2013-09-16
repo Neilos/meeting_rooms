@@ -11,7 +11,7 @@ This app requires the set up of the following environmental variables containing
   * MAILER_PASSWORD
   * MAILER_DOMAIN
 
-This app requires the set up of the following environmental variables in order for sign in with social network providers to work:
+This app requires the set up of the following environmental variables in order for sign in with social network providers to work
 
   * For sign in with Facebook (ensure the app is recorded as a 'web app' with Facebook in the Advanced settings)
     * `FACEBOOK_ID` - containing the app_id for the app registered with Facebook
