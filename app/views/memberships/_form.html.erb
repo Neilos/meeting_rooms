@@ -26,7 +26,7 @@
   <div class="form-group">
     <label class="control-label col-lg-2">organization:</label>
     <div class="col-lg-10">
-      <p class="form-control-static"><%= @membership.organization.name if @membership.organization %> </p>
+      <p id="membership_organization_name" class="form-control-static"><%= @membership.organization.name if @membership.organization %> </p>
     </div>
   </div>
 </form>
@@ -35,7 +35,7 @@
   <div class="form-group">
     <label class="control-label col-lg-2">member:</label>
     <div class="col-lg-10">
-      <p class="form-control-static"><%= @membership.user.name if @membership.user %> </p>
+      <p id="membership_user_name" class="form-control-static"><%= @membership.user.name if @membership.user %> </p>
     </div>
   </div>
 </form>
@@ -65,19 +65,9 @@
     </div>
   <% end %>
   
-  <div class="form-group">
-    <%= f.label :user_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :user_id, :class => 'text_field', :value => (@membership.user.id if @membership.user) %>
-    </div>
-  </div>
+  <%= f.hidden_field :user_id, :class => 'text_field', :value => (@membership.user.id if @membership.user) %>
 
-  <div class="form-group">
-    <%= f.label :organization_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :organization_id, :class => 'text_field', :value => (@membership.organization.id if @membership.organization) %>
-    </div>
-  </div>
+  <%= f.hidden_field :organization_id, :class => 'text_field', :value => (@membership.organization.id if @membership.organization) %>
 
 <%= render 'permission_sets/form_fields' %>
 
@@ -92,6 +82,5 @@
                   organization_path(@membership.organization), :class => 'btn btn-default' %>
       <% end %>
     </div>
-
   </div>
 <% end %>

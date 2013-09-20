@@ -38,12 +38,14 @@ function page_ready(){
 	
 	$('#search_results').on('click', 'tr.organization_results_row', function(e){
 		$('#membership_organization_id').val(this.id)
+		$('#membership_organization_name').text($(this).first().text())
 		$('tr.organization_results_row').removeClass("success")
 		$(this).addClass("success")
 	});
 
 	$('#search_results').on('click', 'tr.user_results_row', function(e){
 		$('#membership_user_id').val(this.id)
+		$('#membership_user_name').text($(this).first().text())
 		$('tr.user_results_row').removeClass("success")
 		$(this).addClass("success")
 	});
