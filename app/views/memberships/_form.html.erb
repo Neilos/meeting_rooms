@@ -1,6 +1,6 @@
 
 <% unless @membership.user %>
-  <div class="col-lg-6">
+  <div class="col-lg-offset-2 col-lg-10">
     <div class="input-group">
       <%= search_field(:user, :email, :class => "form-control", :id => 'email_search_box') %>
       <span class="input-group-btn">
@@ -11,7 +11,7 @@
 <% end %>
 
 <% unless @membership.organization %>
-  <div class="col-lg-6">
+  <div class="col-lg-offset-2 col-lg-10">
     <div class="input-group">
       <%= search_field(:organization, :name, :class => "form-control", :id => "org_search_box") %>
       <span class="input-group-btn">
@@ -19,16 +19,26 @@
       </span>
     </div>
   </div>
-  <br/>
 <% end %>
 <div id="search_results"></div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= ActiveRecord::Base.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @membership.user.name if @membership.user %> </dd>
-  <dt><strong><%= ActiveRecord::Base.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @membership.organization.name if @membership.organization %> </dd>
-</dl>
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label class="control-label col-lg-2">organization:</label>
+    <div class="col-lg-10">
+      <p class="form-control-static"><%= @membership.organization.name if @membership.organization %> </p>
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label class="control-label col-lg-2">member:</label>
+    <div class="col-lg-10">
+      <p class="form-control-static"><%= @membership.user.name if @membership.user %> </p>
+    </div>
+  </div>
+</form>
 
 <%= form_for [@membership.organization || @membership.user, @membership], :html => { :class => 'form-horizontal' } do |f| %>
   <% if @membership.errors.any? %>
@@ -55,30 +65,32 @@
     </div>
   <% end %>
   
-  <div class="control-group">
-    <%= f.label :user_id, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :user_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
       <%= f.text_field :user_id, :class => 'text_field', :value => (@membership.user.id if @membership.user) %>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :organization_id, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :organization_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
       <%= f.text_field :organization_id, :class => 'text_field', :value => (@membership.organization.id if @membership.organization) %>
     </div>
   </div>
 
 <%= render 'permission_sets/form_fields' %>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <% if params[:user_id] %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                user_path(@membership.user), :class => 'btn btn-default' %>
-    <% elsif params[:organization_id] %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <% if params[:user_id] %>
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                organization_path(@membership.organization), :class => 'btn btn-default' %>
-    <% end %>
+                  user_path(@membership.user), :class => 'btn btn-default' %>
+      <% elsif params[:organization_id] %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  organization_path(@membership.organization), :class => 'btn btn-default' %>
+      <% end %>
+    </div>
   </div>
 <% end %>

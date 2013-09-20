@@ -2,10 +2,12 @@
 
 <% @permission_set.attributes.each do |attribute, value| %>
   <% unless ['created_at', 'updated_at', 'id'].include? attribute %>
-    <div class="control-group">
-      <%= label_tag "permission_set[#{attribute}]", ActiveRecord::Base.human_attribute_name(attribute), :class => 'control-label' %>
-      <div class="controls">
-        <%= check_box_tag "permission_set[#{attribute}]", value, value, :class => 'checkbox' %>
+    <div class="form-group">
+      <div class="col-lg-offset-2 checkbox">
+        <%= label_tag "permission_set[#{attribute}]", ActiveRecord::Base.human_attribute_name(attribute) %>
+        <div class="col-lg-1">
+          <%= check_box("permission_set", "#{attribute}", options = {:checked => value}, checked_value = "1", unchecked_value = "0") %>
+        </div>
       </div>
     </div>
   <% end %>

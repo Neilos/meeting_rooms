@@ -24,6 +24,8 @@ feature "editing membership permission set", :js => true do
 				page.should have_content(@user.name)
 				page.should have_content(@user.email)
 				expect(page).to have_selector '#memberships-table'
+        @membership.reload
+        @membership.permission_set[:create__organizations].should eq false
 			end
 		
 			scenario "via the organization show page" do 
@@ -38,6 +40,8 @@ feature "editing membership permission set", :js => true do
 				expect(page).to have_selector '#memberships-table'
 				expect(page).to have_selector '#rooms-table'
 				expect(page).to have_selector '#locations-table'
+        @membership.reload
+        @membership.permission_set[:create__memberships].should eq false
 			end
       
       scenario "from the membership show page" do
@@ -59,6 +63,8 @@ feature "editing membership permission set", :js => true do
             expect(page).to have_content ActiveRecord::Base.human_attribute_name(ability)
           end
         end
+        @membership.reload
+        @membership.permission_set[:create__organizations].should eq false
       end
 		end
 
