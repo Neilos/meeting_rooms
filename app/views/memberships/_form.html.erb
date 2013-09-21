@@ -1,32 +1,66 @@
 
-<% unless @membership.user %>
-  <div class="col-lg-offset-2 col-lg-10">
-    <div class="input-group">
-      <%= search_field(:user, :email, :class => "form-control", :id => 'email_search_box') %>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onclick="searchForUserByEmail()">Search</button>
-      </span>
-    </div>
-  </div>
-<% end %>
 
-<% unless @membership.organization %>
-  <div class="col-lg-offset-2 col-lg-10">
-    <div class="input-group">
-      <%= search_field(:organization, :name, :class => "form-control", :id => "org_search_box") %>
-      <span class="input-group-btn">
-        <button  class="btn btn-default" type="button" onclick="searchForOrganizationByName()">Search</button>
-      </span>
+<div class="modal fade" id="searching_form" tabindex="-1" role="dialog" aria-labelledby="searching_form" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if @membership.user %>
+            Find organization
+          <% elsif @membership.organization %>
+            Find new member
+          <% end %>
+        </h3>
+      </div>
+
+      <div class="modal-body">
+        <% unless @membership.user %>
+          <div class="input-group">
+            <%= search_field(:user, :email, :class => "form-control", :id => 'email_search_box', :placeholder => 'Enter user email address') %>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" onclick="searchForUserByEmail()">Search</button>
+            </span>
+          </div>
+        <% end %>
+
+        <% unless @membership.organization %>
+          <div class="input-group">
+            <%= search_field(:organization, :name, :class => "form-control", :id => "org_search_box", :placeholder => 'Enter organization name') %>
+            <span class="input-group-btn">
+              <button  class="btn btn-primary" type="button" onclick="searchForOrganizationByName()">Search</button>
+            </span>
+          </div>
+        <% end %>
+
+        <div id="search_results"></div>
+        
+        <div class="modal-footer">
+          <% if params[:user_id] %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                      user_path(@membership.user), :class => 'btn btn-default' %>
+          <% elsif params[:organization_id] %>
+              <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                      organization_path(@membership.organization), :class => 'btn btn-default' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-<% end %>
-<div id="search_results"></div>
+</div>
+
 
 <form class="form-horizontal" role="form">
   <div class="form-group">
     <label class="control-label col-lg-2">organization:</label>
     <div class="col-lg-10">
-      <p id="membership_organization_name" class="form-control-static"><%= @membership.organization.name if @membership.organization %> </p>
+      <p id="membership_organization_name" class="form-control-static">
+        <%= @membership.organization.name if @membership.organization %> 
+      </p>
+      <% unless @membership.organization %>
+        <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target="#searching_form" data-backdrop="static" data-show="true">
+          change organization
+        </button>
+      <% end %>
     </div>
   </div>
 </form>
@@ -35,7 +69,14 @@
   <div class="form-group">
     <label class="control-label col-lg-2">member:</label>
     <div class="col-lg-10">
-      <p id="membership_user_name" class="form-control-static"><%= @membership.user.name if @membership.user %> </p>
+      <p id="membership_user_name" class="form-control-static">
+        <%= @membership.user.name if @membership.user %>
+      </p>
+      <% unless @membership.user %>
+        <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target="#searching_form" data-backdrop="static" data-show="true">
+          change member
+        </button>
+      <% end %>
     </div>
   </div>
 </form>

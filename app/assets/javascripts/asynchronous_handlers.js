@@ -41,6 +41,7 @@ function page_ready(){
 		$('#membership_organization_name').text($(this).first().text())
 		$('tr.organization_results_row').removeClass("success")
 		$(this).addClass("success")
+		$('#searching_form').modal('hide')	
 	});
 
 	$('#search_results').on('click', 'tr.user_results_row', function(e){
@@ -48,9 +49,11 @@ function page_ready(){
 		$('#membership_user_name').text($(this).first().text())
 		$('tr.user_results_row').removeClass("success")
 		$(this).addClass("success")
+		$('#searching_form').modal('hide')
 	});
 
 };
+
 
 $(document).ready(page_ready)
 $(document).on('page:load', page_ready)
