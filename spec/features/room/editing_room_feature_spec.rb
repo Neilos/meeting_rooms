@@ -7,7 +7,7 @@ feature "editing room" do
 		@organization = Organization.create(:name => "techhub")
 		@location = FactoryGirl.create(:location, organization_id: @organization.id, name: "Old Street")
 		@room = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 

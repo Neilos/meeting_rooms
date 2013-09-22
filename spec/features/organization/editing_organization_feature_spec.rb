@@ -9,7 +9,7 @@ feature "editing organization" do
 		@permission_set = FactoryGirl.create(:permission_set)
 		@membership1 = Membership.create(organization_id: @organization1.id, user_id: @user.id, permission_set_id: @permission_set.id)
 		@membership2 = Membership.create(organization_id: @organization2.id, user_id: @user.id, permission_set_id: @permission_set.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	context "completing an update" do

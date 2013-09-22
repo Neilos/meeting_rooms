@@ -17,23 +17,23 @@ feature "Logging in" do
                   :password_confirmation => 'password')
     @neil_google_omniauth_identity = @neil.omniauth_identities.create(:provider => 'google_oauth2', :uid => '123456')
     visit '/'
-    click_link 'Login'
+    click_link 'Log in'
   end
 
 
   context "with email and password entered on login page" do
     scenario "with correct credentials" do
-      sign_in_with email: @mike.email, password: 'password'
+      log_in_with email: @mike.email, password: 'password'
       expect(page).to have_content 'Signed in successfully'
     end
 
     scenario "with an unrecognized password" do
-      sign_in_with email: @mike.email, password: 'unrecognized'
+      log_in_with email: @mike.email, password: 'unrecognized'
       expect(page).to have_content 'Invalid email or password'
     end
 
     scenario "as an unrecognized user" do
-      sign_in_with email: 'somebody@anywhere.com', password: 'password'
+      log_in_with email: 'somebody@anywhere.com', password: 'password'
       expect(page).to have_content 'Invalid email or password'
     end
 

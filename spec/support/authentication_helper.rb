@@ -146,13 +146,13 @@ module AuthenticationHelper
   end
 
 
-  # e.g. sign_in_with :email => @user.email, :password => 'whatever'
-  def sign_in_with(user_details={:email => 'user@example.com', :password => 'password'})
+  # e.g. log_in_with :email => @user.email, :password => 'whatever'
+  def log_in_with(user_details={:email => 'user@example.com', :password => 'password'})
     visit '/'
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'Email', :with => user_details[:email]
     fill_in 'Password', :with => user_details[:password]
-    click_button 'Sign in'
+    click_button 'Log in'
   end
 
 end

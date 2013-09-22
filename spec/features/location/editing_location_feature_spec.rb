@@ -7,7 +7,7 @@ feature "editing location" do
 		@organization = Organization.create(:name => "techhub")
 		@location1 = FactoryGirl.create(:location, organization_id: @organization.id, name: "Old Street")
 		@location2 = FactoryGirl.create(:location2, organization_id: @organization.id, name: "White City")
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	context "completing an update" do

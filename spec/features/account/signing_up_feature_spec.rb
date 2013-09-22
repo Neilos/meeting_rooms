@@ -103,11 +103,11 @@ feature "Signing up" do
           click_button 'Complete sign in'
           expect(page).to have_content 'Your account has been created via Twitter. In your profile you can change your personal information and amend your local password from the one we have randomly generated for you.'
           expect(User.count).to eq 1
-          click_link 'Logout'
-          click_link 'Login'
+          click_link 'Log out'
+          click_link 'Log in'
           fill_in 'Email', :with => 'jon@example.com'
           fill_in 'Password', :with => 'password'
-          click_button 'Sign in'
+          click_button 'Log in'
           expect(page).to have_content 'Signed in successfully'
         end
 

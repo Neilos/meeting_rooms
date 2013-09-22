@@ -5,7 +5,7 @@ feature "creating organization" do
 	before :each do 
 		@password = "password"
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
-		sign_in_with email: @user.email, password: @password 
+		log_in_with email: @user.email, password: @password 
 	end
 
 	scenario "from the user showpage" do

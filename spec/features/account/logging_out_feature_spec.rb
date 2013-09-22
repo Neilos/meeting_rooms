@@ -7,15 +7,15 @@ feature "Logging Out" do
                   :password => 'password',
                   :password_confirmation => 'password')
     visit '/'
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'Email', :with => 'user34@example.com'
     fill_in 'Password', :with => 'password'
-    click_button 'Sign in'
+    click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
   end
 
   scenario "when a user is signed in" do
-    click_link 'Logout'
+    click_link 'Log out'
     expect(page).to have_content 'Signed out successfully'
   end
 end

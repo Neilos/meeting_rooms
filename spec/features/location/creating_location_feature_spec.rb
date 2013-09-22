@@ -6,7 +6,7 @@ feature "creating location" do
     @password = "password"
     @user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
     @organization = Organization.create(:name => "techhub")
-    sign_in_with email: @user.email, password: @password
+    log_in_with email: @user.email, password: @password
   end
 
   context "completing the creation of a location" do

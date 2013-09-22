@@ -8,7 +8,7 @@ feature "deleting custom attribute", :js => true do
     @organization = Organization.create(:name => "techhub")
     @location = FactoryGirl.create(:location, organization_id: @organization.id, name: "Old Street")
     @room_attributes = {name: "Room 1", price_per_hour: "9.99", people_capacity: "10", location_name: @location.name}
-    sign_in_with email: @user.email, password: @password
+    log_in_with email: @user.email, password: @password
   end
 
   scenario "when creating a room" do

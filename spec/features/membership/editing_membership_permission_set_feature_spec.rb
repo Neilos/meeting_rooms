@@ -9,7 +9,7 @@ feature "editing membership permission set", :js => true do
     @permission_set = PermissionSet.get_admin_permission_set
     @permission_set.save
     @membership = Membership.create!(:organization_id => @organization.id, :user_id => @user.id, :permission_set_id => @permission_set.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	context "completing the update" do

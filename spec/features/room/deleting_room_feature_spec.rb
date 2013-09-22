@@ -9,7 +9,7 @@ feature "deleting room" do
 		@location = FactoryGirl.create(:location, organization_id: @organization.id)
 		@room1 = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
 		@room2 = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 99", location_id: @location.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	scenario "from the organization#show page", js: true do

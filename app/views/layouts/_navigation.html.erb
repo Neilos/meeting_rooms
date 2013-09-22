@@ -6,27 +6,22 @@
     <%= link_to "Meeting Rooms", root_path, :class => 'navbar-brand' %>
   <% end %>
 
-  <ul class="nav navbar-nav">
-    <% if user_signed_in? %>
-      <li>
-      <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-      </li>
-    <% else %>
-      <li>
-      <%= link_to 'Login', new_user_session_path %>
-      </li>
-    <% end %>
+  <ul class="nav navbar-nav">  
     <% if user_signed_in? %>
       <li>
       <%= link_to 'Edit account', edit_user_registration_path %>
       </li>
-    <% else %>
-      <li>
-      <%= link_to 'Sign up', new_user_registration_path %>
-      </li>
-    <% end %>
       <li>
       <%= link_to 'Organizations', organizations_path %>
-      </li>
+      </li>      
+    <% end %>
   </ul>
+
+  <% if user_signed_in? %>
+    <%= link_to 'Log out', destroy_user_session_path, :method=>'delete', :class=> "btn btn-default navbar-btn" %>
+  <% else %>
+    <%= link_to 'Log in', new_user_session_path, :class=> "btn btn-default navbar-btn" %>
+    <%= link_to 'Sign up', new_user_registration_path, :class=> "btn btn-default navbar-btn" %>
+  <% end %>
+
 </div>

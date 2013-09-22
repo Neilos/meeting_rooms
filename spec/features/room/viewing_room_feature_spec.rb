@@ -9,7 +9,7 @@ feature "viewing room" do
 		@room = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
 		@custom_attribute = FactoryGirl.create(:custom_attribute, room_id: @room.id)
 		@custom_attribute2 = FactoryGirl.create(:custom_attribute, room_id: @room.id, name: "wifi", value: "yes")
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	scenario "via the organization#show page" do
