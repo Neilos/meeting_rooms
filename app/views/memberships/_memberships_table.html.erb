@@ -1,18 +1,20 @@
 <%- model_class = Membership -%>
 
-<div class="page-header">
-  <h2><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h2>
-</div>
+<%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
+            new_user_membership_path(@user),
+            :class => 'btn btn-primary') if @user %>
+
+<%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
+            new_organization_membership_path(@organization),
+            :class => 'btn btn-primary') if @organization %>
 
 <table class="table" id="memberships-table">
   <thead>
     <tr>
-
       <th>
         <%= model_class.human_attribute_name(:member) if @organization %>
         <%= model_class.human_attribute_name(:organization) if @user %>
       </th>
-      <th></th>
       <th><%=t '.permissions', :default => t("helpers.permissions") %></th>
     </tr>
   </thead>
@@ -20,16 +22,11 @@
     <% @memberships.each do |membership| %>
       <tr>
         <% if @user %>
-          <td><%= membership.organization.name %></td>
-          <td><%= link_to t(:organization_details),
-                        organization_path(membership.organization), 
-                        :class => 'btn btn-primary' %></td>
-        <% end %>
-        <% if @organization %>
-          <td><%= membership.user.name %></td>
-          <td><%= link_to t(:user_details),
-                      user_path(membership.user), 
-                      :class => 'btn btn-primary' %></td>
+          <td><%= link_to membership.organization.name,
+                        organization_path(membership.organization), :class => 'btn' %></td>
+        <% elsif @organization %>
+          <td><%= link_to membership.user.name,
+                      user_path(membership.user), :class => 'btn'  %></td>
         <% end %>
         <td>
           <% if @user %>
@@ -65,11 +62,3 @@
   </tbody>
 </table>
 
-
-<%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
-            new_user_membership_path(@user),
-            :class => 'btn btn-primary') if @user %>
-
-<%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
-            new_organization_membership_path(@organization),
-            :class => 'btn btn-primary') if @organization %>

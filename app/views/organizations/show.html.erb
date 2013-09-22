@@ -24,10 +24,34 @@
 
 </div>
 
-<%= render "rooms/rooms_table" %>
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#rooms" data-toggle="tab">Rooms</a>
+  </li>
+  <li class>
+    <a href="#locations" data-toggle="tab">Locations</a>
+  </li>
+  <li class>
+    <a href="#memberships" data-toggle="tab">Memberships</a>
+  </li>
+</ul>
 
-<%= render "locations/locations_table" %>
 
-<%= render "memberships/memberships_table" %>
+<div class="tab-content">
+  <div class="tab-pane active" id="rooms">
+    <%= render "rooms/rooms_table" %>
+  </div>
+  
+  <div class="tab-pane" id="locations">
+    <%= render "locations/locations_table" %>
+  </div>
+  
+  <div class="tab-pane" id="memberships">
+    <%= render "memberships/memberships_table" %>
+  </div>
+  
+</div>
+
+
 
 

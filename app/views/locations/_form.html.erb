@@ -12,58 +12,63 @@
     </div>
   <% end %>
   
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :address_line_1, :class => 'control-label' %>
-    <div class="controls">
+
+  <div class="form-group">
+    <%= f.label :address_line_1, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :address_line_1, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :address_line_2, :class => 'control-label' %>
-    <div class="controls">
+  
+  <div class="form-group">
+    <%= f.label :address_line_2, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :address_line_2, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :town_city, :class => 'control-label' %>
-    <div class="controls">
+  
+  <div class="form-group">
+    <%= f.label :town_city, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :town_city, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :county, :class => 'control-label' %>
-    <div class="controls">
+  
+  <div class="form-group">
+    <%= f.label :county, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :county, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :postcode, :class => 'control-label' %>
-    <div class="controls">
+  
+  <div class="form-group">
+    <%= f.label :postcode, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :postcode, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :country, :class => 'control-label' %>
-    <div class="controls">
+  
+  <div class="form-group">
+    <%= f.label :country, :class => 'control-label col-lg-2' %>
+    <div class="controls col-lg-10">
       <%= f.text_field :country, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :organization_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :organization_id, :class => 'text_field', :value => @organization.id %>
+  
+  <%= f.hidden_field :organization_id, :class => 'text_field', :value => @organization.id %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  organization_path(@organization), :class => 'btn btn-default'  %>
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                organization_path(@organization), :class => 'btn btn-default'  %>
-  </div>
+  
 <% end %>

@@ -14,7 +14,9 @@ feature "viewing_organization" do
 	end
 
 	scenario "via the user#show page" do
-		page.first(:link, 'Organization Details').click
+		within("#memberships-table") do
+			click_link "techhub"
+		end
 		page.should have_content('techhub')
 		page.should_not have_content('New Bamboo')
 	end

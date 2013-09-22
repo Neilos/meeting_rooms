@@ -14,7 +14,9 @@ feature "editing organization" do
 
 	context "completing an update" do
 		scenario "via the user#show page" do
-			page.first(:link, 'Organization Details').click
+			within("#memberships-table") do
+				click_link "techhub"
+			end
 			within("#organization-details") do
 				click_link('Edit')
 			end
@@ -41,7 +43,7 @@ feature "editing organization" do
 	context "cancelling the update" do
 		scenario "via the user#show page" do
 			within("#memberships-table") do
-				page.first(:link, 'Organization Details').click
+				click_link "techhub"
 			end
 			within("#organization-details") do
 				click_link('Edit')

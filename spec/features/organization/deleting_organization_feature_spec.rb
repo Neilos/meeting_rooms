@@ -14,7 +14,9 @@ feature "deleting organization" do
 	end
 
 	scenario "from the organization#show page", js: true do
-		page.first(:link, 'Organization Details').click
+		within("#memberships-table") do
+			click_link "techhub"
+		end
 		within("#organization-details") do
 			click_link('Delete')
 		end
