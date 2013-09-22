@@ -8,7 +8,10 @@ feature "creating organization" do
 		log_in_with email: @user.email, password: @password 
 	end
 
-	scenario "from the user showpage" do
+	scenario "from the organizations page" do
+		within ".navbar" do
+			click_link "Organizations"	
+		end
 		click_link "New Organization"
 		fill_in "Name", :with => "TechHub"
 		click_button "Create Organization"
