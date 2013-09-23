@@ -30,6 +30,7 @@ feature "creating membership", :js => true do
 		
 			scenario "from the organization show page" do 
 				visit_show_page_of_first_organization_in_organizations_table
+				click_link 'Memberships'
 				click_link('New Membership')
 				fill_in 'user[email]', :with => @user.email 
 				click_button 'Search'
@@ -41,9 +42,8 @@ feature "creating membership", :js => true do
 				click_button('Create Membership')
 				page.should have_content("Membership was successfully created.")
 				page.should have_content(@organization.name)
+				click_link 'Memberships'
 				expect(page).to have_selector '#memberships-table'
-				expect(page).to have_selector '#rooms-table'
-				expect(page).to have_selector '#locations-table'
 			end
 		end
 
@@ -63,12 +63,12 @@ feature "creating membership", :js => true do
 	
 		scenario "from the organization show page" do 
 			visit_show_page_of_first_organization_in_organizations_table
+			click_link 'Memberships'
 			click_link('New Membership')
 			click_link('Cancel')
 			page.should have_content(@organization.name)
+			click_link 'Memberships'
 			expect(page).to have_selector '#memberships-table'
-			expect(page).to have_selector '#rooms-table'
-			expect(page).to have_selector '#locations-table'	
 		end
 	end
 end

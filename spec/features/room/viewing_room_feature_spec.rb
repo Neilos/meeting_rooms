@@ -33,6 +33,7 @@ feature "viewing room" do
 		click_link 'Back'
 		expect(page).to have_content 'techhub'
   	expect(page).to have_selector '#organization-details'
+  	click_link 'Rooms'
  	 	expect(page).to have_selector '#rooms-table'
  		within('#rooms-table') do
  	  	page.should have_content(@room.name)

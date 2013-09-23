@@ -18,6 +18,7 @@ feature "viewing organization locations" do
 		within(".table") do 
 			page.first(:link, 'View').click
 		end
+		click_link 'Locations'
 		page.should have_content('Old Street')
 		page.should have_content('White City')
 	end

@@ -17,6 +17,7 @@ feature "viewing location" do
 		within("#organizations-table") do 
 			page.first(:link, 'View').click
 		end
+		click_link 'Locations'
 		within("#locations-table") do 
 			page.first(:link, 'View').click
 		end
@@ -26,6 +27,7 @@ feature "viewing location" do
 		click_link 'Back'
 		expect(page).to have_content 'techhub'
   	expect(page).to have_selector '#organization-details'
+  	click_link 'Locations'
  	 	expect(page).to have_selector '#locations-table'
  		within('#locations-table') do
  	  	page.should have_content('Old Street')

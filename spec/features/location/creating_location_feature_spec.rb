@@ -18,6 +18,7 @@ feature "creating location" do
         within('#organizations-table') do 
           page.first(:link, 'View').click
         end
+        click_link 'Locations'
         click_link 'New Location'
         fill_in 'Name', :with => 'Head Office'
         fill_in 'Address line 1', :with => '17 example street'
@@ -30,6 +31,7 @@ feature "creating location" do
         expect(page).to have_content 'Location was successfully created.'
         expect(page).to have_content 'techhub'
         expect(page).to have_selector '#organization-details'
+        click_link 'Locations'
         expect(page).to have_selector '#locations-table'
         within('#locations-table') do 
           expect(page).to have_content 'Head Office'
@@ -46,6 +48,7 @@ feature "creating location" do
         within('#organizations-table') do 
           page.first(:link, 'View').click
         end
+        click_link 'Locations'
         click_link 'New Location'
         click_button 'Create Location'
         expect(page).to have_content 'errors prohibited this location from being saved:'
@@ -62,6 +65,7 @@ feature "creating location" do
       within('#organizations-table') do 
         page.first(:link, 'View').click
       end
+      click_link 'Locations'
       click_link 'New Location'
       fill_in 'Name', :with => 'Head Office'
       fill_in 'Address line 1', :with => '17 example street'
@@ -73,6 +77,7 @@ feature "creating location" do
       click_link 'Cancel'
       expect(page).to have_content 'techhub'
       expect(page).to have_selector '#organization-details'
+      click_link 'Locations'
       expect(page).to have_selector '#locations-table'
       within('#locations-table') do 
         page.should_not have_content 'Head Office'

@@ -26,6 +26,7 @@ feature "deleting room" do
 		expect(page).to have_content 'Room was successfully deleted.'
     expect(page).to have_content 'techhub'
     expect(page).to have_selector '#organization-details'
+    click_link 'Rooms'
     expect(page).to have_selector '#rooms-table'
     within('#rooms-table') do 
       page.should_not have_content('Room 1')
@@ -39,6 +40,7 @@ feature "deleting room" do
 		within("#organizations-table") do
 			page.first(:link, 'View').click
 		end
+    click_link 'Rooms'
 		within("#rooms-table") do
 			page.first(:link, 'View').click
 		end
@@ -47,6 +49,7 @@ feature "deleting room" do
 		expect(page).to have_content 'Room was successfully deleted.'
     expect(page).to have_content 'techhub'
     expect(page).to have_selector '#organization-details'
+    click_link 'Rooms'
     expect(page).to have_selector '#rooms-table'
     within('#rooms-table') do 
       page.should_not have_content('Room 1')

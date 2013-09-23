@@ -17,6 +17,7 @@ feature "deleting location" do
 		within("#organizations-table") do
 			page.first(:link, 'View').click
 		end
+    click_link 'Locations'
 		within("#locations-table") do
 			page.first(:link, 'Delete').click
 		end
@@ -24,7 +25,7 @@ feature "deleting location" do
 		expect(page).to have_content 'Location was successfully deleted.'
     expect(page).to have_content 'techhub'
     expect(page).to have_selector '#organization-details'
-    expect(page).to have_selector '#locations-table'
+    click_link 'Locations'
     within('#locations-table') do 
       page.should_not have_content('Old Street')
     end
@@ -37,6 +38,7 @@ feature "deleting location" do
 		within("#organizations-table") do
 			page.first(:link, 'View').click
 		end
+    click_link 'Locations'
 		within("#locations-table") do
 			page.first(:link, 'View').click
 		end
@@ -45,7 +47,7 @@ feature "deleting location" do
 		expect(page).to have_content 'Location was successfully deleted.'
     expect(page).to have_content 'techhub'
     expect(page).to have_selector '#organization-details'
-    expect(page).to have_selector '#locations-table'
+    click_link 'Locations'
     within('#locations-table') do 
       page.should_not have_content('Old Street')
     end

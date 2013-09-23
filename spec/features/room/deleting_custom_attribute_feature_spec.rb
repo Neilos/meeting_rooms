@@ -24,6 +24,7 @@ feature "deleting custom attribute", :js => true do
     expect(page).to have_content 'Room was successfully created'
     expect(page).to have_content @organization.name
     expect(page).to have_selector '#organization-details'
+    click_link 'Rooms'
     expect(page).to have_selector '#rooms-table'
     within('#rooms-table') do
       page.first(:link, 'View').click
@@ -44,6 +45,7 @@ feature "deleting custom attribute", :js => true do
     click_button 'Update Room'
     expect(page).to have_content @organization.name
     expect(page).to have_selector '#organization-details'
+    click_link 'Rooms'
     expect(page).to have_selector '#rooms-table'
     within('#rooms-table') do
       page.first(:link, 'View').click
