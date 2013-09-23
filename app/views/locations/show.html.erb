@@ -16,6 +16,8 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:organization) %>:</strong></dt>
+  <dd><%= @location.organization.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @location.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:address_line_1) %>:</strong></dt>
@@ -30,6 +32,4 @@
   <dd><%= @location.postcode %></dd>
   <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
   <dd><%= @location.country %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @location.organization_id %></dd>
 </dl>

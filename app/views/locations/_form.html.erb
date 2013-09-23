@@ -13,6 +13,17 @@
   <% end %>
   
   <div class="form-group">
+    <%= f.label :organization, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <p class="form-control-static">
+        <%= @organization.name %>
+      </p>
+    </div>
+  </div>
+
+  <%= f.hidden_field :organization_id, :class => 'text_field', :value => @organization.id %>
+
+  <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
     <div class="controls col-lg-10">
       <%= f.text_field :name, :class => 'text_field' %>
@@ -61,7 +72,6 @@
     </div>
   </div>
   
-  <%= f.hidden_field :organization_id, :class => 'text_field', :value => @organization.id %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
