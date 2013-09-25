@@ -1,43 +1,43 @@
-<h3>Custom Attributes</h3>
 
-<div id="custom_attributes_section">
+
+
+<div id="custom_attributes_section" >
   <%= f.fields_for(:custom_attributes, :include_id => false) do |builder| %>
-    <div class="custom-attribute">
-      <div class="control-group">
-        <%= builder.label :id, :class => 'control-label' %>
-        <div class="controls">
-          <%= builder.text_field :id, :class => 'text_field' %>
-        </div>
+    <div class="custom-attribute panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Custom attribute</h3>
       </div>
 
-      <div class="control-group">
-        <%= builder.label :room_id, :class => 'control-label' %>
-        <div class="controls">
-          <%= builder.text_field :room_id, :class => 'text_field' %>
-        </div>
-      </div>
+      <div class="panel-body">
+            
+        <%= builder.hidden_field :id %>
 
-      <div class="control-group">
-        <%= builder.label :name, :class => 'control-label' %>
-        <div class="controls">
-          <%= builder.text_field :name, :class => 'text_field' %>
-        </div>
-      </div>
+        <%= builder.hidden_field :room_id %>
 
-      <div class="control-group">
-        <%= builder.label :value, :class => 'control-label' %>
-        <div class="controls">
-          <%= builder.text_field :value, :class => 'text_field' %>
+        <div class="form-group">
+          <%= builder.label :name, :class => 'control-label sr-only' %>
+          <div class="controls col-lg-10">
+            <%= builder.text_field :name, :class => 'text_field', :placeholder => 'attribute name' %>
+          </div>
         </div>
-      </div>
 
-      <%= link_to "Delete attribute", room_custom_attribute_path(@room, builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger' %>
+        <div class="form-group">
+          <%= builder.label :value, :class => 'control-label sr-only' %>
+          <div class="control col-lg-10">
+            <%= builder.text_field :value, :class => 'text_field', :placeholder => 'attribute value' %>
+          </div>
+        </div>
+      
+
+        <div class="form-group">
+          <div class="controls col-lg-10">
+            <%= link_to "Delete attribute", room_custom_attribute_path(@room, builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger' %>
+          </div>
+        </div>
+
+      </div>
     </div>
-
+    
   <% end %>
-
-  <div>
-    <input class="btn btn-default" id="btn_new_attribute" type="button" value="New attribute", onclick="addCustomAttributeToPage()">
-  </div>
-
+  
 </div>

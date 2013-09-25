@@ -19,13 +19,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     omniauth_identity = OmniauthIdentity.where(:provider => @provider, :uid => @uid).first
     if omniauth_identity
-      flash[:notice] = 'Signed in successfully via ' + PROVIDERS[@provider] + '.'
+      flash[:success] = 'Signed in successfully via ' + PROVIDERS[@provider] + '.'
       sign_in_and_redirect(:user, omniauth_identity.user)
     elsif email != ''
       existing_user = User.find_by_email(email)
       if existing_user
         existing_user.omniauth_identities.create(:provider => @provider, :uid => @uid)
-        flash[:notice] = 'Sign in via ' + PROVIDERS[@provider] + ' has been added to your account. Signed in successfully!'
+        flash[:success] = 'Sign in via ' + PROVIDERS[@provider] + ' has been added to your account. Signed in successfully!'
         sign_in_and_redirect(:user, existing_user)
       else
         @user = User.new(name:name, email:email, password:Devise.friendly_token[0,20])
@@ -36,7 +36,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           return
         end
         @user.omniauth_identities.create(:provider => @provider, :uid => @uid)
-        flash[:notice] = 'Your account has been created via ' + PROVIDERS[@provider] + '. In your profile you can change your personal information and amend your local password from the one we have randomly generated for you.'
+        flash[:success] = 'Your account has been created via ' + PROVIDERS[@provider] + '. In your profile you can change your personal information and amend your local password from the one we have randomly generated for you.'
         sign_in_and_redirect(:user, @user)
       end
     else
@@ -58,7 +58,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user
       if @user.valid_password?(password)
         @user.omniauth_identities.create(:provider => @provider, :uid => @uid)
-        flash[:notice] = 'Sign in via ' + PROVIDERS[@provider] + ' has been added to your account. Signed in successfully!'
+        flash[:success] = 'Sign in via ' + PROVIDERS[@provider] + ' has been added to your account. Signed in successfully!'
         sign_in_and_redirect(:user, @user)
       else
         @user = User.new(name:name, email:email)
@@ -69,7 +69,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.new(name: name, email: email, password: password, password_confirmation: password)
       if @user.save
         @user.omniauth_identities.create(:provider => @provider, :uid => @uid)
-        flash[:notice] = 'Your account has been created via ' + PROVIDERS[@provider] + '. In your profile you can change your personal information and amend your local password from the one we have randomly generated for you.'
+        flash[:success] = 'Your account has been created via ' + PROVIDERS[@provider] + '. In your profile you can change your personal information and amend your local password from the one we have randomly generated for you.'
         sign_in_and_redirect(:user, @user)
       else
         render 'devise/registrations/new_with_omniauth'

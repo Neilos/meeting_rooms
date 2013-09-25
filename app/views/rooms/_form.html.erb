@@ -1,8 +1,9 @@
 
 <%= form_for(@room , :url => organization_room_path(@organization, @room), :html => { :class => 'form-horizontal' }) do |f| %>
   <% if @room.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h4>
 
       <ul>
       <% @room.errors.full_messages.each do |msg| %>
@@ -57,8 +58,9 @@
 <%= render(:partial => 'custom_attributes/form_fields', :locals => {:f => f}) %>
 
   <div class="form-actions">
-    <div class="col-lg-10 col-lg-offset-2">
+    <div class="col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
+      <input class="btn btn-default" id="btn_new_attribute" type="button" value="New attribute", onclick="addCustomAttributeToPage()">
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   organization_path(@organization), :class => 'btn btn-default' %>
     </div>

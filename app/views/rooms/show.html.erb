@@ -26,11 +26,11 @@
   <dd><%= @room.price_per_hour %></dd>
   <dt><strong><%= model_class.human_attribute_name(:people_capacity) %>:</strong></dt>
   <dd><%= @room.people_capacity %></dd>
-</dl>
-
-<dl class="dl-horizontal">
+  
   <% @room.custom_attributes.each do |c| %>
     <dt><strong><%= c.name %>:</strong></dt>
     <dd><%= c.value %></dd>
   <% end %>
+
 </dl>
+

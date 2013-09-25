@@ -1,5 +1,14 @@
-<% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
+
+
+<% [:notice, :success, :error, :alert].each do |level| %>
+   <% unless flash[level].blank? %>
+     <div class="<%= flash_class(level) %> fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <% flash.each do |name, msg| %>
+          <% if msg.is_a?(String) %>
+            <%= content_tag :p, msg, :id => "flash_#{name}" %>
+          <% end %>
+        <% end %>
+     </div>
+   <% end %>
 <% end %>

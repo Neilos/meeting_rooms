@@ -42,7 +42,7 @@ class OrganizationsController < ApplicationController
         membership = Membership.create(permission_set_id: permission_set.id, 
                                         user_id: current_user.id, 
                                         organization_id: @organization.id)
-        format.html { redirect_to user_path(current_user), notice: 'Organization was successfully created.' }
+        format.html { redirect_to user_path(current_user), success: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
         format.html { render action: 'new' }
@@ -56,7 +56,7 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
+        format.html { redirect_to @organization, success: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
