@@ -24,7 +24,7 @@ function addCustomAttributeToPage(){
 	        '<div class="form-group">' +
 	          '<label class="control-label sr-only" for="room_custom_attributes_attributes_' + counter + '_value">Value</label>' +
 	          '<div class="control col-lg-10">' +
-	            '<input class="text_field" id="room_custom_attributes_attributes_' + counter + '_value" name="room[custom_attributes_attributes][0][value]" placeholder="attribute value" type="text" />' +
+	            '<input class="text_field" id="room_custom_attributes_attributes_' + counter + '_value" name="room[custom_attributes_attributes][' + counter + '][value]" placeholder="attribute value" type="text" />' +
 	          '</div>' +
 	        '</div>' +
 	        '<div class="form-group">' +

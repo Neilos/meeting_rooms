@@ -13,8 +13,8 @@ feature "creating custom attribute", :js => true do
 
 	scenario "when creating a room" do
     fill_in_new_room_form(@room_attributes)
+    click_button "New attribute"
     within('#custom_attributes_section') do
-      click_button "New attribute"
       fill_in "Name", :with => "wifi"
       fill_in "Value", :with => "yes there is wifi"
     end
@@ -33,8 +33,8 @@ feature "creating custom attribute", :js => true do
   scenario "when editing a room" do
     room = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
     edit_first_room_in_rooms_table
+    click_button "New attribute"
     within('#custom_attributes_section') do
-      click_button "New attribute"
       fill_in "Name", :with => "wifi"
       fill_in "Value", :with => "yes there is wifi"
     end
