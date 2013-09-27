@@ -54,7 +54,7 @@
     <label class="control-label col-lg-2">organization:</label>
     <div class="col-lg-10">
       <p id="membership_organization_name" class="form-control-static">
-        <%= @membership.organization.name if @membership.organization %> 
+        <%= @membership.organization ? @membership.organization.name : '-' %> 
       </p>
       <% unless @membership.organization %>
         <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target="#searching_form" data-backdrop="static" data-show="true">
@@ -70,7 +70,7 @@
     <label class="control-label col-lg-2">member:</label>
     <div class="col-lg-10">
       <p id="membership_user_name" class="form-control-static">
-        <%= @membership.user.name if @membership.user %>
+        <%= @membership.user ? @membership.user.name : '-' %>
       </p>
       <% unless @membership.user %>
         <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target="#searching_form" data-backdrop="static" data-show="true">
