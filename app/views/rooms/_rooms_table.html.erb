@@ -1,8 +1,7 @@
 <%- model_class = Room -%>
-
-<%= link_to t('.new_room', :default => t("helpers.links.new_room")),
-            new_organization_room_path(@organization),
-            :class => 'btn btn-primary' %>
+<p><%= link_to t('.new_room', :default => t("helpers.links.new_room")),
+              new_organization_room_path(@organization),
+              :class => 'btn btn-primary' %></p>
 
 <table class="table" id="rooms-table">
   <thead>

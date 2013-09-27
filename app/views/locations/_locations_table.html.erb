@@ -1,8 +1,8 @@
 <%- model_class = Location -%>
 
-<%= link_to t('.new_location', :default => t("helpers.links.new_location")),
+<p><%= link_to t('.new_location', :default => t("helpers.links.new_location")),
             new_organization_location_path(@organization),
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary' %></p>
 
 <table class="table" id="locations-table">
   <thead>

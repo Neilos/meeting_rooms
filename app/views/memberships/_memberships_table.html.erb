@@ -1,12 +1,14 @@
 <%- model_class = Membership -%>
 
-<%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
-            new_user_membership_path(@user),
-            :class => 'btn btn-primary') if @user %>
+<p>
+  <%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
+              new_user_membership_path(@user),
+              :class => 'btn btn-primary') if @user %>
 
-<%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
-            new_organization_membership_path(@organization),
-            :class => 'btn btn-primary') if @organization %>
+  <%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
+              new_organization_membership_path(@organization),
+              :class => 'btn btn-primary') if @organization %>
+</p>
 
 <table class="table" id="memberships-table">
   <thead>
