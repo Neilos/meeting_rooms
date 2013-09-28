@@ -4,14 +4,14 @@
   <%= devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.label :email, :class => 'control-label col-lg-2'  %>
-    <div class="col-lg-10">
+    <%= f.label :email, :class => 'control-label col-sm-2'  %>
+    <div class="col-sm-10">
       <%= f.email_field :email, :autofocus => true, :class => 'text_field' %>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
+    <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit "Resend confirmation instructions", :class => 'btn btn-primary' %>
     </div>
   </div>

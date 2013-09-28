@@ -16,8 +16,8 @@
   <div id="room-fields">
 
     <div class="form-group">
-      <%= f.label :organization, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
+      <%= f.label :organization, :class => 'control-label col-sm-2' %>
+      <div class="col-sm-10">
         <p class="form-control-static">
           <%= @organization.name %>
         </p>
@@ -27,29 +27,29 @@
     <%= f.hidden_field :organization_id, :class => 'text_field', :value => @organization.id %>
 
     <div class="form-group">
-      <%= f.label :name, :class => 'col-lg-2 control-label' %>
-      <div class="col-lg-10">
+      <%= f.label :name, :class => 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
         <%= f.text_field :name, :class => 'text_field' %>
       </div>
     </div>
     
     <div class="form-group">
-      <%= f.label :location_id, :class => 'col-lg-2 control-label' %>
-      <div class="col-lg-10">
+      <%= f.label :location_id, :class => 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
          <%= select('room', 'location_id', Location.all.collect {|l| [l.name, l.id]}, {prompt: 'SELECT', include_blanks: 'None'})%>
       </div>
     </div>
     
     <div class="form-group">
-      <%= f.label :price_per_hour, :class => 'col-lg-2 control-label' %>
-      <div class="col-lg-10">
+      <%= f.label :price_per_hour, :class => 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
         <%= f.text_field :price_per_hour, :class => 'text_field' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :people_capacity, :class => 'col-lg-2 control-label' %>
-      <div class="col-lg-10">
+      <%= f.label :people_capacity, :class => 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
         <%= f.text_field :people_capacity, :class => 'text_field' %>
       </div>
     </div>
@@ -58,7 +58,7 @@
 <%= render(:partial => 'custom_attributes/form_fields', :locals => {:f => f}) %>
 
   <div class="form-actions">
-    <div class="col-lg-10">
+    <div class="col-sm-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <input class="btn btn-default" id="btn_new_attribute" type="button" value="New attribute", onclick="addCustomAttributeToPage()">
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
