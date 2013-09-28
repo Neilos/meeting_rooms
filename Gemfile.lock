@@ -263,6 +263,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
+  launchy
   less-rails
   mailcatcher
   omniauth

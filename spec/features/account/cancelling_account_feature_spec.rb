@@ -13,7 +13,7 @@ feature "Account cancellation" do
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
     click_link 'Edit account'
-    click_button 'Cancel my account'
+    click_link 'Cancel my account'
     alert = page.driver.browser.switch_to.alert
     alert.text.should eq("Are you sure?")
     alert.accept

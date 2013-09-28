@@ -19,7 +19,6 @@ feature "deleting custom attribute", :js => true do
       fill_in "Value", :with => "yes there is wifi"
       click_link "Delete attribute"
     end
-
     click_button 'Create Room'
     expect(page).to have_content 'Room was successfully created'
     expect(page).to have_content @organization.name
