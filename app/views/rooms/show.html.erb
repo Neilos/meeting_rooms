@@ -1,26 +1,13 @@
-<%- model_class = Room -%>
+<% model_class = Room %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @room.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:price_per_hour) %>:</strong></dt>
-  <dd><%= @room.price_per_hour %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
-  <dd><%= @room.location_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
-  <dd><%= @room.organization_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:people_capacity) %>:</strong></dt>
-  <dd><%= @room.people_capacity %></dd>
-</dl>
-
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              organization_path(@room.organization_id), :class => 'btn'  %>
+              organization_path(@room.organization_id), :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_organization_room_path(@room.organization_id, @room), :class => 'btn' %>
+              edit_organization_room_path(@room.organization_id, @room), :class => 'btn btn-default' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               organization_room_path(@room.organization_id, @room),
               :method => 'delete',
@@ -29,8 +16,21 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:organization_id) %>:</strong></dt>
+  <dd><%= @room.organization.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @room.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:location_id) %>:</strong></dt>
+  <dd><%= @room.location.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price_per_hour) %>:</strong></dt>
+  <dd><%= @room.price_per_hour %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:people_capacity) %>:</strong></dt>
+  <dd><%= @room.people_capacity %></dd>
+  
   <% @room.custom_attributes.each do |c| %>
     <dt><strong><%= c.name %>:</strong></dt>
     <dd><%= c.value %></dd>
   <% end %>
+
 </dl>
+

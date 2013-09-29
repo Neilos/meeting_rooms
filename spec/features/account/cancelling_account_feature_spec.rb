@@ -7,13 +7,13 @@ feature "Account cancellation" do
                   :password => 'password',
                   :password_confirmation => 'password')
     visit '/'
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'Email', :with => 'user34@example.com'
     fill_in 'Password', :with => 'password'
-    click_button 'Sign in'
+    click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
     click_link 'Edit account'
-    click_button 'Cancel my account'
+    click_link 'Cancel my account'
     alert = page.driver.browser.switch_to.alert
     alert.text.should eq("Are you sure?")
     alert.accept

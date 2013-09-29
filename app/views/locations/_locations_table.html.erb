@@ -1,8 +1,10 @@
 <%- model_class = Location -%>
-<div class="page-header">
-  <h2><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h2>
-</div>
-<table class="table table-striped" id="locations-table">
+
+<p><%= link_to t('.new_location', :default => t("helpers.links.new_location")),
+            new_organization_location_path(@organization),
+            :class => 'btn btn-primary' %></p>
+
+<table class="table" id="locations-table">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
@@ -30,7 +32,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new_location', :default => t("helpers.links.new_location")),
-            new_organization_location_path(@organization),
-            :class => 'btn btn-primary' %>

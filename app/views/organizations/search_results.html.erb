@@ -1,12 +1,12 @@
 <%- model_class = Organization -%>
-<div class="page-header">
-  <h1>Search Results</h1>
-</div>
 <% if @organizations.length > 0 %>
-  <table class="table" id="organizations-table">
+  <div class="page-header">
+    <p>Select an organization from the list below</p>
+  </div>
+  <table class="table table-hover" id="organizations-table">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th>Organizations</th>
       </tr>
     </thead>
     <tbody id="search_results_table_body">
@@ -18,5 +18,7 @@
     </tbody>
   </table>
 <% else %>
-  <p>No matching results</p>
+  <div class="page-header">
+    <p>No organizations found.</p>
+  </div>
 <% end %>

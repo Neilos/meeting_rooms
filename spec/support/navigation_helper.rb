@@ -7,6 +7,7 @@ module NavigationHelper
     within('#organizations-table') do 
       page.first(:link, 'View').click
     end
+    click_link 'Rooms'
     click_link 'New Room'
     within('#room-fields') do 
       fill_in ('Name'), :with => room_attributes[:name]
@@ -24,6 +25,7 @@ module NavigationHelper
     within('#organizations-table') do 
       page.first(:link, 'View').click
     end
+    click_link 'Rooms'
     within('#rooms-table') do 
       page.first(:link, 'Edit').click
     end

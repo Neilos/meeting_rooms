@@ -2,7 +2,12 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped" id="organizations-table">
+
+<%= link_to t('.new_organization', :default => t("helpers.links.new_organization")),
+            new_organization_path,
+            :class => 'btn btn-primary' %>
+            
+<table class="table" id="organizations-table">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
@@ -28,7 +33,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new_organization', :default => t("helpers.links.new_organization")),
-            new_organization_path,
-            :class => 'btn btn-primary' %>

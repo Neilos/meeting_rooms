@@ -1,49 +1,91 @@
 
-<% unless @membership.user %>
-  <div class="col-lg-offset-2 col-lg-10">
-    <div class="input-group">
-      <%= search_field(:user, :email, :class => "form-control", :id => 'email_search_box') %>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onclick="searchForUserByEmail()">Search</button>
-      </span>
-    </div>
-  </div>
-<% end %>
 
-<% unless @membership.organization %>
-  <div class="col-lg-offset-2 col-lg-10">
-    <div class="input-group">
-      <%= search_field(:organization, :name, :class => "form-control", :id => "org_search_box") %>
-      <span class="input-group-btn">
-        <button  class="btn btn-default" type="button" onclick="searchForOrganizationByName()">Search</button>
-      </span>
+<div class="modal fade" id="searching_form" tabindex="-1" role="dialog" aria-labelledby="searching_form" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if @membership.user %>
+            Find organization
+          <% elsif @membership.organization %>
+            Find new member
+          <% end %>
+        </h3>
+      </div>
+
+      <div class="modal-body">
+        <% unless @membership.user %>
+          <div class="input-group">
+            <%= search_field(:user, :email, :class => "form-control", :id => 'email_search_box', :placeholder => 'Enter user email address') %>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" onclick="searchForUserByEmail()">Search</button>
+            </span>
+          </div>
+        <% end %>
+
+        <% unless @membership.organization %>
+          <div class="input-group">
+            <%= search_field(:organization, :name, :class => "form-control", :id => "org_search_box", :placeholder => 'Enter organization name') %>
+            <span class="input-group-btn">
+              <button  class="btn btn-primary" type="button" onclick="searchForOrganizationByName()">Search</button>
+            </span>
+          </div>
+        <% end %>
+
+        <div id="search_results"></div>
+        
+        <div class="modal-footer">
+          <% if params[:user_id] %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                      user_path(@membership.user), :class => 'btn btn-default' %>
+          <% elsif params[:organization_id] %>
+              <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                      organization_path(@membership.organization), :class => 'btn btn-default' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-<% end %>
-<div id="search_results"></div>
+</div>
+
 
 <form class="form-horizontal" role="form">
   <div class="form-group">
-    <label class="control-label col-lg-2">organization:</label>
-    <div class="col-lg-10">
-      <p class="form-control-static"><%= @membership.organization.name if @membership.organization %> </p>
+    <label class="control-label col-sm-2">organization:</label>
+    <div class="col-sm-10">
+      <p id="membership_organization_name" class="form-control-static">
+        <%= @membership.organization ? @membership.organization.name : '-' %> 
+      </p>
+      <% unless @membership.organization %>
+        <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target="#searching_form" data-backdrop="static" data-show="true">
+          change organization
+        </button>
+      <% end %>
     </div>
   </div>
 </form>
 
 <form class="form-horizontal" role="form">
   <div class="form-group">
-    <label class="control-label col-lg-2">member:</label>
-    <div class="col-lg-10">
-      <p class="form-control-static"><%= @membership.user.name if @membership.user %> </p>
+    <label class="control-label col-sm-2">member:</label>
+    <div class="col-sm-10">
+      <p id="membership_user_name" class="form-control-static">
+        <%= @membership.user ? @membership.user.name : '-' %>
+      </p>
+      <% unless @membership.user %>
+        <button class="btn btn-default btn-xs" type="button" data-toggle="modal" data-target="#searching_form" data-backdrop="static" data-show="true">
+          change member
+        </button>
+      <% end %>
     </div>
   </div>
 </form>
 
 <%= form_for [@membership.organization || @membership.user, @membership], :html => { :class => 'form-horizontal' } do |f| %>
   <% if @membership.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@membership.errors.count, "error") %> prohibited this membership from being saved:</h4>
 
       <ul>
       <% @membership.errors.full_messages.each do |msg| %>
@@ -65,35 +107,14 @@
     </div>
   <% end %>
   
-  <div class="form-group">
-    <%= f.label :user_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :user_id, :class => 'text_field', :value => (@membership.user.id if @membership.user) %>
-    </div>
-  </div>
+  <%= f.hidden_field :user_id, :class => 'text_field', :value => (@membership.user.id if @membership.user) %>
 
-  <div class="form-group">
-    <%= f.label :organization_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :organization_id, :class => 'text_field', :value => (@membership.organization.id if @membership.organization) %>
-    </div>
-  </div>
+  <%= f.hidden_field :organization_id, :class => 'text_field', :value => (@membership.organization.id if @membership.organization) %>
 
 <%= render 'permission_sets/form_fields' %>
 
-<<<<<<< HEAD
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <% if params[:user_id] %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                user_path(@membership.user), :class => 'btn' %>
-    <% elsif params[:organization_id] %>
-        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                organization_path(@membership.organization), :class => 'btn' %>
-    <% end %>
-=======
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
+    <div class="col-sm-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <% if params[:user_id] %>
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
@@ -103,6 +124,5 @@
                   organization_path(@membership.organization), :class => 'btn btn-default' %>
       <% end %>
     </div>
->>>>>>> 2cfaf76... bug fix: changes to membership permissions now persist.
   </div>
 <% end %>

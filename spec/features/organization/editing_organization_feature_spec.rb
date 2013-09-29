@@ -9,12 +9,14 @@ feature "editing organization" do
 		@permission_set = FactoryGirl.create(:permission_set)
 		@membership1 = Membership.create(organization_id: @organization1.id, user_id: @user.id, permission_set_id: @permission_set.id)
 		@membership2 = Membership.create(organization_id: @organization2.id, user_id: @user.id, permission_set_id: @permission_set.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	context "completing an update" do
 		scenario "via the user#show page" do
-			page.first(:link, 'Organization Details').click
+			within("#memberships-table") do
+				click_link "techhub"
+			end
 			within("#organization-details") do
 				click_link('Edit')
 			end
@@ -41,7 +43,7 @@ feature "editing organization" do
 	context "cancelling the update" do
 		scenario "via the user#show page" do
 			within("#memberships-table") do
-				page.first(:link, 'Organization Details').click
+				click_link "techhub"
 			end
 			within("#organization-details") do
 				click_link('Edit')

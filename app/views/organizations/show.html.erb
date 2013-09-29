@@ -1,13 +1,9 @@
 <%- model_class = Organization -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @organization.name %></h1>
 </div>
 
 <div id="organization-details">
-  <dl class="dl-horizontal">
-    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-    <dd><%= @organization.name %></dd>
-  </dl>
 
   <div class="form-actions">
     <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -20,10 +16,43 @@
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                 :class => 'btn btn-danger' %>
   </div>
+
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+    <dd><%= @organization.name %></dd>
+  </dl>
+
 </div>
 
-<%= render "rooms/rooms_table" %>
+<p>
+  <ul class="nav nav-tabs nav-justified">
+    <li class="active">
+      <a href="#rooms" data-toggle="tab">Rooms</a>
+    </li>
+    <li class>
+      <a href="#locations" data-toggle="tab">Locations</a>
+    </li>
+    <li class>
+      <a href="#memberships" data-toggle="tab">Memberships</a>
+    </li>
+  </ul>
+</p>
 
-<%= render "locations/locations_table" %>
+<div class="tab-content">
+  <div class="tab-pane active" id="rooms">
+    <%= render "rooms/rooms_table" %>
+  </div>
+  
+  <div class="tab-pane" id="locations">
+    <%= render "locations/locations_table" %>
+  </div>
+  
+  <div class="tab-pane" id="memberships">
+    <%= render "memberships/memberships_table" %>
+  </div>
+  
+</div>
 
-<%= render "memberships/memberships_table" %>
+
+
+

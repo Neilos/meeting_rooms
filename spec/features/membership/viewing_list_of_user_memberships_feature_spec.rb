@@ -9,7 +9,7 @@ feature "viewing user memberships" do
     @organization2 = FactoryGirl.create(:organization, :name => "New Bamboo")
     @permission_set = FactoryGirl.create(:permission_set)
     @membership = FactoryGirl.create(:membership, organization_id: @organization.id, user_id: @user.id, permission_set_id: @permission_set.id)
-    sign_in_with email: @user.email, password: @password
+    log_in_with email: @user.email, password: @password
   end
 
   scenario "from the user showpage" do

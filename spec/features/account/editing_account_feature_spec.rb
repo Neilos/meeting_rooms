@@ -7,10 +7,10 @@ feature "Editing account" do
                   :password => 'password',
                   :password_confirmation => 'password')
     visit '/'
-    click_link 'Login'
+    click_link 'Log in'
     fill_in 'Email', :with => 'user34@example.com'
     fill_in 'Password', :with => 'password'
-    click_button 'Sign in'
+    click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
   end
 
@@ -39,11 +39,11 @@ feature "Editing account" do
       fill_in 'Password confirmation', :with => 'newpassword'
       click_button 'Update'
       expect(page).to have_content 'You updated your account successfully.'
-      click_link 'Logout'
-      click_link 'Login'
+      click_link 'Log out'
+      click_link 'Log in'
       fill_in 'Email', :with => 'user34@example.com'
       fill_in 'Password', :with => 'newpassword'
-      click_button 'Sign in'
+      click_button 'Log in'
       expect(page).to have_content 'Signed in successfully'
     end
 

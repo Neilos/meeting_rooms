@@ -8,11 +8,12 @@ feature "viewing membership permission set" do
 		@organization = Organization.create(:name => "techhub")
 		@permission_set = FactoryGirl.create(:permission_set)
 		@membership = Membership.create(organization_id: @organization.id, user_id: @user.id, permission_set_id: @permission_set.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 	scenario "from organization show page" do
 		visit_show_page_of_first_organization_in_organizations_table
+    click_link 'Memberships'
 		within("#memberships-table") do 
 			page.first(:link, 'View').click
 		end
@@ -29,7 +30,7 @@ feature "viewing membership permission set" do
     click_link('Back')
     expect(page).to have_content @organization.name
     expect(page).to have_selector '#organization-details'
- 	 	expect(page).to have_selector '#locations-table'
+ 	 	click_link 'Memberships'
     expect(page).to have_selector '#memberships-table'
 	end
 

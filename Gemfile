@@ -57,6 +57,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'mailcatcher'
+  gem 'launchy'
 end
 
 gem 'devise'

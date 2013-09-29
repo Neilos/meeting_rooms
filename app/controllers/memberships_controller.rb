@@ -29,7 +29,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(mparams)
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to session[:previous_url], notice: 'Membership was successfully created.' }
+        format.html { redirect_to session[:previous_url], success: 'Membership was successfully created.' } 
         format.json { render action: 'show', status: :created, location: @membership }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class MembershipsController < ApplicationController
     mparams = { permission_set_id: @permission_set.id }
     respond_to do |format|
       if @membership.update(mparams)
-        format.html { redirect_to session[:previous_url], notice: 'Membership was successfully updated.' }
+        format.html { redirect_to session[:previous_url], success: 'Membership was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

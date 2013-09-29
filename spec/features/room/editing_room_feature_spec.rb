@@ -7,7 +7,7 @@ feature "editing room" do
 		@organization = Organization.create(:name => "techhub")
 		@location = FactoryGirl.create(:location, organization_id: @organization.id, name: "Old Street")
 		@room = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
-		sign_in_with email: @user.email, password: @password
+		log_in_with email: @user.email, password: @password
 	end
 
 
@@ -23,6 +23,7 @@ feature "editing room" do
 				expect(page).to have_content('Room was successfully updated.')
 				expect(page).to have_content 'techhub'
 	    	expect(page).to have_selector '#organization-details'
+	    	click_link 'Rooms'
 	   	 	expect(page).to have_selector '#rooms-table'
 	   		within('#rooms-table') do 
 	   			page.should have_content('NewName')
@@ -37,6 +38,7 @@ feature "editing room" do
 				within("#organizations-table") do 
 					page.first(:link, 'View').click
 				end
+				click_link 'Rooms'
 				within("#rooms-table") do 
 					page.first(:link, 'View').click
 				end
@@ -46,6 +48,7 @@ feature "editing room" do
 				expect(page).to have_content('Room was successfully updated.')
 				expect(page).to have_content 'techhub'
 	    	expect(page).to have_selector '#organization-details'
+	    	click_link 'Rooms'
 	   	 	expect(page).to have_selector '#rooms-table'
 	   		within('#rooms-table') do 
 	   			page.should have_content('NewName')
@@ -68,6 +71,7 @@ feature "editing room" do
 			    click_button 'Update Room'
 			    expect(page).to have_content @organization.name
 			    expect(page).to have_selector '#organization-details'
+			    click_link 'Rooms'
 			    expect(page).to have_selector '#rooms-table'
 			    within('#rooms-table') do
 			      page.first(:link, 'View').click
@@ -85,6 +89,7 @@ feature "editing room" do
 			    expect(page).to have_content('Room was successfully updated.')
 			    expect(page).to have_content @organization.name
 			    expect(page).to have_selector '#organization-details'
+			    click_link 'Rooms'
 			    expect(page).to have_selector '#rooms-table'
 			    within('#rooms-table') do
 			      page.first(:link, 'View').click
@@ -130,6 +135,7 @@ feature "editing room" do
 			click_link 'Cancel'
 			expect(page).to have_content 'techhub'
     	expect(page).to have_selector '#organization-details'
+    	click_link 'Rooms'
    	 	expect(page).to have_selector '#rooms-table'
    		within('#rooms-table') do
    	  	page.should have_content('Room 1')
@@ -150,6 +156,7 @@ feature "editing room" do
 			click_link 'Cancel'
 			expect(page).to have_content 'techhub'
     	expect(page).to have_selector '#organization-details'
+    	click_link 'Rooms'
    	 	expect(page).to have_selector '#rooms-table'
    		within('#rooms-table') do
    	  	page.should have_content('Room 1')
