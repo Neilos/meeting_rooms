@@ -40,7 +40,6 @@ feature "deleting room" do
 		within("#organizations-table") do
 			page.first(:link, 'View').click
 		end
-    click_link 'Rooms'
 		within("#rooms-table") do
 			page.first(:link, 'View').click
 		end
