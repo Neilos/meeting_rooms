@@ -14,4 +14,11 @@ describe Room do
   it "should be valid with all fields completed" do 
   	Room.create(name: "room 10", location_id: 5, organization_id: 9).should be_valid
   end
+
+  it "should have a name that is unique at it's location" do
+    attributes = {name: "room 10", location_id: 5, organization_id: 9}
+    Room.create(attributes).should be_valid
+    Room.create(attributes).should_not be_valid
+    Room.create(attributes.merge({location_id: 6})).should be_valid
+  end
 end
