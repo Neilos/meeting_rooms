@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 	  def show
 	  	user_id = params[:id] || current_user.id
 	    @user = User.find(user_id)
-	    @memberships = @user.memberships
+	    @memberships = @user.memberships.sort_by{ |m| m.organization.name.upcase }
 	  end
 
 	  def search_by_email

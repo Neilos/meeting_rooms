@@ -17,9 +17,9 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     @organization = Organization.find(params[:id])
-    @locations = @organization.locations
-    @memberships = @organization.memberships
-    @rooms = @organization.rooms
+    @locations = @organization.locations.sort_by{ |l| l.name.upcase }
+    @memberships = @organization.memberships.sort_by{ |m| m.user.name.upcase }
+    @rooms = @organization.rooms.sort_by{ |r| r.name.upcase }
   end
 
   # GET /organizations/new
