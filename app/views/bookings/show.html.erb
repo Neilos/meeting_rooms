@@ -1,0 +1,134 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @booking.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @booking.description %>
+</p>
+
+<p>
+  <strong>Is all day:</strong>
+  <%= @booking.is_all_day %>
+</p>
+
+<p>
+  <strong>From date:</strong>
+  <%= @booking.from_date %>
+</p>
+
+<p>
+  <strong>From time:</strong>
+  <%= @booking.from_time %>
+</p>
+
+<p>
+  <strong>To date:</strong>
+  <%= @booking.to_date %>
+</p>
+
+<p>
+  <strong>To time:</strong>
+  <%= @booking.to_time %>
+</p>
+
+<p>
+  <strong>Repeats:</strong>
+  <%= @booking.repeats %>
+</p>
+
+<p>
+  <strong>Repeats every n days:</strong>
+  <%= @booking.repeats_every_n_days %>
+</p>
+
+<p>
+  <strong>Repeats every n weeks:</strong>
+  <%= @booking.repeats_every_n_weeks %>
+</p>
+
+<p>
+  <strong>Repeats weekly each days of the week mask:</strong>
+  <%= @booking.repeats_weekly_each_days_of_the_week_mask %>
+</p>
+
+<p>
+  <strong>Repeats every n months:</strong>
+  <%= @booking.repeats_every_n_months %>
+</p>
+
+<p>
+  <strong>Repeats monthly:</strong>
+  <%= @booking.repeats_monthly %>
+</p>
+
+<p>
+  <strong>Repeats monthly each days of the month mask:</strong>
+  <%= @booking.repeats_monthly_each_days_of_the_month_mask %>
+</p>
+
+<p>
+  <strong>Repeats monthly on ordinals mask:</strong>
+  <%= @booking.repeats_monthly_on_ordinals_mask %>
+</p>
+
+<p>
+  <strong>Repeats monthly on days of the week mask:</strong>
+  <%= @booking.repeats_monthly_on_days_of_the_week_mask %>
+</p>
+
+<p>
+  <strong>Repeats every n years:</strong>
+  <%= @booking.repeats_every_n_years %>
+</p>
+
+<p>
+  <strong>Repeats yearly each months of the year mask:</strong>
+  <%= @booking.repeats_yearly_each_months_of_the_year_mask %>
+</p>
+
+<p>
+  <strong>Repeats yearly on:</strong>
+  <%= @booking.repeats_yearly_on %>
+</p>
+
+<p>
+  <strong>Repeats yearly on ordinals mask:</strong>
+  <%= @booking.repeats_yearly_on_ordinals_mask %>
+</p>
+
+<p>
+  <strong>Repeats yearly on days of the week mask:</strong>
+  <%= @booking.repeats_yearly_on_days_of_the_week_mask %>
+</p>
+
+<p>
+  <strong>Repeat ends:</strong>
+  <%= @booking.repeat_ends %>
+</p>
+
+<p>
+  <strong>Repeat ends on:</strong>
+  <%= @booking.repeat_ends_on %>
+</p>
+
+<p>
+  <strong>Time zone:</strong>
+  <%= @booking.time_zone %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @booking.room_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @booking.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

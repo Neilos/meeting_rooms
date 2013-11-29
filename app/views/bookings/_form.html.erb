@@ -1,0 +1,121 @@
+<%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :is_all_day %><br>
+    <%= f.check_box :is_all_day %>
+  </div>
+  <div class="field">
+    <%= f.label :from_date %><br>
+    <%= f.date_select :from_date %>
+  </div>
+  <div class="field">
+    <%= f.label :from_time %><br>
+    <%= f.time_select :from_time %>
+  </div>
+  <div class="field">
+    <%= f.label :to_date %><br>
+    <%= f.date_select :to_date %>
+  </div>
+  <div class="field">
+    <%= f.label :to_time %><br>
+    <%= f.time_select :to_time %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats %><br>
+    <%= f.text_field :repeats %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_every_n_days %><br>
+    <%= f.number_field :repeats_every_n_days %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_every_n_weeks %><br>
+    <%= f.number_field :repeats_every_n_weeks %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_weekly_each_days_of_the_week_mask %><br>
+    <%= f.number_field :repeats_weekly_each_days_of_the_week_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_every_n_months %><br>
+    <%= f.number_field :repeats_every_n_months %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_monthly %><br>
+    <%= f.text_field :repeats_monthly %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_monthly_each_days_of_the_month_mask %><br>
+    <%= f.number_field :repeats_monthly_each_days_of_the_month_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_monthly_on_ordinals_mask %><br>
+    <%= f.number_field :repeats_monthly_on_ordinals_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_monthly_on_days_of_the_week_mask %><br>
+    <%= f.number_field :repeats_monthly_on_days_of_the_week_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_every_n_years %><br>
+    <%= f.number_field :repeats_every_n_years %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_yearly_each_months_of_the_year_mask %><br>
+    <%= f.number_field :repeats_yearly_each_months_of_the_year_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_yearly_on %><br>
+    <%= f.check_box :repeats_yearly_on %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_yearly_on_ordinals_mask %><br>
+    <%= f.number_field :repeats_yearly_on_ordinals_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeats_yearly_on_days_of_the_week_mask %><br>
+    <%= f.number_field :repeats_yearly_on_days_of_the_week_mask %>
+  </div>
+  <div class="field">
+    <%= f.label :repeat_ends %><br>
+    <%= f.text_field :repeat_ends %>
+  </div>
+  <div class="field">
+    <%= f.label :repeat_ends_on %><br>
+    <%= f.date_select :repeat_ends_on %>
+  </div>
+  <div class="field">
+    <%= f.label :time_zone %><br>
+    <%= f.text_field :time_zone %>
+  </div>
+  <div class="field">
+    <%= f.label :room_id %><br>
+    <%= f.number_field :room_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

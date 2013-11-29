@@ -1,0 +1,77 @@
+<h1>Listing bookings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Is all day</th>
+      <th>From date</th>
+      <th>From time</th>
+      <th>To date</th>
+      <th>To time</th>
+      <th>Repeats</th>
+      <th>Repeats every n days</th>
+      <th>Repeats every n weeks</th>
+      <th>Repeats weekly each days of the week mask</th>
+      <th>Repeats every n months</th>
+      <th>Repeats monthly</th>
+      <th>Repeats monthly each days of the month mask</th>
+      <th>Repeats monthly on ordinals mask</th>
+      <th>Repeats monthly on days of the week mask</th>
+      <th>Repeats every n years</th>
+      <th>Repeats yearly each months of the year mask</th>
+      <th>Repeats yearly on</th>
+      <th>Repeats yearly on ordinals mask</th>
+      <th>Repeats yearly on days of the week mask</th>
+      <th>Repeat ends</th>
+      <th>Repeat ends on</th>
+      <th>Time zone</th>
+      <th>Room</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.name %></td>
+        <td><%= booking.description %></td>
+        <td><%= booking.is_all_day %></td>
+        <td><%= booking.from_date %></td>
+        <td><%= booking.from_time %></td>
+        <td><%= booking.to_date %></td>
+        <td><%= booking.to_time %></td>
+        <td><%= booking.repeats %></td>
+        <td><%= booking.repeats_every_n_days %></td>
+        <td><%= booking.repeats_every_n_weeks %></td>
+        <td><%= booking.repeats_weekly_each_days_of_the_week_mask %></td>
+        <td><%= booking.repeats_every_n_months %></td>
+        <td><%= booking.repeats_monthly %></td>
+        <td><%= booking.repeats_monthly_each_days_of_the_month_mask %></td>
+        <td><%= booking.repeats_monthly_on_ordinals_mask %></td>
+        <td><%= booking.repeats_monthly_on_days_of_the_week_mask %></td>
+        <td><%= booking.repeats_every_n_years %></td>
+        <td><%= booking.repeats_yearly_each_months_of_the_year_mask %></td>
+        <td><%= booking.repeats_yearly_on %></td>
+        <td><%= booking.repeats_yearly_on_ordinals_mask %></td>
+        <td><%= booking.repeats_yearly_on_days_of_the_week_mask %></td>
+        <td><%= booking.repeat_ends %></td>
+        <td><%= booking.repeat_ends_on %></td>
+        <td><%= booking.time_zone %></td>
+        <td><%= booking.room_id %></td>
+        <td><%= booking.user_id %></td>
+        <td><%= link_to 'Show', booking %></td>
+        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Booking', new_booking_path %>
