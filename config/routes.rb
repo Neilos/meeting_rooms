@@ -1,5 +1,7 @@
 MeetingRooms::Application.routes.draw do
 
+  resources :bookings
+
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',                                   :registrations      => "registrations"} 
 
   devise_scope :user do
