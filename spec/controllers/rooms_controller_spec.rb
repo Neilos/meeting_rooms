@@ -41,7 +41,7 @@ describe RoomsController do
 
     describe "GET index" do
       it "redirects to the home page" do
-        get :index, {}, valid_session
+        get :index, {:organization_id => organization.id}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -56,7 +56,7 @@ describe RoomsController do
 
     describe "GET new" do
       it "redirects to the home page" do
-        get :new, {}, valid_session
+        get :new, {:organization_id => organization.id}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -72,12 +72,12 @@ describe RoomsController do
     describe "POST create" do
       it "does NOT create" do
         expect {
-            post :create, {:room => valid_attributes}, valid_session
+            post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
           }.to_not change(Room, :count).by(1)
       end
 
       it "redirects to the home page" do
-        post :create, {:room => valid_attributes}, valid_session
+        post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -123,7 +123,7 @@ describe RoomsController do
     describe "GET index" do
       it "assigns all rooms as @rooms" do
         room = Room.create! valid_attributes
-        get :index, {}, valid_session
+        get :index, {organization_id: organization.id}, valid_session
         assigns(:rooms).should eq([room])
       end
     end
@@ -156,18 +156,18 @@ describe RoomsController do
       describe "with valid params" do
         it "creates a new Room" do
           expect {
-            post :create, {:room => valid_attributes}, valid_session
+            post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
           }.to change(Room, :count).by(1)
         end
 
         it "assigns a newly created room as @room" do
-          post :create, {:room => valid_attributes}, valid_session
+          post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
           assigns(:room).should be_a(Room)
           assigns(:room).should be_persisted
         end
 
         it "redirects to the Organization show page" do
-          post :create, {:room => valid_attributes}, valid_session
+          post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
           response.should redirect_to(organization_path(valid_attributes[:organization_id]))
         end
       end
@@ -176,14 +176,14 @@ describe RoomsController do
         it "assigns a newly created but unsaved room as @room" do
           # Trigger the behavior that occurs when invalid params are submitted
           Room.any_instance.stub(:save).and_return(false)
-          post :create, {:room => { "name" => "invalid value" }}, valid_session
+          post :create, {:organization_id => organization.id, :room => { "name" => "invalid value" }}, valid_session
           assigns(:room).should be_a_new(Room)
         end
 
         it "re-renders the 'new' template" do
           # Trigger the behavior that occurs when invalid params are submitted
           Room.any_instance.stub(:save).and_return(false)
-          post :create, {:room => { "name" => "invalid value" }}, valid_session
+          post :create, {:organization_id => organization.id, :room => { "name" => "invalid value" }}, valid_session
           response.should render_template("new")
         end
       end
