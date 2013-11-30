@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    name 'John Smith'
-    email 'example@example.com'
+    sequence :name do |n| "User #{n}" end
+    sequence :email do |n| "person#{n}@example.com" end
     password 'password'
     password_confirmation 'password'
     # required if the Devise Confirmable module is used

@@ -2,24 +2,23 @@
 
 FactoryGirl.define do
   factory :location do
-    name "Site 1"
-    address_line_1 "27 Example Road"
+    sequence :name do |n| "Site #{n}" end
+    sequence :address_line_1 do |n| "#{n} Example Road" end
     address_line_2 "Example Area"
     town_city "Example Town"
     county "Example County"
     postcode "EXA MPLE"
     country "United Kingdom"
-    organization_id 5
-  end
+    association :organization, factory: :organization
 
-  factory :location2, class: Location do
-    name "Site 2"
-    address_line_1 "56 Example Road"
-    address_line_2 "Example Area"
-    town_city "Example Town"
-    county "Example County"
-    postcode "RM9 5YT"
-    country "United Kingdom"
-    organization_id 5
+    factory :location_with_rooms do
+      ignore do
+        rooms_count 5
+      end
+
+      after(:create) do |location, evaluator|
+        FactoryGirl.create_list(:room, evaluator.rooms_count, location: location)
+      end
+    end
   end
 end

@@ -6,7 +6,7 @@ feature "editing location" do
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
 		@organization = Organization.create(:name => "techhub")
 		@location1 = FactoryGirl.create(:location, organization_id: @organization.id, name: "Old Street")
-		@location2 = FactoryGirl.create(:location2, organization_id: @organization.id, name: "White City")
+		@location2 = FactoryGirl.create(:location, organization_id: @organization.id, name: "White City")
 		log_in_with email: @user.email, password: @password
 	end
 

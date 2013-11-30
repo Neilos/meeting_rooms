@@ -2,10 +2,20 @@
 
 FactoryGirl.define do
   factory :room do
-    name "Room 1"
-    price_per_hour "9.99"
-    location_id 1
-    organization_id 1
-    people_capacity 1
+    sequence :name do |n| "Room #{n}" end
+    sequence :price_per_hour do |n| "#{n}.99" end
+    sequence :people_capacity do |n| "#{n}" end
+    association :location, factory: :location
+    organization_id { location.organization.id }
+  end
+
+  factory :room_with_bookings do
+    ignore do
+      bookings_count 5
+    end
+
+    after(:create) do |room, evaluator|
+      FactoryGirl.create_list(:book, evaluator.bookings_count, room: room)
+    end
   end
 end

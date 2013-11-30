@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :organization do
-    name "TechHub"
+    sequence :name do |n| "Organization #{n}" end
 
     factory :organization_with_locations do
     	ignore do
@@ -10,7 +10,7 @@ FactoryGirl.define do
     	end
 
     	after(:create) do |organization, evaluator|
-    		FactoryGirl.create_list(:organization, evaluator.locations_count, organization: organization)
+    		FactoryGirl.create_list(:location, evaluator.locations_count, organization: organization)
     	end
     end
   end
