@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
-  # GET /bookings
-  # GET /bookings.json
+  # GET /rooms/1/bookings
+  # GET /rooms/1/bookings.json
   def index
+    @room = Room.find(params[:room_id])
     @bookings = Booking.all
   end
 
@@ -12,8 +13,9 @@ class BookingsController < ApplicationController
   def show
   end
 
-  # GET /bookings/new
+  # GET /rooms/1/bookings/new
   def new
+    @room = Room.find(params[:room_id])
     @booking = Booking.new
   end
 
@@ -21,9 +23,10 @@ class BookingsController < ApplicationController
   def edit
   end
 
-  # POST /bookings
-  # POST /bookings.json
+  # POST /rooms/1/bookings
+  # POST /rooms/1/bookings.json
   def create
+    @room = Room.find(params[:room_id])
     @booking = Booking.new(booking_params)
 
     respond_to do |format|
@@ -54,9 +57,10 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
+    @room = @booking.room
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url }
+      format.html { redirect_to room_bookings_url(@room) }
       format.json { head :no_content }
     end
   end

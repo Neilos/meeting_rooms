@@ -4,11 +4,11 @@ describe BookingsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/bookings").should route_to("bookings#index")
+      get("/rooms/1/bookings").should route_to("bookings#index", :room_id => "1")
     end
 
     it "routes to #new" do
-      get("/bookings/new").should route_to("bookings#new")
+      get("/rooms/1/bookings/new").should route_to("bookings#new", :room_id => "1")
     end
 
     it "routes to #show" do
@@ -20,7 +20,7 @@ describe BookingsController do
     end
 
     it "routes to #create" do
-      post("/bookings").should route_to("bookings#create")
+      post("/rooms/1/bookings").should route_to("bookings#create", :room_id => "1")
     end
 
     it "routes to #update" do

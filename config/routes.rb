@@ -1,7 +1,5 @@
 MeetingRooms::Application.routes.draw do
 
-  resources :bookings
-
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',                                   :registrations      => "registrations"} 
 
   devise_scope :user do
@@ -26,6 +24,10 @@ MeetingRooms::Application.routes.draw do
     collection do
       get 'search_by_name'
     end
+  end
+
+  resources :rooms, :shallow => true do
+    resources :bookings
   end
 
   resources :custom_attributes, :only => [:destroy]

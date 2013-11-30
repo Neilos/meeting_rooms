@@ -23,7 +23,7 @@ describe BookingsController do
   # This should return the minimal set of attributes required to create a valid
   # Booking. As you add validations to Booking, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { FactoryGirl.build(:booking).attributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -33,7 +33,7 @@ describe BookingsController do
   describe "GET index" do
     it "assigns all bookings as @bookings" do
       booking = Booking.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {:room_id => valid_attributes["room_id"]}, valid_session
       assigns(:bookings).should eq([booking])
     end
   end
@@ -48,7 +48,7 @@ describe BookingsController do
 
   describe "GET new" do
     it "assigns a new booking as @booking" do
-      get :new, {}, valid_session
+      get :new, { :room_id => valid_attributes["room_id"] }, valid_session
       assigns(:booking).should be_a_new(Booking)
     end
   end
@@ -65,18 +65,18 @@ describe BookingsController do
     describe "with valid params" do
       it "creates a new Booking" do
         expect {
-          post :create, {:booking => valid_attributes}, valid_session
+          post :create, { :room_id => valid_attributes["room_id"], :booking => valid_attributes}, valid_session
         }.to change(Booking, :count).by(1)
       end
 
       it "assigns a newly created booking as @booking" do
-        post :create, {:booking => valid_attributes}, valid_session
+        post :create, {:room_id => valid_attributes["room_id"], :booking => valid_attributes}, valid_session
         assigns(:booking).should be_a(Booking)
         assigns(:booking).should be_persisted
       end
 
       it "redirects to the created booking" do
-        post :create, {:booking => valid_attributes}, valid_session
+        post :create, {:room_id => valid_attributes["room_id"], :booking => valid_attributes}, valid_session
         response.should redirect_to(Booking.last)
       end
     end
@@ -85,14 +85,14 @@ describe BookingsController do
       it "assigns a newly created but unsaved booking as @booking" do
         # Trigger the behavior that occurs when invalid params are submitted
         Booking.any_instance.stub(:save).and_return(false)
-        post :create, {:booking => { "name" => "invalid value" }}, valid_session
+        post :create, {:room_id => valid_attributes["room_id"], :booking => { "name" => "invalid value" }}, valid_session
         assigns(:booking).should be_a_new(Booking)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Booking.any_instance.stub(:save).and_return(false)
-        post :create, {:booking => { "name" => "invalid value" }}, valid_session
+        post :create, {:room_id => valid_attributes["room_id"], :booking => { "name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -152,8 +152,9 @@ describe BookingsController do
 
     it "redirects to the bookings list" do
       booking = Booking.create! valid_attributes
+      room = booking.room
       delete :destroy, {:id => booking.to_param}, valid_session
-      response.should redirect_to(bookings_url)
+      response.should redirect_to room_bookings_url(room)
     end
   end
 
