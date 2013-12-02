@@ -30,6 +30,11 @@ describe BookingsController do
   # BookingsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    @the_user = FactoryGirl.create(:user)
+    sign_in @the_user
+  end
+
   describe "GET index" do
     it "assigns all bookings as @bookings" do
       booking = Booking.create! valid_attributes
@@ -75,6 +80,11 @@ describe BookingsController do
         assigns(:booking).should be_persisted
       end
 
+      it "sets the user_id to the current user" do
+        post :create, {:room_id => valid_attributes["room_id"], :booking => valid_attributes}, valid_session
+        Booking.last.user.should == @the_user
+      end
+
       it "redirects to the created booking" do
         post :create, {:room_id => valid_attributes["room_id"], :booking => valid_attributes}, valid_session
         response.should redirect_to(Booking.last)
@@ -114,6 +124,14 @@ describe BookingsController do
         booking = Booking.create! valid_attributes
         put :update, {:id => booking.to_param, :booking => valid_attributes}, valid_session
         assigns(:booking).should eq(booking)
+      end
+
+      it "does not change the user associated with the booking" do
+        booking = Booking.create! valid_attributes
+        not_current_user = FactoryGirl.create(:user)
+        put :update, {:id => booking.to_param, :booking => valid_attributes.merge({:user_id => not_current_user.id})}, valid_session
+        booking.reload
+        booking.user.should_not == not_current_user
       end
 
       it "redirects to the booking" do
