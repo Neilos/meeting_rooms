@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
   # POST /rooms/1/bookings.json
   def create
     @room = Room.find(params[:room_id])
-    @booking = Booking.new(booking_params.merge(:user_id => current_user.id))
+    @booking = Booking.new(booking_params.merge(:booker_id=> current_user.id))
 
     respond_to do |format|
       if @booking.save

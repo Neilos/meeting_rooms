@@ -111,6 +111,10 @@
     <%= f.label :room_id %><br>
     <%= f.number_field :room_id %>
   </div>
+  <div class="field">
+    <strong>Booked by:</strong>
+    <%= @booking.booker.name if @booking.booker %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

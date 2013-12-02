@@ -80,9 +80,9 @@ describe BookingsController do
         assigns(:booking).should be_persisted
       end
 
-      it "sets the user_id to the current user" do
+      it "sets the booker_id to the current user" do
         post :create, {:room_id => valid_attributes["room_id"], :booking => valid_attributes}, valid_session
-        Booking.last.user.should == @the_user
+        Booking.last.booker.should == @the_user
       end
 
       it "redirects to the created booking" do
@@ -129,9 +129,9 @@ describe BookingsController do
       it "does not change the user associated with the booking" do
         booking = Booking.create! valid_attributes
         not_current_user = FactoryGirl.create(:user)
-        put :update, {:id => booking.to_param, :booking => valid_attributes.merge({:user_id => not_current_user.id})}, valid_session
+        put :update, {:id => booking.to_param, :booking => valid_attributes.merge({:booker_id => not_current_user.id})}, valid_session
         booking.reload
-        booking.user.should_not == not_current_user
+        booking.booker.should_not == not_current_user
       end
 
       it "redirects to the booking" do

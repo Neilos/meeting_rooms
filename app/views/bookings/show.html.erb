@@ -126,9 +126,20 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @booking.user_id %>
+  <strong>Booked by:</strong>
+  <%= @booking.booker.name %>
 </p>
+
+<p>
+  <strong>Booked created:</strong>
+  <%= @booking.created_at %>
+</p>
+
+<p>
+  <strong>Booked last updated:</strong>
+  <%= @booking.updated_at %>
+</p>
+
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-default' %>

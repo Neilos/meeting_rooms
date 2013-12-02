@@ -12,6 +12,6 @@ FactoryGirl.define do
     repeats 'never'
     time_zone "London"
     association :room, factory: :room
-    association :user, factory: :user
+    association :booker, factory: :user
   end
 end
