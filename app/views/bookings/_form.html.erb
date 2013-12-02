@@ -1,6 +1,7 @@
-<%= form_for(shallow_routing_args(@room, @booking)) do |f| %>
+<%= form_for(shallow_routing_args(@room, @booking), :html => { :class => 'form-horizontal' }) do |f| %>
   <% if @booking.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
       <ul>
@@ -11,111 +12,169 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="form-group">
+    <%= f.label :description , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.text_area :description, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :is_all_day %><br>
-    <%= f.check_box :is_all_day %>
+  <div class="form-group">
+    <%= f.label :is_all_day , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.check_box :is_all_day %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :from_date %><br>
-    <%= f.date_select :from_date %>
+  <div class="form-group">
+    <%= f.label :from_date , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.date_select :from_date %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :from_time %><br>
-    <%= f.time_select :from_time %>
+  <div class="form-group">
+    <%= f.label :from_time , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.time_select :from_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :to_date %><br>
-    <%= f.date_select :to_date %>
+  <div class="form-group">
+    <%= f.label :to_date , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.date_select :to_date %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :to_time %><br>
-    <%= f.time_select :to_time %>
+  <div class="form-group">
+    <%= f.label :to_time , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.time_select :to_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats %><br>
-    <%= f.text_field :repeats %>
+  <div class="form-group">
+    <%= f.label :repeats , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.text_field :repeats, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_every_n_days %><br>
-    <%= f.number_field :repeats_every_n_days %>
+  <div class="form-group">
+    <%= f.label :repeats_every_n_days , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_every_n_days %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_every_n_weeks %><br>
-    <%= f.number_field :repeats_every_n_weeks %>
+  <div class="form-group">
+    <%= f.label :repeats_every_n_weeks , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_every_n_weeks %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_weekly_each_days_of_the_week_mask %><br>
-    <%= f.number_field :repeats_weekly_each_days_of_the_week_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_weekly_each_days_of_the_week_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_weekly_each_days_of_the_week_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_every_n_months %><br>
-    <%= f.number_field :repeats_every_n_months %>
+  <div class="form-group">
+    <%= f.label :repeats_every_n_months , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_every_n_months %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_monthly %><br>
-    <%= f.text_field :repeats_monthly %>
+  <div class="form-group">
+    <%= f.label :repeats_monthly , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.text_field :repeats_monthly, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_monthly_each_days_of_the_month_mask %><br>
-    <%= f.number_field :repeats_monthly_each_days_of_the_month_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_monthly_each_days_of_the_month_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_monthly_each_days_of_the_month_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_monthly_on_ordinals_mask %><br>
-    <%= f.number_field :repeats_monthly_on_ordinals_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_monthly_on_ordinals_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_monthly_on_ordinals_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_monthly_on_days_of_the_week_mask %><br>
-    <%= f.number_field :repeats_monthly_on_days_of_the_week_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_monthly_on_days_of_the_week_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_monthly_on_days_of_the_week_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_every_n_years %><br>
-    <%= f.number_field :repeats_every_n_years %>
+  <div class="form-group">
+    <%= f.label :repeats_every_n_years , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_every_n_years %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_yearly_each_months_of_the_year_mask %><br>
-    <%= f.number_field :repeats_yearly_each_months_of_the_year_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_yearly_each_months_of_the_year_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_yearly_each_months_of_the_year_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_yearly_on %><br>
-    <%= f.check_box :repeats_yearly_on %>
+  <div class="form-group">
+    <%= f.label :repeats_yearly_on , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.check_box :repeats_yearly_on %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_yearly_on_ordinals_mask %><br>
-    <%= f.number_field :repeats_yearly_on_ordinals_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_yearly_on_ordinals_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_yearly_on_ordinals_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeats_yearly_on_days_of_the_week_mask %><br>
-    <%= f.number_field :repeats_yearly_on_days_of_the_week_mask %>
+  <div class="form-group">
+    <%= f.label :repeats_yearly_on_days_of_the_week_mask , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_yearly_on_days_of_the_week_mask %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeat_ends %><br>
-    <%= f.text_field :repeat_ends %>
+  <div class="form-group">
+    <%= f.label :repeat_ends , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.text_field :repeat_ends, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :repeat_ends_on %><br>
-    <%= f.date_select :repeat_ends_on %>
+  <div class="form-group">
+    <%= f.label :repeat_ends_on , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.date_select :repeat_ends_on %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :time_zone %><br>
-    <%= f.text_field :time_zone %>
+  <div class="form-group">
+    <%= f.label :time_zone , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.text_field :time_zone, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :room_id %><br>
-    <%= f.number_field :room_id %>
+  <div class="form-group">
+    <%= f.label :room_id , :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :room_id %>
+    </div>
   </div>
-  <div class="field">
-    <strong>Booked by:</strong>
-    <%= @booking.booker.name if @booking.booker %>
+  <div class="form-group">
+    <label class="control-label col-sm-4">Booked by</label>
+    <div class="col-sm-6">
+      <p class="form-control-static">
+        <%= @booking.booker.name if @booking.booker %>
+      </p>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div class="form-actions">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

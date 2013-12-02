@@ -1,145 +1,69 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @booking.name %>
-</p>
+<%- model_class = Booking -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @booking.description %>
-</p>
-
-<p>
-  <strong>Is all day:</strong>
-  <%= @booking.is_all_day %>
-</p>
-
-<p>
-  <strong>From date:</strong>
-  <%= @booking.from_date %>
-</p>
-
-<p>
-  <strong>From time:</strong>
-  <%= @booking.from_time %>
-</p>
-
-<p>
-  <strong>To date:</strong>
-  <%= @booking.to_date %>
-</p>
-
-<p>
-  <strong>To time:</strong>
-  <%= @booking.to_time %>
-</p>
-
-<p>
-  <strong>Repeats:</strong>
-  <%= @booking.repeats %>
-</p>
-
-<p>
-  <strong>Repeats every n days:</strong>
-  <%= @booking.repeats_every_n_days %>
-</p>
-
-<p>
-  <strong>Repeats every n weeks:</strong>
-  <%= @booking.repeats_every_n_weeks %>
-</p>
-
-<p>
-  <strong>Repeats weekly each days of the week mask:</strong>
-  <%= @booking.repeats_weekly_each_days_of_the_week_mask %>
-</p>
-
-<p>
-  <strong>Repeats every n months:</strong>
-  <%= @booking.repeats_every_n_months %>
-</p>
-
-<p>
-  <strong>Repeats monthly:</strong>
-  <%= @booking.repeats_monthly %>
-</p>
-
-<p>
-  <strong>Repeats monthly each days of the month mask:</strong>
-  <%= @booking.repeats_monthly_each_days_of_the_month_mask %>
-</p>
-
-<p>
-  <strong>Repeats monthly on ordinals mask:</strong>
-  <%= @booking.repeats_monthly_on_ordinals_mask %>
-</p>
-
-<p>
-  <strong>Repeats monthly on days of the week mask:</strong>
-  <%= @booking.repeats_monthly_on_days_of_the_week_mask %>
-</p>
-
-<p>
-  <strong>Repeats every n years:</strong>
-  <%= @booking.repeats_every_n_years %>
-</p>
-
-<p>
-  <strong>Repeats yearly each months of the year mask:</strong>
-  <%= @booking.repeats_yearly_each_months_of_the_year_mask %>
-</p>
-
-<p>
-  <strong>Repeats yearly on:</strong>
-  <%= @booking.repeats_yearly_on %>
-</p>
-
-<p>
-  <strong>Repeats yearly on ordinals mask:</strong>
-  <%= @booking.repeats_yearly_on_ordinals_mask %>
-</p>
-
-<p>
-  <strong>Repeats yearly on days of the week mask:</strong>
-  <%= @booking.repeats_yearly_on_days_of_the_week_mask %>
-</p>
-
-<p>
-  <strong>Repeat ends:</strong>
-  <%= @booking.repeat_ends %>
-</p>
-
-<p>
-  <strong>Repeat ends on:</strong>
-  <%= @booking.repeat_ends_on %>
-</p>
-
-<p>
-  <strong>Time zone:</strong>
-  <%= @booking.time_zone %>
-</p>
-
-<p>
-  <strong>Room:</strong>
-  <%= @booking.room_id %>
-</p>
-
-<p>
-  <strong>Booked by:</strong>
-  <%= @booking.booker.name %>
-</p>
-
-<p>
-  <strong>Booked created:</strong>
-  <%= @booking.created_at %>
-</p>
-
-<p>
-  <strong>Booked last updated:</strong>
-  <%= @booking.updated_at %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @booking.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @booking.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_all_day) %>:</strong></dt>
+  <dd><%= @booking.is_all_day %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:from_date) %>:</strong></dt>
+  <dd><%= @booking.from_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:from_time) %>:</strong></dt>
+  <dd><%= @booking.from_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:to_date) %>:</strong></dt>
+  <dd><%= @booking.to_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:to_time) %>:</strong></dt>
+  <dd><%= @booking.to_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats) %>:</strong></dt>
+  <dd><%= @booking.repeats %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_every_n_days) %>:</strong></dt>
+  <dd><%= @booking.repeats_every_n_days %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_every_n_weeks) %>:</strong></dt>
+  <dd><%= @booking.repeats_every_n_weeks %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_weekly_each_days_of_the_week_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_weekly_each_days_of_the_week_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_every_n_months) %>:</strong></dt>
+  <dd><%= @booking.repeats_every_n_months %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_monthly) %>:</strong></dt>
+  <dd><%= @booking.repeats_monthly %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_monthly_each_days_of_the_month_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_monthly_each_days_of_the_month_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_monthly_on_ordinals_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_monthly_on_ordinals_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_monthly_on_days_of_the_week_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_monthly_on_days_of_the_week_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_every_n_years) %>:</strong></dt>
+  <dd><%= @booking.repeats_every_n_years %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_yearly_each_months_of_the_year_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_yearly_each_months_of_the_year_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_yearly_on) %>:</strong></dt>
+  <dd><%= @booking.repeats_yearly_on %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_yearly_on_ordinals_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_yearly_on_ordinals_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeats_yearly_on_days_of_the_week_mask) %>:</strong></dt>
+  <dd><%= @booking.repeats_yearly_on_days_of_the_week_mask %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeat_ends) %>:</strong></dt>
+  <dd><%= @booking.repeat_ends %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:repeat_ends_on) %>:</strong></dt>
+  <dd><%= @booking.repeat_ends_on %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time_zone) %>:</strong></dt>
+  <dd><%= @booking.time_zone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:room_id) %>:</strong></dt>
+  <dd><%= @booking.room_id %></dd>
+  <dt><strong>Booked by:</strong></dt>
+  <dd><%= @booking.booker.name %></dd>
+  <dt><strong>Booked created:</strong></dt>
+  <dd><%= @booking.created_at%></dd>
+  <dt><strong>Booked last updated:</strong></dt>
+  <dd><%= @booking.updated_at%></dd>
+</dl>
 
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
+
+<%= link_to 'Edit', edit_booking_path(@booking), :class => 'btn btn-default' %>
 <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-default' %>

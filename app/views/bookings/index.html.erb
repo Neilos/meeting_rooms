@@ -1,4 +1,6 @@
-<h1>Listing bookings</h1>
+<div class="page-header">
+  <h1>Bookings</h1>
+</div>
 
 <table>
   <thead>
@@ -64,9 +66,10 @@
         <td><%= booking.time_zone %></td>
         <td><%= booking.room_id %></td>
         <td><%= booking.booker_id %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', booking, :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_booking_path(booking), :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', booking, method: :delete, 
+            data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -74,4 +77,4 @@
 
 <br>
 
-<%= link_to 'New Booking', new_room_booking_path %>
+<%= link_to 'New Booking', new_room_booking_path, :class => 'btn btn-primary' %>
