@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Is all day</th>
+      <th>Time zone</th>
       <th>From date</th>
       <th>From time</th>
       <th>To date</th>
@@ -28,7 +29,6 @@
       <th>Repeats yearly on days of the week mask</th>
       <th>Repeat ends</th>
       <th>Repeat ends on</th>
-      <th>Time zone</th>
       <th>Room</th>
       <th>Booked by</th>
       <th></th>
@@ -43,6 +43,7 @@
         <td><%= booking.name %></td>
         <td><%= booking.description %></td>
         <td><%= booking.is_all_day %></td>
+        <td><%= ActiveSupport::TimeZone[booking.time_zone].name %></td>
         <td><%= booking.from_date %></td>
         <td><%= booking.from_time %></td>
         <td><%= booking.to_date %></td>
@@ -63,7 +64,6 @@
         <td><%= booking.repeats_yearly_on_days_of_the_week_mask %></td>
         <td><%= booking.repeat_ends %></td>
         <td><%= booking.repeat_ends_on %></td>
-        <td><%= booking.time_zone %></td>
         <td><%= booking.room_id %></td>
         <td><%= booking.booker_id %></td>
         <td><%= link_to 'Show', booking, :class => 'btn btn-default' %></td>

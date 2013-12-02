@@ -11,6 +11,8 @@
   <dd><%= @booking.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:is_all_day) %>:</strong></dt>
   <dd><%= @booking.is_all_day %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time_zone) %>:</strong></dt>
+  <dd><%= ActiveSupport::TimeZone[@booking.time_zone].name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:from_date) %>:</strong></dt>
   <dd><%= @booking.from_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:from_time) %>:</strong></dt>
@@ -51,8 +53,6 @@
   <dd><%= @booking.repeat_ends %></dd>
   <dt><strong><%= model_class.human_attribute_name(:repeat_ends_on) %>:</strong></dt>
   <dd><%= @booking.repeat_ends_on %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:time_zone) %>:</strong></dt>
-  <dd><%= @booking.time_zone %></dd>
   <dt><strong><%= model_class.human_attribute_name(:room_id) %>:</strong></dt>
   <dd><%= @booking.room_id %></dd>
   <dt><strong>Booked by:</strong></dt>
