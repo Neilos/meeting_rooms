@@ -4,8 +4,8 @@ class BookingsController < ApplicationController
   # GET /rooms/1/bookings
   # GET /rooms/1/bookings.json
   def index
-    @room = Room.find(params[:room_id])
-    @bookings = Booking.all
+    @calendar = Room.find(params[:room_id]).calendar
+    @bookings = Booking.where(:calendar_id => @calendar.id)
   end
 
   # GET /bookings/1
@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
 
   # GET /rooms/1/bookings/new
   def new
-    @room = Room.find(params[:room_id])
+    @calendar = Room.find(params[:room_id]).calendar
     @booking = Booking.new
   end
 
@@ -26,8 +26,8 @@ class BookingsController < ApplicationController
   # POST /rooms/1/bookings
   # POST /rooms/1/bookings.json
   def create
-    @room = Room.find(params[:room_id])
-    @booking = Booking.new(booking_params.merge(:booker_id=> current_user.id))
+    @calendar = Room.find(params[:room_id]).calendar
+    @booking = Booking.new(booking_params.merge({:booker_id=> current_user.id, :calendar_id => @calendar.id}))
 
     respond_to do |format|
       if @booking.save
@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
-    @room = @booking.room
+    @room = @booking.calendar.room
     @booking.destroy
     respond_to do |format|
       format.html { redirect_to room_bookings_url(@room) }

@@ -41,9 +41,14 @@ puts 'room: ' << room1.name
 room2 = Room.where(name: "Room 2.01", price_per_hour: "60.00", location_id: location2.id, organization_id: organization1.id, people_capacity: 1).first_or_create
 puts 'room: ' << room2.name
 
+calendar1 = Calendar.where(color: "red", room_id: room1.id).first_or_create
+puts 'calendar for room1'
 
-booking1 = Booking.where(name: "Booking1", description: "Booking 1 description", is_all_day: false, from_date: "2013-11-29", from_time: "2013-11-29 11:17:07", to_date: "2013-11-30", to_time: "2013-11-30 11:17:07", repeats: "never", time_zone: "London", room_id: room1.id, booker_id: user1.id).first_or_create
+calendar2 = Calendar.where(color: "green", room_id: room2.id).first_or_create
+puts 'calendar for room2'
+
+booking1 = Booking.where(name: "Booking1", description: "Booking 1 description", is_all_day: false, from_date: "2013-11-29", from_time: "2013-11-29 11:17:07", to_date: "2013-11-30", to_time: "2013-11-30 11:17:07", repeats: "never", time_zone: "London", calendar_id: calendar1.id, booker_id: user1.id).first_or_create
 puts 'booking: ' << booking1.name
 
-booking2 = Booking.where(name: "Booking1", description: "Booking 1 description", is_all_day: false, from_date: "2013-11-29", from_time: "2013-11-29 11:17:07", to_date: "2013-11-30", to_time: "2013-11-30 11:17:07", repeats: "never", time_zone: "London", room_id: room2.id, booker_id: user2.id).first_or_create
+booking2 = Booking.where(name: "Booking2", description: "Booking 2 description", is_all_day: false, from_date: "2013-11-29", from_time: "2013-11-29 11:17:07", to_date: "2013-11-30", to_time: "2013-11-30 11:17:07", repeats: "never", time_zone: "London", calendar_id: calendar2.id, booker_id: user2.id).first_or_create
 puts 'booking: ' << booking2.name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202111541) do
+ActiveRecord::Schema.define(version: 20131203104035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,15 @@ ActiveRecord::Schema.define(version: 20131202111541) do
     t.string   "repeat_ends"
     t.date     "repeat_ends_on"
     t.string   "time_zone"
-    t.integer  "room_id"
+    t.integer  "calendar_id"
     t.integer  "booker_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "calendars", force: true do |t|
+    t.string   "color"
+    t.integer  "room_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

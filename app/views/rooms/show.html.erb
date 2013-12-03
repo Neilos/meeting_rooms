@@ -26,6 +26,8 @@
   <dd><%= @room.price_per_hour %></dd>
   <dt><strong><%= model_class.human_attribute_name(:people_capacity) %>:</strong></dt>
   <dd><%= @room.people_capacity %></dd>
+  <dt><strong>Calendar color:</strong></dt>
+  <dd><%= @room.calendar.color %></dd>
   
   <% @room.custom_attributes.each do |c| %>
     <dt><strong><%= c.name %>:</strong></dt>

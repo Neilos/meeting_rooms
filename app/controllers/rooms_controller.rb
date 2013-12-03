@@ -18,6 +18,7 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @organization = Organization.find(params[:organization_id])
+    @calendar = @room.build_calendar
   end
 
   # GET /rooms/1/edit
@@ -31,6 +32,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     @organization = @room.organization
+    @calendar = @room.build_calendar(params[:calendar])
     respond_to do |format|
       if @room.save
         format.html { redirect_to organization_path(@organization), success: 'Room was successfully created.' }

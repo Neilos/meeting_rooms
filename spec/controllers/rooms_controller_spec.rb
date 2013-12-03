@@ -142,6 +142,12 @@ describe RoomsController do
         get :new, {:organization_id => organization.id}, valid_session
         assigns(:room).should be_a_new(Room)
       end
+
+      it "assigns a new calendar as @calendar" do
+        organization = FactoryGirl.create(:organization)
+        get :new, {:organization_id => organization.id}, valid_session
+        assigns(:calendar).should be_a_new(Calendar)
+      end
     end
 
     describe "GET edit" do
@@ -164,6 +170,12 @@ describe RoomsController do
           post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
           assigns(:room).should be_a(Room)
           assigns(:room).should be_persisted
+        end
+
+        it "assigns a newly created calendar as @calendar" do
+          post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
+          assigns(:calendar).should be_a(Calendar)
+          assigns(:calendar).should be_persisted
         end
 
         it "redirects to the Organization show page" do

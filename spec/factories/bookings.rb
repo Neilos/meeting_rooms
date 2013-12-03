@@ -11,7 +11,7 @@ FactoryGirl.define do
     sequence :to_time do |n| (n).days.ago end
     repeats 'never'
     time_zone "London"
-    association :room, factory: :room
+    association :calendar, factory: :calendar
     association :booker, factory: :user
   end
 end

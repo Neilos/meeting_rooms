@@ -17,7 +17,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |location, evaluator|
-        FactoryGirl.create_list(:room, evaluator.rooms_count, location: location)
+        FactoryGirl.create_list(:room, evaluator.rooms_count, location: location, organization: location.organization)
       end
     end
   end

@@ -54,6 +54,15 @@
       </div>
     </div>
   </div>
+
+  <%= f.fields_for :calendar do |calendar_fields| %>
+  <div class="form-group">
+    <%= calendar_fields.label :color, 'Calendar color', :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= calendar_fields.text_field :color, :class => 'text_field' %>
+    </div>
+  </div>
+  <% end %>
   
 <%= render(:partial => 'custom_attributes/form_fields', :locals => {:f => f}) %>
 

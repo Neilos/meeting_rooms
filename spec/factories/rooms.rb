@@ -7,15 +7,11 @@ FactoryGirl.define do
     sequence :people_capacity do |n| "#{n}" end
     association :location, factory: :location
     organization_id { location.organization.id }
-  end
 
-  factory :room_with_bookings do
-    ignore do
-      bookings_count 5
-    end
-
-    after(:create) do |room, evaluator|
-      FactoryGirl.create_list(:book, evaluator.bookings_count, room: room)
+    factory :room_with_calendar do
+      after(:create) do |room, evaluator|
+        FactoryGirl.create(:calendar, :room => room)
+      end
     end
   end
 end

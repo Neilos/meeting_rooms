@@ -27,6 +27,7 @@ context "completing the creation of a room" do
 	    select(@location1.name, :from => 'Location')
 	    fill_in 'Price per hour', :with => '3.99'
 			fill_in 'People capacity', :with => '12'
+      fill_in 'Calendar color', :with => 'red'
 	    click_button 'Create Room'
 	    expect(page).to have_content 'Room was successfully created'
 	    expect(page).to have_content 'techhub'
