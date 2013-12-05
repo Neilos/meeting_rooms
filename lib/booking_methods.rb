@@ -1,6 +1,5 @@
 module BookingMethods
   def self.included(base)
-    base.send :validates, :repeats, :presence => true
     base.send :validates, :repeats_every_n_days, :presence => true, :if => lambda { |e| e.repeats == "daily" }
     base.send :validates, :repeats_every_n_weeks, :presence => true, :if => lambda { |e| e.repeats == "weekly" }
     base.send :validate, :must_have_at_least_one_repeats_weekly_each_days_of_the_week, :if => lambda { |e| e.repeats == "weekly" }

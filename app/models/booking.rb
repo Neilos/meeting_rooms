@@ -9,6 +9,7 @@ class Booking < ActiveRecord::Base
   validates_presence_of :calendar_id
   validates_presence_of :booker_id
   validates_presence_of :time_zone
+  validates_presence_of :repeats
 
 
   def set_default_values_for_blank_fields
