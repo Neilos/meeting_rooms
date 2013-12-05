@@ -25,31 +25,31 @@ module BookingMethods
   MonthsOfTheYear = %w[january february march april may june july august september october november december]
 
   def repeats_weekly_each_days_of_the_week=(repeats_weekly_each_days_of_the_week)
-    self.repeats_weekly_each_days_of_the_week_mask = (repeats_weekly_each_days_of_the_week & DaysOfTheWeek).map do |r|
-      2**DaysOfTheWeek.index(r)
+    self.repeats_weekly_each_days_of_the_week_mask = (repeats_weekly_each_days_of_the_week & DaysOfTheWeek).map do |day|
+      2**DaysOfTheWeek.index(day)
     end.inject(0, :+)
   end
 
   def repeats_weekly_each_days_of_the_week
-    DaysOfTheWeek.reject do |r|
-      ((repeats_weekly_each_days_of_the_week_mask || 0) & 2**DaysOfTheWeek.index(r)).zero?
+    DaysOfTheWeek.reject do |day|
+      ((repeats_weekly_each_days_of_the_week_mask || 0) & 2**DaysOfTheWeek.index(day)).zero?
     end
   end
 
   def repeats_monthly_each_days_of_the_month=(repeats_monthly_each_days_of_the_month)
-    repeats_monthly_each_days_of_the_month.map!{|d| d.to_i} # They come in as strings, but our array is full of integers
-    self.repeats_monthly_each_days_of_the_month_mask = (repeats_monthly_each_days_of_the_month & DaysOfTheMonth).map { |r| 2**DaysOfTheMonth.index(r) }.inject(0, :+)
+    repeats_monthly_each_days_of_the_month.map!{|day| day.to_i} # They come in as strings, but our array is full of integers
+    self.repeats_monthly_each_days_of_the_month_mask = (repeats_monthly_each_days_of_the_month & DaysOfTheMonth).map { |day| 2**DaysOfTheMonth.index(day) }.inject(0, :+)
   end
 
   def repeats_monthly_each_days_of_the_month
-    DaysOfTheMonth.reject do |r|
-      ((repeats_monthly_each_days_of_the_month_mask || 0) & 2**DaysOfTheMonth.index(r)).zero?
+    DaysOfTheMonth.reject do |day|
+      ((repeats_monthly_each_days_of_the_month_mask || 0) & 2**DaysOfTheMonth.index(day)).zero?
     end
   end
 
   def repeats_monthly_on_ordinals=(repeats_monthly_on_ordinals)
     repeats_monthly_on_ordinals.map!{|o| o.to_i} # They come in as strings, but our array is full of integers
-    self.repeats_monthly_on_ordinals_mask = (repeats_monthly_on_ordinals & Ordinals).map { |r| 2**Ordinals.index(r) }.inject(0, :+)
+    self.repeats_monthly_on_ordinals_mask = (repeats_monthly_on_ordinals & Ordinals).map { |o| 2**Ordinals.index(o) }.inject(0, :+)
   end
 
   def repeats_monthly_on_ordinals
