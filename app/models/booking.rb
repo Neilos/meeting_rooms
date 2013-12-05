@@ -15,9 +15,12 @@ class Booking < ActiveRecord::Base
   def set_default_values_for_blank_fields
     self.from_date = Date.today unless from_date
     self.to_date = Date.today unless to_date
-    unless is_all_day
-      self.from_time = Time.now.beginning_of_day unless from_time
-      self.to_time = Time.now.end_of_day unless to_time
+    if is_all_day
+      self.from_time = Time.now.beginning_of_day
+      self.to_time = Time.now.end_of_day
+    else
+      self.from_time = Time.now unless from_time
+      self.to_time = Time.now + 1.hour unless to_time
     end
   end
 

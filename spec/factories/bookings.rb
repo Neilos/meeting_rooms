@@ -10,7 +10,7 @@ FactoryGirl.define do
     sequence :to_date do |n| (n).days.ago end
     sequence :to_time do |n| (n).days.ago end
     repeats 'never'
-    time_zone "London"
+    time_zone "UTC"
     association :calendar, factory: :calendar
     association :booker, factory: :user
   end
