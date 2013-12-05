@@ -6,7 +6,7 @@ describe Booking do
   [ "name", "calendar_id", "booker_id", "time_zone", "repeats" ].each do |attribute|
     it "should not be valid without #{attribute}" do
       attributes.delete(attribute)
-      Booking.create(attributes).should_not be_valid
+      Booking.new(attributes).should_not be_valid
     end
   end
 
