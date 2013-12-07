@@ -5,50 +5,84 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user1 = User.find_or_create_by_email :name => 'first person', :email => 'user1@example.com', :password => 'password', :password_confirmation => 'password'
-puts 'user: ' << user1.name
 
-user2 = User.find_or_create_by_email :name => 'second person', :email => 'user2@example.com', :password => 'password', :password_confirmation => 'password'
-puts 'user: ' << user2.name
+puts "\nSeeding database..."
 
-user3 = User.find_or_create_by_email :name => 'third person', :email => 'user3@example.com', :password => 'password', :password_confirmation => 'password'
-puts 'user: ' << user3.name
+# users
+user1 = FactoryGirl.create :user
+user2 = FactoryGirl.create :user
+user3 = FactoryGirl.create :user
+user4 = FactoryGirl.create :user
 
-permission_set1 = PermissionSet.where(create__organizations: false, create__memberships: false).first_or_create
-puts 'permission_set created '
+puts User.all
 
-organization1 = Organization.where(name: "TechHub").first_or_create
-puts 'organization: ' << organization1.name
+# organizations
+organization1 = FactoryGirl.create :organization
+organization2 = FactoryGirl.create :organization
 
-membership1 = Membership.where(user_id: user1.id, organization_id: organization1.id, permission_set_id: permission_set1.id).first_or_create
-puts 'membership: 1'
+puts Organization.all
 
-membership2 = Membership.where(user_id: user2.id, organization_id: organization1.id, permission_set_id: permission_set1.id).first_or_create
-puts 'membership: 2'
+# permission_sets
+permission_set1 = FactoryGirl.create :permission_set
+permission_set2 = FactoryGirl.create :permission_set
+permission_set3 = FactoryGirl.create :permission_set
+permission_set4 = FactoryGirl.create :permission_set
 
-membership3 = Membership.where(user_id: user3.id, organization_id: organization1.id, permission_set_id: permission_set1.id).first_or_create
-puts 'membership: 3'
+puts PermissionSet.all
 
-location1 = Location.where(name: "Site 1", address_line_1: "27 Example Road", address_line_2: "Example Area", town_city: "Example Town", county: "Example County", postcode: "EXA MPLE", country: "United Kingdom", organization_id: organization1.id).first_or_create
-puts 'location1 ' << location1.name
+# memberships
+membership1 = FactoryGirl.create(:membership, organization_id: organization1.id, user_id: user1.id, permission_set_id: permission_set1.id)
+membership2 = FactoryGirl.create(:membership, organization_id: organization1.id, user_id: user2.id, permission_set_id: permission_set2.id)
+membership3 = FactoryGirl.create(:membership, organization_id: organization1.id, user_id: user3.id, permission_set_id: permission_set3.id)
+membership4 = FactoryGirl.create(:membership, organization_id: organization1.id, user_id: user4.id, permission_set_id: permission_set4.id)
 
-location2 = Location.where(name: "Site 1", address_line_1: "89 New Street", address_line_2: "New Area", town_city: "New Town", county: "New County", postcode: "NEW POST", country: "United Kingdom", organization_id: organization1.id).first_or_create
-puts 'location2: ' << location2.name
+puts Membership.all
 
-room1 = Room.where(name: "Room 1", price_per_hour: "9.99", location_id: location1.id, organization_id: organization1.id, people_capacity: 1).first_or_create
-puts 'room: ' << room1.name
+# locations
+location1 = FactoryGirl.create :location, organization_id: organization1.id
+location2 = FactoryGirl.create :location, organization_id: organization1.id
+location3 = FactoryGirl.create :location, organization_id: organization1.id
 
-room2 = Room.where(name: "Room 2.01", price_per_hour: "60.00", location_id: location2.id, organization_id: organization1.id, people_capacity: 1).first_or_create
-puts 'room: ' << room2.name
+puts Location.all
 
-calendar1 = Calendar.where(color: "red", room_id: room1.id).first_or_create
-puts 'calendar for room1'
+# rooms
+room1 = FactoryGirl.create :room, location_id: location1.id, organization_id: location1.organization.id
 
-calendar2 = Calendar.where(color: "green", room_id: room2.id).first_or_create
-puts 'calendar for room2'
+room2 = FactoryGirl.create :room, location_id: location2.id, organization_id: location2.organization.id
+room3 = FactoryGirl.create :room, location_id: location2.id, organization_id: location2.organization.id
 
-booking1 = Booking.where(name: "Booking1", description: "Booking 1 description", is_all_day: false, from_date: "2013-11-29", from_time: "2013-11-29 11:17:07", to_date: "2013-11-30", to_time: "2013-11-30 11:17:07", repeats: "never", time_zone: "London", calendar_id: calendar1.id, booker_id: user1.id).first_or_create
-puts 'booking: ' << booking1.name
+room4 = FactoryGirl.create :room, location_id: location3.id, organization_id: location3.organization.id
+room5 = FactoryGirl.create :room, location_id: location3.id, organization_id: location3.organization.id
+room6 = FactoryGirl.create :room, location_id: location3.id, organization_id: location3.organization.id
 
-booking2 = Booking.where(name: "Booking2", description: "Booking 2 description", is_all_day: false, from_date: "2013-11-29", from_time: "2013-11-29 11:17:07", to_date: "2013-11-30", to_time: "2013-11-30 11:17:07", repeats: "never", time_zone: "London", calendar_id: calendar2.id, booker_id: user2.id).first_or_create
-puts 'booking: ' << booking2.name
+puts Room.all
+
+# bookings
+booking1 = FactoryGirl.create :booking_repeats_every_3_days, 
+                              :ends_in_20_days,
+                              calendar_id: room1.calendar.id,
+                              booker_id: User.last.id
+booking2 = FactoryGirl.create :booking_repeats_every_2_weeks_on_sun_and_thu, 
+                              :ends_in_20_weeks, 
+                              calendar_id: room2.calendar.id,
+                              booker_id: User.last.id
+booking3 = FactoryGirl.create :booking_repeats_every_2_months_on_the_1st_2nd_and_10th,
+                              :ends_in_20_months, 
+                              calendar_id: room3.calendar.id,
+                              booker_id: User.last.id
+booking4 = FactoryGirl.create :booking_repeats_every_3_months_on_first_and_last_mon_and_sat,
+                              :ends_in_20_months,
+                              calendar_id: room4.calendar.id,
+                              booker_id: User.last.id
+booking5 = FactoryGirl.create :booking_repeats_every_year_on_2nd_and_3rd_tues_and_fri_of_feb_and_nov,
+                              :ends_in_20_years,
+                              calendar_id: room5.calendar.id,
+                              booker_id: User.last.id
+booking6 = FactoryGirl.create :booking_repeats_every_2_years_on_booking_date_in_mar_and_aug,
+                              :ends_in_20_years,
+                              calendar_id: room6.calendar.id,
+                              booker_id: User.last.id
+
+puts Booking.all
+
+puts "...Database seed complete!\n\n"
