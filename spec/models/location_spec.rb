@@ -22,4 +22,14 @@ describe Location do
     Location.create(attributes.merge({organization_id: 2})).should be_valid
   end
 
+  describe "address" do
+    it "is the comma separated concatenation of address fields" do
+      location = FactoryGirl.create(:location)
+      address_array = []
+      address_array << location.address_line_1 << location.address_line_2 << location.town_city << location.county << location.postcode << location.country
+      expected_address = address_array.compact.join(", ")
+      location.address.should == expected_address
+    end
+  end
+
 end
