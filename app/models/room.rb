@@ -12,4 +12,10 @@ class Room < ActiveRecord::Base
 
   accepts_nested_attributes_for :custom_attributes
   accepts_nested_attributes_for :calendar
+
+  before_validation :ensure_room_has_a_calendar
+
+  def ensure_room_has_a_calendar
+    build_calendar unless calendar
+  end
 end

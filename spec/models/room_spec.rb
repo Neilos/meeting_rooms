@@ -21,4 +21,9 @@ describe Room do
     Room.create(attributes).should_not be_valid
     Room.create(attributes.merge({location_id: 6})).should be_valid
   end
+
+  it "creates its own calendar when first created" do
+    room = FactoryGirl.create(:room)
+    room.calendar.should_not be_nil
+  end
 end
