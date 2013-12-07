@@ -7,8 +7,8 @@ feature "deleting room" do
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
 		@organization = Organization.create(:name => "techhub")
 		@location = FactoryGirl.create(:location, organization_id: @organization.id)
-		@room1 = FactoryGirl.create(:room_with_calendar, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
-		@room2 = FactoryGirl.create(:room_with_calendar, organization_id: @organization.id, name: "Room 99", location_id: @location.id)
+		@room1 = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
+		@room2 = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 99", location_id: @location.id)
 		log_in_with email: @user.email, password: @password
 	end
 

@@ -7,9 +7,13 @@ FactoryGirl.define do
     address_line_2 "Example Area"
     town_city "Example Town"
     county "Example County"
-    postcode "EXA MPLE"
+    sequence :postcode do |n| "EXA #{'%03d' % n}" end
     country "United Kingdom"
     association :organization, factory: :organization
+
+    initialize_with {
+      Location.where(name: name).first_or_create
+    }
 
     factory :location_with_rooms do
       ignore do

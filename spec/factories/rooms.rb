@@ -8,10 +8,8 @@ FactoryGirl.define do
     association :location, factory: :location
     organization_id { location.organization.id }
 
-    factory :room_with_calendar do
-      after(:create) do |room, evaluator|
-        FactoryGirl.create(:calendar, :room => room)
-      end
-    end
+    initialize_with {
+      Room.where(name: name).first_or_create
+    }
   end
 end

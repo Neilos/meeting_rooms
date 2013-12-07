@@ -6,7 +6,7 @@ feature "viewing room" do
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
 		@organization = Organization.create(:name => "techhub")
 		@location = FactoryGirl.create(:location, organization_id: @organization.id, name: "Old Street")
-		@room = FactoryGirl.create(:room_with_calendar, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
+		@room = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
 		@custom_attribute = FactoryGirl.create(:custom_attribute, room_id: @room.id)
 		@custom_attribute2 = FactoryGirl.create(:custom_attribute, room_id: @room.id, name: "wifi", value: "yes")
 		log_in_with email: @user.email, password: @password

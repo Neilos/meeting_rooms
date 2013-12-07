@@ -31,7 +31,7 @@ feature "creating custom attribute", :js => true do
   end
 
   scenario "when editing a room" do
-    room = FactoryGirl.create(:room_with_calendar, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
+    room = FactoryGirl.create(:room, organization_id: @organization.id, name: "Room 1", location_id: @location.id)
     edit_first_room_in_rooms_table
     click_button "New attribute"
     within('#custom_attributes_section') do
