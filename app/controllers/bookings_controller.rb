@@ -15,8 +15,10 @@ class BookingsController < ApplicationController
 
   # GET /rooms/1/bookings/new
   def new
-    @calendar = Room.find(params[:room_id]).calendar
-    @booking = Booking.new
+    room = Room.find(params[:room_id])
+    calendar = room.calendar
+    @booking = Booking.new(:calendar_id => calendar.id,
+      :booker_id => current_user.id, :is_all_day => true)
   end
 
   # GET /bookings/1/edit
@@ -26,8 +28,7 @@ class BookingsController < ApplicationController
   # POST /rooms/1/bookings
   # POST /rooms/1/bookings.json
   def create
-    @calendar = Room.find(params[:room_id]).calendar
-    @booking = Booking.new(booking_params.merge({:booker_id=> current_user.id, :calendar_id => @calendar.id}))
+    @booking = Booking.new(booking_params.merge({:booker_id=> current_user.id}))
 
     respond_to do |format|
       if @booking.save
@@ -73,6 +74,6 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
-    params.require(:booking).permit(:name, :description, :is_all_day, :from_date, :from_time, :to_date, :to_time, :repeats, :repeats_every_n_days, :repeats_every_n_weeks, :repeats_weekly_each_days_of_the_week_mask, :repeats_every_n_months, :repeats_monthly, :repeats_monthly_each_days_of_the_month_mask, :repeats_monthly_on_ordinals_mask, :repeats_monthly_on_days_of_the_week_mask, :repeats_every_n_years, :repeats_yearly_each_months_of_the_year_mask, :repeats_yearly_on, :repeats_yearly_on_ordinals_mask, :repeats_yearly_on_days_of_the_week_mask, :repeat_ends, :repeat_ends_on, :time_zone, :room_id)
+    params.require(:booking).permit(:name, :description, :is_all_day, :from_date, :from_time, :to_date, :to_time, :repeats, :repeats_every_n_days, :repeats_every_n_weeks, :repeats_weekly_each_days_of_the_week_mask, :repeats_every_n_months, :repeats_monthly, :repeats_monthly_each_days_of_the_month_mask, :repeats_monthly_on_ordinals_mask, :repeats_monthly_on_days_of_the_week_mask, :repeats_every_n_years, :repeats_yearly_each_months_of_the_year_mask, :repeats_yearly_on, :repeats_yearly_on_ordinals_mask, :repeats_yearly_on_days_of_the_week_mask, :repeat_ends, :repeat_ends_on, :time_zone, :calendar_id)
   end
 end
