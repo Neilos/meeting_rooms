@@ -1,3 +1,8 @@
+<h2><%= @booking.room.name %></h2>
+<p><%= @booking.room.location.name %></p>
+<p><%= @booking.room.location.address %></p>
+<p>Provided by: <%= @booking.room.organization.name %></p>
+
 <% start_date = params[:start_date].to_datetime.strftime('%F') if params[:start_date] %>
 <% start_time = params[:start_date].to_datetime.strftime('%I:%M %p') if params[:start_date] %>
 <% end_time = (params[:start_date].to_datetime + 30.minutes).strftime('%I:%M %p') if params[:start_date] %>
@@ -17,43 +22,6 @@
   <% end %>
 
   <%= f.hidden_field :calendar_id %>
-
-  <div class="form-group">
-    <label class="control-label col-sm-4">Room</label>
-    <div class="col-sm-6">
-      <p class="form-control-static">
-        <span><%= @booking.room.name %></span>
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="control-label col-sm-4">Site name</label>
-    <div class="col-sm-6">
-      <p class="form-control-static">
-        <span><%= @booking.room.location.name %></span>
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="control-label col-sm-4">Address</label>
-    <div class="col-sm-6">
-      <p class="form-control-static">
-        <span><%= @booking.room.location.address %></span>
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="control-label col-sm-4">Room provider</label>
-    <div class="col-sm-6">
-      <p class="form-control-static">
-        <span><%= @booking.room.organization.name %></span>
-      </p>
-    </div>
-  </div>
-
 
   <div class="form-group">
     <%= f.label :name , "Short description", :class => 'control-label col-sm-4' %>
