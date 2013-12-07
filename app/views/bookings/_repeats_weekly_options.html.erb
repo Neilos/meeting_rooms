@@ -1,0 +1,23 @@
+<fieldset class="booking_option" id="repeats_weekly_options">
+
+  <div class="form-group">
+    <%= f.label :repeats_every_n_weeks , "Every", :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_every_n_weeks %>
+      <span>week(s)</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-4">On</label>
+    <div class="col-sm-6">
+      <% Booking::DaysOfTheWeek.each do |day_of_the_week| %>
+        <%= label_tag "booking_repeats_weekly_each_days_of_the_week_#{day_of_the_week}", day_of_the_week.humanize, :class => 'checkbox inline' do %>
+          <%= check_box_tag "booking[repeats_weekly_each_days_of_the_week][#{day_of_the_week}]", day_of_the_week, f.object.repeats_weekly_each_days_of_the_week.include?(day_of_the_week), {:name => "booking[repeats_weekly_each_days_of_the_week][]"} %>
+          <%= day_of_the_week.humanize %>
+        <% end %>
+      <% end %>
+      <%= hidden_field_tag "booking[repeats_weekly_each_days_of_the_week][]", "" %>
+    </div>
+  </div>
+</fieldset>

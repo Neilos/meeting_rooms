@@ -1,0 +1,52 @@
+<fieldset class="booking_option" id="repeats_monthly_options">
+  
+  <div class="form-group">
+    <%= f.label :repeats_every_n_months , "Every", :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.number_field :repeats_every_n_months %>
+      <span>month(s)</span>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :repeats_monthly , "", :class => 'control-label col-sm-4' %>
+    <div class="col-sm-6">
+      <%= f.select :repeats_monthly, Booking::RepeatMonthlyOptions %>
+    </div>
+  </div>
+
+  <div class="form-group" id="booking_repeats_monthly_each">
+    <label class="control-label col-sm-4">Each</label>
+    <div class="col-sm-6">
+      <% Booking::DaysOfTheMonth.each do |day_of_the_month| %>
+        <%= label_tag "booking_repeats_monthly_each_days_of_the_month_#{day_of_the_month}", day_of_the_month, :class => 'checkbox-inline' do %>
+          <%= check_box_tag "booking[repeats_monthly_each_days_of_the_month][#{day_of_the_month}]", day_of_the_month, f.object.repeats_monthly_each_days_of_the_month.include?(day_of_the_month), {:name => "booking[repeats_monthly_each_days_of_the_month][]"} %>
+          <%= day_of_the_month %>
+        <% end %>
+      <% end %>
+      <%= hidden_field_tag "booking[repeats_monthly_each_days_of_the_month][]", "" %>
+    </div>
+  </div>
+
+  <div class="form-group" id="booking_repeats_monthly_on">
+    <label class="control-label col-sm-4">On the</label>
+    <div class="col-sm-6">
+      <% Booking::Ordinals.each_with_index do |ordinal,index| %>
+        <%= label_tag "booking_repeats_monthly_on_ordinals_#{ordinal}", ordinal, :class => 'checkbox-inline' do %>
+          <%= check_box_tag "booking[repeats_monthly_on_ordinals][#{ordinal}]", ordinal, f.object.repeats_monthly_on_ordinals.include?(ordinal), {:name => "booking[repeats_monthly_on_ordinals][]"} %>
+          <%= Booking::HumanOrdinals[index] %>
+        <% end %>
+      <% end %>
+      <%= hidden_field_tag "booking[repeats_monthly_on_ordinals][]", "" %>
+      <hr/>
+      <% Booking::DaysOfTheWeek.each do |day_of_the_week| %>
+        <%= label_tag "booking_repeats_monthly_on_days_of_the_week_#{day_of_the_week}", day_of_the_week.humanize, :class => 'checkbox-inline' do %>
+          <%= check_box_tag "booking[repeats_monthly_on_days_of_the_week][#{day_of_the_week}]", day_of_the_week, f.object.repeats_monthly_on_days_of_the_week.include?(day_of_the_week), {:name => "booking[repeats_monthly_on_days_of_the_week][]"} %>
+          <%= day_of_the_week.humanize %>
+        <% end %>
+      <% end %>
+      <%= hidden_field_tag "booking[repeats_monthly_on_days_of_the_week][]", "" %>
+    </div>
+  </div>
+
+</fieldset>
