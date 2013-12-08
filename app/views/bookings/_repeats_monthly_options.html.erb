@@ -9,15 +9,13 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :repeats_monthly , "", :class => 'control-label col-sm-4' %>
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-sm-offset-4">
       <%= f.select :repeats_monthly, Booking::RepeatMonthlyOptions %>
     </div>
   </div>
 
   <div class="form-group" id="booking_repeats_monthly_each">
-    <label class="control-label col-sm-4">Each</label>
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-sm-offset-4">
       <% Booking::DaysOfTheMonth.each do |day_of_the_month| %>
         <%= label_tag "booking_repeats_monthly_each_days_of_the_month_#{day_of_the_month}", day_of_the_month, :class => 'checkbox-inline' do %>
           <%= check_box_tag "booking[repeats_monthly_each_days_of_the_month][#{day_of_the_month}]", day_of_the_month, f.object.repeats_monthly_each_days_of_the_month.include?(day_of_the_month), {:name => "booking[repeats_monthly_each_days_of_the_month][]"} %>
@@ -29,8 +27,7 @@
   </div>
 
   <div class="form-group" id="booking_repeats_monthly_on">
-    <label class="control-label col-sm-4">On the</label>
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-sm-offset-4">
       <% Booking::Ordinals.each_with_index do |ordinal,index| %>
         <%= label_tag "booking_repeats_monthly_on_ordinals_#{ordinal}", ordinal, :class => 'checkbox-inline' do %>
           <%= check_box_tag "booking[repeats_monthly_on_ordinals][#{ordinal}]", ordinal, f.object.repeats_monthly_on_ordinals.include?(ordinal), {:name => "booking[repeats_monthly_on_ordinals][]"} %>

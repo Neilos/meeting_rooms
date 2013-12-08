@@ -8,7 +8,7 @@
   </div>
   
   <div class="form-group">
-    <label class="control-label col-sm-4">In</label>
+    <label class="control-label col-sm-4">Repeats in month(s)</label>
     <div class="col-sm-6">
       <% Booking::MonthsOfTheYear.each do |month_of_the_year| %>
         <%= label_tag "booking_repeats_yearly_each_months_of_the_year_#{month_of_the_year}", month_of_the_year.humanize, :class => 'checkbox-inline' do %>
@@ -17,12 +17,11 @@
         <% end %>
       <% end %>
       <%= hidden_field_tag "booking[repeats_yearly_each_months_of_the_year][]", "" %>
-      <hr/>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :repeats_yearly_on , "Repeats on particular weekdays?", :class => 'control-label col-sm-4' %>
+    <%= f.label :repeats_yearly_on , "Repeats on particular weekday(s)", :class => 'control-label col-sm-4' %>
     <div class="col-sm-6">
       <%= f.check_box :repeats_yearly_on %>
     </div>
