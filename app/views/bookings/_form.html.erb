@@ -1,8 +1,3 @@
-<h2><%= @booking.room.name %></h2>
-<p><%= @booking.room.location.name %></p>
-<p><%= @booking.room.location.address %></p>
-<p>Provided by: <%= @booking.room.organization.name %></p>
-
 <% start_date = params[:start_date].to_datetime.strftime('%F') if params[:start_date] %>
 <% start_time = params[:start_date].to_datetime.strftime('%I:%M %p') if params[:start_date] %>
 <% end_time = (params[:start_date].to_datetime + 30.minutes).strftime('%I:%M %p') if params[:start_date] %>
