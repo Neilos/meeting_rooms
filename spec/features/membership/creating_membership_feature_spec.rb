@@ -15,7 +15,7 @@ feature "creating membership", :js => true do
 			scenario "from the organization show page" do 
 				visit_show_page_of_first_organization_in_organizations_table
 				click_link 'Members'
-				click_link('New Membership')
+				click_link('New Member')
 				fill_in 'user[email]', :with => @user.email 
 				click_button 'Search'
 				within("#search_results") do
@@ -38,7 +38,7 @@ feature "creating membership", :js => true do
 		scenario "from the organization show page" do 
 			visit_show_page_of_first_organization_in_organizations_table
 			click_link 'Members'
-			click_link('New Membership')
+			click_link('New Member')
 			click_link('Cancel')
 			page.should have_content(@organization.name)
 			click_link 'Members'

@@ -5,7 +5,7 @@
               new_organization_path(@user),
               :class => 'btn btn-primary') if @user %>
 
-  <%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
+  <%= link_to(t('.new_member', :default => t("helpers.links.new_member")),
               new_organization_membership_path(@organization),
               :class => 'btn btn-primary') if @organization %>
 </p>
