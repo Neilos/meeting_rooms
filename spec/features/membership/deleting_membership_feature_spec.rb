@@ -12,26 +12,14 @@ feature "deleting membership", js: true do
 
 	scenario "from Organization show page" do
 		visit_show_page_of_first_organization_in_organizations_table
-    click_link 'Memberships'
+    click_link 'Members'
 		within("#memberships-table") do 
 			page.first(:link, 'Delete').click
 		end
  		page.driver.browser.switch_to.alert.accept
     expect(page).to have_content @organization.name
   	expect(page).to have_selector '#organization-details'
- 	 	click_link 'Memberships'
- 		within('#memberships-table') do
- 	  	page.should have_no_content(@membership.user.name)
-  	end
-	end
-
-
-	scenario "from the user show page" do 
-		within("#memberships-table") do 
-			page.first(:link, 'Delete').click
-		end
- 		page.driver.browser.switch_to.alert.accept
-    expect(page).to have_content @user.name
+ 	 	click_link 'Members'
  		within('#memberships-table') do
  	  	page.should have_no_content(@membership.user.name)
   	end

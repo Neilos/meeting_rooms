@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "viewing organization memberships" do
+feature "viewing organization members" do
 	before :each do 
     @password = "password"
     @user = FactoryGirl.create(:user, name: "Dave Dave", email: "user1@email.com", password: @password, password_confirmation: @password)
@@ -15,7 +15,7 @@ feature "viewing organization memberships" do
 
   scenario "from the organization showpage" do
   	visit "/organizations/#{@organization.id}"
-  	expect(page).to have_content "Memberships"
+  	expect(page).to have_content "Members"
     expect(page).to have_content "Dave Dave"
     expect(page).to have_content "Mike Mike"
   end

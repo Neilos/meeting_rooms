@@ -8,4 +8,24 @@
   <dd><%= @user.email %></dd>
 </dl>
 
-<%= render "memberships/memberships_table" %>
+<%= link_to t('.edit_account', :default => t("helpers.links.edit_account")),
+                edit_user_registration_path, :class => 'btn btn-default' %>
+
+
+<p>
+  <ul class="nav nav-tabs nav-justified">
+    <li class="active">
+      <a href="#memberships" data-toggle="tab">Memberships</a>
+    </li>
+
+  </ul>
+</p>
+
+<div class="tab-content">
+
+  <div class="tab-pane active" id="memberships">
+    <%= render "memberships/memberships_table" %>
+  </div>
+
+</div>
+

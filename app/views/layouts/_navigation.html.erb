@@ -1,17 +1,13 @@
 <div class="navbar">
 
     <div class="navbar-heading">
-      <% if user_signed_in? %>
-        <%= link_to "Meeting Rooms", user_root_path, :class => 'navbar-brand' %>
-      <% else %>
-        <%= link_to "Meeting Rooms", root_path, :class => 'navbar-brand' %>
-      <% end %>
+      <%= link_to "Meeting Rooms", root_path, :class => 'navbar-brand' %>
     </div>
 
 
     <ul class="nav nav-default navbar-btn nav-pills">
       <% if user_signed_in? %>
-        <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+        <li><%= link_to 'Account', user_path(current_user) %></li>
         <li><%= link_to 'Organizations', organizations_path %></li>
       <% end %>
 

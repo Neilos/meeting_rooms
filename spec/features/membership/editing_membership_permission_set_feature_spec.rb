@@ -30,7 +30,7 @@ feature "editing membership permission set", :js => true do
 		
 			scenario "via the organization show page" do 
 				visit_show_page_of_first_organization_in_organizations_table
-        click_link "Memberships"
+        click_link "Members"
 				within("#memberships-table") do 
           page.first(:link, 'Edit').click
         end
@@ -44,7 +44,7 @@ feature "editing membership permission set", :js => true do
       
       scenario "from the membership show page" do
         visit_show_page_of_first_organization_in_organizations_table
-        click_link "Memberships"
+        click_link "Members"
         within("#memberships-table") do 
           page.first(:link, 'View').click
         end
@@ -85,7 +85,7 @@ feature "editing membership permission set", :js => true do
 	
 		scenario "from the organization show page" do 
 			visit_show_page_of_first_organization_in_organizations_table
-      click_link "Memberships"
+      click_link "Members"
 			within("#memberships-table") do 
         page.first(:link, 'Edit').click
       end
@@ -96,7 +96,7 @@ feature "editing membership permission set", :js => true do
     context "from the membership show page" do
       scenario "via the organization show page" do
         visit_show_page_of_first_organization_in_organizations_table
-        click_link "Memberships"
+        click_link "Members"
         within("#memberships-table") do 
           page.first(:link, 'View').click
         end

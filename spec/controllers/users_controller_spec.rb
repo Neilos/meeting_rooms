@@ -83,7 +83,9 @@ describe UsersController do
     end
 
     describe "GET 'show'" do
+
       context "when a user id is specifed in the params" do
+
         before :each do 
           get :show, :id => @user.id
         end
@@ -99,25 +101,9 @@ describe UsersController do
         it "renders the user show page" do 
           response.should render_template(:show) 
         end
+
       end
 
-      context "when no user id supplied in the params" do
-        before :each do 
-          get :show
-        end
-
-        specify do
-          response.should be_success
-        end
-
-        it "renders the user show page" do 
-          response.should render_template(:show) 
-        end
-
-        it "should find the right user" do 
-          assigns(:user).should == @signed_in_user 
-        end
-      end
     end
 
   end

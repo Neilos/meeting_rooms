@@ -13,7 +13,7 @@ feature "viewing membership permission set" do
 
 	scenario "from organization show page" do
 		visit_show_page_of_first_organization_in_organizations_table
-    click_link 'Memberships'
+    click_link 'Members'
 		within("#memberships-table") do 
 			page.first(:link, 'View').click
 		end
@@ -30,7 +30,7 @@ feature "viewing membership permission set" do
     click_link('Back')
     expect(page).to have_content @organization.name
     expect(page).to have_selector '#organization-details'
- 	 	click_link 'Memberships'
+ 	 	click_link 'Members'
     expect(page).to have_selector '#memberships-table'
 	end
 

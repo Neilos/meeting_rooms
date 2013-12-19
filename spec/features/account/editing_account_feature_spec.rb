@@ -16,7 +16,8 @@ feature "Editing account" do
 
   context "with current password provided" do
     scenario "when changing the email address" do
-      click_link 'Edit account'
+      click_link 'Account'
+      click_link 'Edit Account'
       fill_in 'Email', :with => 'user34@example.com'
       fill_in 'Current password', :with => 'password'
       click_button 'Update'
@@ -26,7 +27,8 @@ feature "Editing account" do
 
   context "no current password is entered" do
     scenario "when changing the email address" do
-      click_link 'Edit account'
+      click_link 'Account'
+      click_link 'Edit Account'
       fill_in 'Email', :with => 'user36@example.com'
       click_button 'Update'
       expect(page).to have_content '1 error prohibited this user from being saved:'
@@ -34,7 +36,8 @@ feature "Editing account" do
     end
 
     scenario "when changing password" do
-      click_link 'Edit account'
+      click_link 'Account'
+      click_link 'Edit Account'
       fill_in 'Password', :with => 'newpassword'
       fill_in 'Password confirmation', :with => 'newpassword'
       click_button 'Update'
@@ -48,7 +51,8 @@ feature "Editing account" do
     end
 
     scenario "when changing account fields other than password and email" do
-      click_link 'Edit account'
+      click_link 'Account'
+      click_link 'Edit Account'
       fill_in 'Name', :with => 'New Name'
       click_button 'Update'
       expect(page).to have_content 'You updated your account successfully.'

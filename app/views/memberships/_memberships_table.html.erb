@@ -1,8 +1,8 @@
 <%- model_class = Membership -%>
 
 <p>
-  <%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
-              new_user_membership_path(@user),
+  <%= link_to(t('.new_organization', :default => t("helpers.links.new_organization")),
+              new_organization_path(@user),
               :class => 'btn btn-primary') if @user %>
 
   <%= link_to(t('.new_membership', :default => t("helpers.links.new_membership")),
