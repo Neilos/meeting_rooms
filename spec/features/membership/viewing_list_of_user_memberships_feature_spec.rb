@@ -14,7 +14,7 @@ feature "viewing user memberships" do
 
   scenario "from the user showpage" do
     within(".navbar") do
-      click_link('Memberships')
+      click_link('My Organizations')
     end
     expect(page).to have_content "TechHub"
     expect(page).to have_no_content "New Bamboo"

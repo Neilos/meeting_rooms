@@ -15,7 +15,7 @@ feature "viewing_organization" do
 
 	scenario "via the memberships page" do
 		within(".navbar") do
-			click_link('Memberships')
+			click_link('My Organizations')
 		end
 		within("#memberships-table") do
 			click_link "techhub"

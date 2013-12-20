@@ -17,7 +17,7 @@ feature "deleting organization" do
 			click_link('Delete')
 		end
 		page.driver.browser.switch_to.alert.accept
-		expect(page).to have_content('Your Memberships')
+		expect(page).to have_content('User Organization Memberships')
 		page.should_not have_content('techhub')
 	end
 

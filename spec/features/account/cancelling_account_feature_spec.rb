@@ -13,7 +13,7 @@ feature "Account cancellation" do
     fill_in 'Password', :with => 'password'
     click_button 'Log in'
     expect(page).to have_content 'Signed in successfully'
-    click_link 'Account'
+    click_link 'My Account'
     click_link 'Edit Account'
     click_link 'Cancel my account'
     alert = page.driver.browser.switch_to.alert
