@@ -9,16 +9,12 @@ feature "creating organization" do
 	end
 
 	scenario "from the organizations page" do
-		within ".navbar" do
-			click_link "Organizations"	
-		end
+		visit user_memberships_path(@user)
 		click_link "New Organization"
 		fill_in "Name", :with => "TechHub"
 		click_button "Create Organization"
 		expect(page).to have_content "Organization was successfully created."
-		expect(page).to have_content @user.name
-		expect(page).to have_content @user.email
-		expect(page).to have_content "TechHub" # should show that the user is a member of the new organization
+		expect(page).to have_content "TechHub" # shows that the user is a member of the new organization
 	end
 
 end

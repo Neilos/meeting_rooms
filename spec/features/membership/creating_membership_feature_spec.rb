@@ -10,10 +10,11 @@ feature "creating membership", :js => true do
 	end
 
 	context "completing the creation" do
+
 		context "with valid details" do
 		
 			scenario "from the organization show page" do 
-				visit_show_page_of_first_organization_in_organizations_table
+				visit organization_path(@organization)
 				click_link 'Members'
 				click_link('New Member')
 				fill_in 'user[email]', :with => @user.email 
@@ -29,20 +30,24 @@ feature "creating membership", :js => true do
 				click_link 'Members'
 				expect(page).to have_selector '#memberships-table'
 			end
+
 		end
 
 		#form cannot be completed with invalid details
 	end
 
 	context "cancelling the creation of a membership" do
+
 		scenario "from the organization show page" do 
-			visit_show_page_of_first_organization_in_organizations_table
+			visit organization_path(@organization)
 			click_link 'Members'
 			click_link('New Member')
-			click_link('Cancel')
+			click_link('Back')
 			page.should have_content(@organization.name)
 			click_link 'Members'
 			expect(page).to have_selector '#memberships-table'
 		end
+
 	end
+
 end

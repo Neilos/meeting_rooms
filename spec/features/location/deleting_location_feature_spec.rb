@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "deleting location" do
+
 	before :each do 
 		@password = "password"
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
@@ -11,12 +12,7 @@ feature "deleting location" do
 	end
 
 	scenario "from the organization#show page", js: true do
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within("#organizations-table") do
-			page.first(:link, 'View').click
-		end
+		visit organization_path(@organization)
     click_link 'Locations'
 		within("#locations-table") do
 			page.first(:link, 'Delete').click
@@ -32,12 +28,7 @@ feature "deleting location" do
 	end
 
 	scenario "from the location show page", js: true do 
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within("#organizations-table") do
-			page.first(:link, 'View').click
-		end
+		visit organization_path(@organization)
     click_link 'Locations'
 		within("#locations-table") do
 			page.first(:link, 'View').click

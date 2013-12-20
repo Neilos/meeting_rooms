@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "viewing room" do
+
 	before :each do 
 		@password = "password"
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
@@ -13,13 +14,7 @@ feature "viewing room" do
 	end
 
 	scenario "via the organization#show page" do
-		visit_show_page_of_first_organization_in_organizations_table
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within("#organizations-table") do 
-			page.first(:link, 'View').click
-		end
+		visit organization_path(@organization)
 		within("#rooms-table") do 
 			page.first(:link, 'View').click
 		end

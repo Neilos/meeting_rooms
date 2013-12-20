@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe MembershipsController do
+
   describe "routing" do
 
     it "routes to #new" do
@@ -14,6 +15,10 @@ describe MembershipsController do
 
     it "routes to #edit" do
       get("/memberships/1/edit").should route_to("memberships#edit", :id => "1")
+    end
+
+    it "routes to #index" do
+      get("/users/1/memberships").should route_to("memberships#index", :user_id => "1" )
     end
 
     it "routes to #create" do
@@ -30,4 +35,5 @@ describe MembershipsController do
     end
 
   end
+
 end

@@ -2,6 +2,13 @@ class MembershipsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
 
+  # GET /user/1/memberships
+  # GET /user/1/memberships.json
+  def index
+    @user = User.find(params[:user_id])
+    @memberships = Membership.where(:user_id => params[:user_id])
+  end
+
   # GET /memberships/1
   # GET /memberships/1.json
   def show

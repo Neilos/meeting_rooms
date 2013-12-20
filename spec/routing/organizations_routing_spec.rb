@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe OrganizationsController do
+
   describe "routing" do
 
     it "routes to #index" do
@@ -32,4 +33,5 @@ describe OrganizationsController do
     end
 
   end
+
 end

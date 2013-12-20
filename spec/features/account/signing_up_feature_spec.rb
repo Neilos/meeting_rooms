@@ -7,6 +7,7 @@ feature "Signing up" do
   end
 
   context "by entering email address and password on the sign up page" do
+
     scenario "with valid details" do
       visit '/'
       click_link 'Sign up'
@@ -45,6 +46,7 @@ feature "Signing up" do
       expect(page).to have_content '1 error prohibited this user from being saved:'
       expect(page).to have_content 'Email has already been taken'
     end
+
   end
 
   
@@ -86,6 +88,7 @@ feature "Signing up" do
     end
 
     context "where insufficient signup details returned by OAuth provider" do
+
       context "missing details manually entered by user" do
 
         scenario "password entered" do
@@ -126,7 +129,11 @@ feature "Signing up" do
           expect(page).to have_content "Password can't be blank"
           expect(User.count).to eq 0
         end
+
       end
+
     end
+
   end
+
 end

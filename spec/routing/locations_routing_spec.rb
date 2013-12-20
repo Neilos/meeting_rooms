@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe LocationsController do
+
   describe "routing" do
 
     it "routes to #new" do
@@ -28,4 +29,5 @@ describe LocationsController do
     end
 
   end
+
 end

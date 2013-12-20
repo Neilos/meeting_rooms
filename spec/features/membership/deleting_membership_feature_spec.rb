@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "deleting membership", js: true do
+
 	before :each do 
 		@password = "password"
 		@user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
@@ -11,7 +12,7 @@ feature "deleting membership", js: true do
 	end
 
 	scenario "from Organization show page" do
-		visit_show_page_of_first_organization_in_organizations_table
+		visit organization_path(@organization)
     click_link 'Members'
 		within("#memberships-table") do 
 			page.first(:link, 'Delete').click
@@ -24,4 +25,5 @@ feature "deleting membership", js: true do
  	  	page.should have_no_content(@membership.user.name)
   	end
 	end
+
 end

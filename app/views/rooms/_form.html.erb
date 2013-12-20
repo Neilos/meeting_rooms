@@ -70,8 +70,7 @@
     <div class="col-sm-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <input class="btn btn-default" id="btn_new_attribute" type="button" value="New attribute", onclick="addCustomAttributeToPage()">
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                  organization_path(@organization), :class => 'btn btn-default' %>
+      <%= link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-default' %>
     </div>
   </div>
 <% end %>

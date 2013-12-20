@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "Logging in" do
+
   before(:each) do
     @mike = User.create!( :name => 'Mike Mike',  
                   :email => 'user34@example.com', 
@@ -22,6 +23,7 @@ feature "Logging in" do
 
 
   context "with email and password entered on login page" do
+
     scenario "with correct credentials" do
       log_in_with email: @mike.email, password: 'password'
       expect(page).to have_content 'Signed in successfully'
@@ -46,8 +48,8 @@ feature "Logging in" do
       email.to.should == ['user34@example.com']
       email.body.should have_content 'Someone has requested a link to change your password.'
     end
-  end
 
+  end
 
   context "via social media" do
 
@@ -64,6 +66,7 @@ feature "Logging in" do
 
 
     context "having signed up with email and password" do 
+
       scenario "with valid login credentials" do
         expect(User.count).to eq 3
         OmniAuth.config.test_mode = true
@@ -74,10 +77,12 @@ feature "Logging in" do
         expect(page).to have_content 'Sign in via Facebook has been added to your account. Signed in successfully!'
         expect(User.count).to eq 3
       end
+
     end
 
 
     context "having signed up with social media" do 
+
       scenario "with valid login credentials" do
         expect(User.count).to eq 3
         OmniAuth.config.test_mode = true
@@ -91,6 +96,7 @@ feature "Logging in" do
 
 
       context "having changed the email registered with social media provider since signing up" do
+
         scenario "logging in with social media" do
           expect(User.count).to eq 3
           OmniAuth.config.test_mode = true
@@ -101,10 +107,12 @@ feature "Logging in" do
           expect(page).to have_content 'Signed in successfully via Facebook.'
           expect(User.count).to eq 3
         end
+
       end
 
 
       context "and logging in with a different social media provider" do 
+
         scenario "where email address is returned by social media provider" do
           expect(User.count).to eq 3
           OmniAuth.config.test_mode = true
@@ -129,7 +137,9 @@ feature "Logging in" do
 
         # twiter does not currently contain an email address in the omniauth hash
         context "where no email is returned by social media provider" do
+
           context "email manually entered by user" do
+
             scenario "password not manually entered" do
               expect(User.count).to eq 3
               OmniAuth.config.test_mode = true
@@ -158,9 +168,15 @@ feature "Logging in" do
               expect(page).to have_content "Password incorrect!"
               expect(User.count).to eq 3
             end
+
           end
+
         end
+
       end
+
     end
+
   end
+
 end

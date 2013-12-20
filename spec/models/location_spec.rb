@@ -23,6 +23,7 @@ describe Location do
   end
 
   describe "address" do
+
     it "is the comma separated concatenation of address fields" do
       location = FactoryGirl.create(:location)
       address_array = []
@@ -30,6 +31,7 @@ describe Location do
       expected_address = address_array.compact.join(", ")
       location.address.should == expected_address
     end
+
   end
 
 end

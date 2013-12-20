@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "Editing account" do
+
   before(:each) do
     @user = User.create!( :name => 'Mike Mike', 
                   :email => 'user34@example.com', 
@@ -15,6 +16,7 @@ feature "Editing account" do
   end
 
   context "with current password provided" do
+
     scenario "when changing the email address" do
       click_link 'Account'
       click_link 'Edit Account'
@@ -23,9 +25,11 @@ feature "Editing account" do
       click_button 'Update'
       expect(page).to have_content 'You updated your account successfully'
     end
+
   end
 
   context "no current password is entered" do
+
     scenario "when changing the email address" do
       click_link 'Account'
       click_link 'Edit Account'
@@ -59,6 +63,8 @@ feature "Editing account" do
       @user.reload
       @user.name.should == 'New Name'
     end
+
   end
+
 end
 

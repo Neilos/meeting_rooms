@@ -42,7 +42,7 @@ class OrganizationsController < ApplicationController
         membership = Membership.create(permission_set_id: permission_set.id, 
                                         user_id: current_user.id, 
                                         organization_id: @organization.id)
-        format.html { redirect_to user_path(current_user), success: 'Organization was successfully created.' }
+        format.html { redirect_to user_memberships_path(current_user), success: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
         format.html { render action: 'new' }
@@ -70,7 +70,7 @@ class OrganizationsController < ApplicationController
   def destroy
     @organization.destroy
     respond_to do |format|
-      format.html { redirect_to organizations_url }
+      format.html { redirect_to user_memberships_path(current_user) }
       format.json { head :no_content }
     end
   end

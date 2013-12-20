@@ -13,7 +13,10 @@ feature "viewing_organization" do
 		log_in_with email: @user.email, password: @password
 	end
 
-	scenario "via the user#show page" do
+	scenario "via the memberships page" do
+		within(".navbar") do
+			click_link('Memberships')
+		end
 		within("#memberships-table") do
 			click_link "techhub"
 		end
@@ -21,17 +24,4 @@ feature "viewing_organization" do
 		page.should_not have_content('New Bamboo')
 	end
 
-	scenario "via the organizations page" do
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within('#organizations-table') do 
-      page.first(:link, 'View').click
-    end
-		page.should have_content('techhub')
-		page.should_not have_content('New Bamboo')
-		click_link('Back')
-		page.should have_content('techhub')
-		page.should have_content('New Bamboo')
-	end
 end

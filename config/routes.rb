@@ -11,7 +11,7 @@ MeetingRooms::Application.routes.draw do
   end
 
   resources :users, only: [:index, :show] do 
-    resources :memberships, :only => [:new, :create]
+    resources :memberships, :only => [:new, :create, :index]
     collection do
       get 'search_by_email'
     end

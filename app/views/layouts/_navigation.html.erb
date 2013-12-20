@@ -8,7 +8,7 @@
     <ul class="nav nav-default navbar-btn nav-pills">
       <% if user_signed_in? %>
         <li><%= link_to 'Account', user_path(current_user) %></li>
-        <li><%= link_to 'Organizations', organizations_path %></li>
+        <li><%= link_to 'Memberships', user_memberships_path(current_user) %></li>
       <% end %>
 
       <div class="pull-right">

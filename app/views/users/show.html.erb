@@ -5,28 +5,11 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
 </dl>
 
 <%= link_to t('.edit_account', :default => t("helpers.links.edit_account")),
                 edit_user_registration_path, :class => 'btn btn-default' %>
-
-
-<p>
-  <ul class="nav nav-tabs nav-justified">
-    <li class="active">
-      <a href="#memberships" data-toggle="tab">Memberships</a>
-    </li>
-
-  </ul>
-</p>
-
-<div class="tab-content">
-
-  <div class="tab-pane active" id="memberships">
-    <%= render "memberships/memberships_table" %>
-  </div>
-
-</div>
-

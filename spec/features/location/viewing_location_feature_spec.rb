@@ -11,12 +11,7 @@ feature "viewing location" do
 	end
 
 	scenario "via the organization#show page" do
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within("#organizations-table") do 
-			page.first(:link, 'View').click
-		end
+		visit organization_path(@organization)
 		click_link 'Locations'
 		within("#locations-table") do 
 			page.first(:link, 'View').click

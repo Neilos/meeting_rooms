@@ -13,12 +13,7 @@ feature "editing location" do
 	context "completing an update" do
 		context "with valid details" do
 			scenario "via the organizations#show page" do
-				within(".navbar") do
-					click_link('Organizations')
-				end
-				within("#organizations-table") do 
-					page.first(:link, 'View').click
-				end
+				visit organization_path(@organization)
 				click_link 'Locations'
 				within("#locations-table") do 
 					page.first(:link, 'Edit').click
@@ -37,12 +32,7 @@ feature "editing location" do
 			end
 
 			scenario "via the locations#show page" do
-				within(".navbar") do
-					click_link('Organizations')
-				end
-				within("#organizations-table") do 
-					page.first(:link, 'View').click
-				end
+				visit organization_path(@organization)
 				click_link 'Locations'
 				within("#locations-table") do 
 					page.first(:link, 'View').click
@@ -64,12 +54,7 @@ feature "editing location" do
 
     context "with INvalid/missing details" do
       scenario "from the organizations#show page" do
-				within(".navbar") do
-					click_link('Organizations')
-				end
-				within("#organizations-table") do 
-					page.first(:link, 'View').click
-				end
+				visit organization_path(@organization)
 				click_link 'Locations'
 				within("#locations-table") do 
 					page.first(:link, 'View').click
@@ -85,17 +70,12 @@ feature "editing location" do
 
 	context "cancelling the update" do
 		scenario "via the organizations#show page" do
-			within(".navbar") do
-				click_link('Organizations')
-			end
-			within("#organizations-table") do 
-				page.first(:link, 'View').click
-			end
+			visit organization_path(@organization)
 			click_link 'Locations'
 			within("#locations-table") do 
 				page.first(:link, 'Edit').click
 			end
-			click_link 'Cancel'
+			click_link('Back')
 			expect(page).to have_content 'techhub'
     	expect(page).to have_selector '#organization-details'
     	click_link 'Locations'
@@ -106,25 +86,15 @@ feature "editing location" do
 		end
 
 		scenario "via the locations#show page" do
-			within(".navbar") do
-				click_link('Organizations')
-			end
-			within("#organizations-table") do 
-				page.first(:link, 'View').click
-			end
+			visit organization_path(@organization)
 			click_link 'Locations'
 			within("#locations-table") do 
 				page.first(:link, 'View').click
 			end
 			click_link 'Edit'
-			click_link 'Cancel'
+			click_link('Back')
 			expect(page).to have_content 'techhub'
-    	expect(page).to have_selector '#organization-details'
-    	click_link 'Locations'
-   	 	expect(page).to have_selector '#locations-table'
-   		within('#locations-table') do
-   	  	page.should have_content('Old Street')
-    	end
+			expect(page).not_to have_selector '#organization-details' # not the organization page
 		end
 	end
 end

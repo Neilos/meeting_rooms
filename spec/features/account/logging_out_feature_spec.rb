@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "Logging Out" do
+
   before(:each) do
     User.create!( :name => 'Mike Mike', 
                   :email => 'user34@example.com', 
@@ -18,4 +19,5 @@ feature "Logging Out" do
     click_link 'Log out'
     expect(page).to have_content 'Signed out successfully'
   end
+
 end

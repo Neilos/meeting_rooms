@@ -13,12 +13,7 @@ feature "deleting room" do
 	end
 
 	scenario "from the organization#show page", js: true do
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within("#organizations-table") do
-			page.first(:link, 'View').click
-		end
+		visit organization_path(@organization)
 		within("#rooms-table") do
 			page.first(:link, 'Delete').click
 		end
@@ -34,12 +29,7 @@ feature "deleting room" do
 	end
 
 	scenario "from the room show page", js: true do 
-		within(".navbar") do
-			click_link('Organizations')
-		end
-		within("#organizations-table") do
-			page.first(:link, 'View').click
-		end
+		visit organization_path(@organization)
 		within("#rooms-table") do
 			page.first(:link, 'View').click
 		end

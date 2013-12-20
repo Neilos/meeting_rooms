@@ -7,17 +7,14 @@ feature "creating location" do
     @user = FactoryGirl.create(:user, email: "user1@email.com", password: @password, password_confirmation: @password)
     @organization = Organization.create(:name => "techhub")
     log_in_with email: @user.email, password: @password
+    visit organization_path(@organization)
   end
 
   context "completing the creation of a location" do
+
     context "with valid details" do
+
     	scenario "from the organizations#show page" do
-        within(".navbar") do
-          click_link('Organizations')
-        end
-        within('#organizations-table') do 
-          page.first(:link, 'View').click
-        end
         click_link 'Locations'
         click_link 'New Location'
         fill_in 'Name', :with => 'Head Office'
@@ -38,33 +35,26 @@ feature "creating location" do
           expect(page).to have_content '17 example street'
         end
       end
+
     end
 
     context "with INvalid/missing details" do
+
       scenario "from the organizations#show page" do
-        within(".navbar") do
-          click_link('Organizations')
-        end
-        within('#organizations-table') do 
-          page.first(:link, 'View').click
-        end
         click_link 'Locations'
         click_link 'New Location'
         click_button 'Create Location'
         expect(page).to have_content 'errors prohibited this location from being saved:'
         expect(page).to have_content 'New Location'
       end
+
     end
+
   end
 
   context "cancelling the creation of a location" do
+
     scenario "from the organizations#show page" do
-      within(".navbar") do
-        click_link('Organizations')
-      end
-      within('#organizations-table') do 
-        page.first(:link, 'View').click
-      end
       click_link 'Locations'
       click_link 'New Location'
       fill_in 'Name', :with => 'Head Office'
@@ -74,7 +64,7 @@ feature "creating location" do
       fill_in 'County', :with => 'example county'
       fill_in 'Postcode', :with => 'EXA MPLE'
       fill_in 'Country', :with => 'United Kingdom'
-      click_link 'Cancel'
+      click_link('Back')
       expect(page).to have_content 'techhub'
       expect(page).to have_selector '#organization-details'
       click_link 'Locations'
@@ -84,6 +74,7 @@ feature "creating location" do
         page.should_not have_content '17 example street'
       end
     end
+
   end
 
 end

@@ -35,6 +35,7 @@ describe CustomAttributesController do
   context "user NOT logged in" do
 
     describe "DELETE destroy" do
+
       it "does NOT delete" do
         custom_attribute = CustomAttribute.create! valid_attributes
         delete :destroy, {:id => custom_attribute.to_param, :room_id => valid_attributes[:room_id]}, valid_session
@@ -46,7 +47,9 @@ describe CustomAttributesController do
         delete :destroy, {:id => custom_attribute.to_param, :room_id => valid_attributes[:room_id]}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
+
   end
 
 
@@ -59,12 +62,16 @@ describe CustomAttributesController do
     end
 
     describe "DELETE destroy" do
+
       it "destroys the requested custom_attribute" do
         custom_attribute = CustomAttribute.create! valid_attributes
         expect {
           delete :destroy, {:id => custom_attribute.to_param, :room_id => valid_attributes[:room_id]}, valid_session
         }.to change(CustomAttribute, :count).by(-1)
       end
+
     end
+
   end
+
 end

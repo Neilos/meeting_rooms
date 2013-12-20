@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe RoomsController do
+
   describe "routing" do
 
     it "routes to #index" do
@@ -32,4 +33,5 @@ describe RoomsController do
     end
 
   end
+
 end

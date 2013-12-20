@@ -13,23 +13,24 @@ feature "editing membership permission set", :js => true do
 	end
 
 	context "completing the update" do
+
 		context "with valid details" do
-			scenario "via the user show page" do
+
+			scenario "from the users memberships page" do
+        visit user_memberships_path(@user)
 				within("#memberships-table") do 
           page.first(:link, 'Edit').click
         end
 				uncheck('Create organizations')
 				click_button('Update Membership')
 				page.should have_content("Membership was successfully updated.")
-				page.should have_content(@user.name)
-				page.should have_content(@user.email)
 				expect(page).to have_selector '#memberships-table'
         @membership.reload
         @membership.permission_set[:create__organizations].should eq false
 			end
 		
-			scenario "via the organization show page" do 
-				visit_show_page_of_first_organization_in_organizations_table
+			scenario "from the organization show page" do 
+				visit organization_path(@organization)
         click_link "Members"
 				within("#memberships-table") do 
           page.first(:link, 'Edit').click
@@ -43,7 +44,7 @@ feature "editing membership permission set", :js => true do
 			end
       
       scenario "from the membership show page" do
-        visit_show_page_of_first_organization_in_organizations_table
+        visit organization_path(@organization)
         click_link "Members"
         within("#memberships-table") do 
           page.first(:link, 'View').click
@@ -65,56 +66,51 @@ feature "editing membership permission set", :js => true do
         @membership.reload
         @membership.permission_set[:create__organizations].should eq false
       end
+
 		end
 
 		context "with invalid details" do
 			#form cannot be completed with invalid details
 		end
+
 	end
 
 	context "cancelling the creation of a membership" do
-		scenario "from the user show page" do 
+
+		scenario "via the users memberships page" do 
+      visit user_memberships_path(@user)
 			within("#memberships-table") do 
         page.first(:link, 'Edit').click
       end
-			click_link('Cancel')
-			page.should have_content(@user.name)
-			page.should have_content(@user.email)
+			click_link('Back')
 			expect(page).to have_selector '#memberships-table'	
 		end
 	
-		scenario "from the organization show page" do 
-			visit_show_page_of_first_organization_in_organizations_table
+		scenario "via the organization show page" do 
+			visit organization_path(@organization)
       click_link "Members"
 			within("#memberships-table") do 
         page.first(:link, 'Edit').click
       end
-			click_link('Cancel')
+			click_link('Back')
 			page.should have_content(@organization.name)
 		end
 
-    context "from the membership show page" do
+    context "via the membership show page" do
+
       scenario "via the organization show page" do
-        visit_show_page_of_first_organization_in_organizations_table
+        visit organization_path(@organization)
         click_link "Members"
         within("#memberships-table") do 
           page.first(:link, 'View').click
         end
         click_link 'Edit'
-        click_link('Cancel')
+        click_link('Back')
         page.should have_content(@organization.name)
       end
 
-      scenario "via the user show page" do
-        within("#memberships-table") do 
-          page.first(:link, 'View').click
-        end
-        click_link 'Edit'
-        click_link('Cancel')
-        page.should have_content(@user.name)
-        page.should have_content(@user.email)
-        expect(page).to have_selector '#memberships-table'  
-      end
     end
+
 	end
+
 end

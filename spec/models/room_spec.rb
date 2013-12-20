@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Room do
+
   @attributes = {name: "room 10", location_id: 5, organization_id: 9}
-	
 	@attributes.each do |attribute, value|
 		it "should not be valid without #{attribute}" do
 			missing_attributes = {name: "room 10", location_id: 5, organization_id: 9}
@@ -26,4 +26,5 @@ describe Room do
     room = FactoryGirl.create(:room)
     room.calendar.should_not be_nil
   end
+
 end

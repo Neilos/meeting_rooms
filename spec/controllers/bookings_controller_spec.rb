@@ -37,38 +37,48 @@ describe BookingsController do
   end
 
   describe "GET index" do
+
     it "assigns the bookings for the specified room as @bookings" do
       booking = Booking.create! valid_attributes
       get :index, {:room_id => room}, valid_session
       assigns(:bookings).should eq([booking])
     end
+
   end
 
   describe "GET show" do
+
     it "assigns the requested booking as @booking" do
       booking = Booking.create! valid_attributes
       get :show, {:id => booking.to_param}, valid_session
       assigns(:booking).should eq(booking)
     end
+
   end
 
   describe "GET new" do
+
     it "assigns a new booking as @booking" do
       get :new, { :room_id => room }, valid_session
       assigns(:booking).should be_a_new(Booking)
     end
+
   end
 
   describe "GET edit" do
+
     it "assigns the requested booking as @booking" do
       booking = Booking.create! valid_attributes
       get :edit, {:id => booking.to_param}, valid_session
       assigns(:booking).should eq(booking)
     end
+
   end
 
   describe "POST create" do
+
     describe "with valid params" do
+
       it "creates a new Booking" do
         expect {
           post :create, { :room_id => room, :booking => valid_attributes}, valid_session
@@ -90,9 +100,11 @@ describe BookingsController do
         post :create, {:room_id => room, :booking => valid_attributes}, valid_session
         response.should redirect_to(Booking.last)
       end
+
     end
 
     describe "with invalid params" do
+
       it "assigns a newly created but unsaved booking as @booking" do
         # Trigger the behavior that occurs when invalid params are submitted
         Booking.any_instance.stub(:save).and_return(false)
@@ -106,11 +118,15 @@ describe BookingsController do
         post :create, {:room_id => room, :booking => { "name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
+
     end
+
   end
 
   describe "PUT update" do
+
     describe "with valid params" do
+
       it "updates the requested booking" do
         booking = Booking.create! valid_attributes
         # Assuming there are no other bookings in the database, this
@@ -140,9 +156,11 @@ describe BookingsController do
         put :update, {:id => booking.to_param, :booking => valid_attributes}, valid_session
         response.should redirect_to(booking)
       end
+
     end
 
     describe "with invalid params" do
+
       it "assigns the booking as @booking" do
         booking = Booking.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
@@ -158,10 +176,13 @@ describe BookingsController do
         put :update, {:id => booking.to_param, :booking => { "name" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
+
     end
+
   end
 
   describe "DELETE destroy" do
+
     it "destroys the requested booking" do
       booking = Booking.create! valid_attributes
       expect {
@@ -175,6 +196,7 @@ describe BookingsController do
       delete :destroy, {:id => booking.to_param}, valid_session
       response.should redirect_to room_bookings_url(room)
     end
+
   end
 
 end

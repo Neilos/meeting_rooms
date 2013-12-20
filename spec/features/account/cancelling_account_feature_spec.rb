@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "Account cancellation" do
+
   scenario "cancelling account", :js => true do
     User.create!( :name => 'Mike Mike', 
                   :email => 'user34@example.com', 
@@ -20,4 +21,5 @@ feature "Account cancellation" do
     alert.accept
     expect(page).to have_content 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
   end
+
 end

@@ -40,36 +40,45 @@ describe RoomsController do
   context "user NOT logged in" do
 
     describe "GET index" do
+
       it "redirects to the home page" do
         get :index, {:organization_id => organization.id}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
 
     describe "GET show" do
+
       it "redirects to the home page" do
         room = Room.create! valid_attributes
         get :show, {:id => room.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
 
     describe "GET new" do
+
       it "redirects to the home page" do
         get :new, {:organization_id => organization.id}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
 
     describe "GET edit" do
+
       it "redirects to the home page" do
         room = Room.create! valid_attributes
         get :edit, {:id => room.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
 
     describe "POST create" do
+
       it "does NOT create" do
         expect {
             post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
@@ -80,9 +89,11 @@ describe RoomsController do
         post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
 
     describe "PUT update" do
+
       it "does NOT update" do
         room = Room.create! valid_attributes
         put :update, {:id => room.to_param, :room => valid_attributes}, valid_session
@@ -94,9 +105,11 @@ describe RoomsController do
         put :update, {:id => room.to_param, :room => valid_attributes}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
 
     describe "DELETE destroy" do
+
       it "does NOT delete" do
         room = Room.create! valid_attributes
         delete :destroy, {:id => room.to_param}, valid_session
@@ -108,7 +121,9 @@ describe RoomsController do
         delete :destroy, {:id => room.to_param}, valid_session
         response.should redirect_to(new_user_session_path)
       end
+
     end
+
   end
 
 
@@ -121,22 +136,27 @@ describe RoomsController do
     end
 
     describe "GET index" do
+
       it "assigns all rooms as @rooms" do
         room = Room.create! valid_attributes
         get :index, {organization_id: organization.id}, valid_session
         assigns(:rooms).should eq([room])
       end
+
     end
 
     describe "GET show" do
+
       it "assigns the requested room as @room" do
         room = Room.create! valid_attributes
         get :show, {:id => room.to_param}, valid_session
         assigns(:room).should eq(room)
       end
+
     end
 
     describe "GET new" do
+
       it "assigns a new room as @room" do
         organization = FactoryGirl.create(:organization)
         get :new, {:organization_id => organization.id}, valid_session
@@ -148,18 +168,23 @@ describe RoomsController do
         get :new, {:organization_id => organization.id}, valid_session
         assigns(:calendar).should be_a_new(Calendar)
       end
+
     end
 
     describe "GET edit" do
+
       it "assigns the requested room as @room" do
         room = Room.create! valid_attributes
         get :edit, {:id => room.to_param}, valid_session
         assigns(:room).should eq(room)
       end
+
     end
 
     describe "POST create" do
+
       describe "with valid params" do
+
         it "creates a new Room" do
           expect {
             post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
@@ -182,9 +207,11 @@ describe RoomsController do
           post :create, {:organization_id => organization.id, :room => valid_attributes}, valid_session
           response.should redirect_to(organization_path(valid_attributes[:organization_id]))
         end
+
       end
 
       describe "with invalid params" do
+
         it "assigns a newly created but unsaved room as @room" do
           # Trigger the behavior that occurs when invalid params are submitted
           Room.any_instance.stub(:save).and_return(false)
@@ -198,11 +225,15 @@ describe RoomsController do
           post :create, {:organization_id => organization.id, :room => { "name" => "invalid value" }}, valid_session
           response.should render_template("new")
         end
+
       end
+
     end
 
     describe "PUT update" do
+
       describe "with valid params" do
+
         it "updates the requested room" do
           room = Room.create! valid_attributes
           # Assuming there are no other rooms in the database, this
@@ -224,9 +255,11 @@ describe RoomsController do
           put :update, {:id => room.to_param, :room => valid_attributes}, valid_session
           response.should redirect_to(room.organization)
         end
+
       end
 
       describe "with invalid params" do
+
         it "assigns the room as @room" do
           room = Room.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
@@ -242,10 +275,13 @@ describe RoomsController do
           put :update, {:id => room.to_param, :room => { "name" => "invalid value" }}, valid_session
           response.should render_template("edit")
         end
+
       end
+
     end
 
     describe "DELETE destroy" do
+
       it "destroys the requested room" do
         room = Room.create! valid_attributes
         expect {
@@ -258,6 +294,7 @@ describe RoomsController do
         delete :destroy, {:id => room.to_param}, valid_session
         response.should redirect_to(organization_path(room.organization))
       end
+
     end
 
   end
