@@ -1,5 +1,6 @@
 MeetingRooms::Application.routes.draw do
 
+  get "calendars/index"
   get "reservations/index"
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',                                   :registrations      => "registrations"} 
 
