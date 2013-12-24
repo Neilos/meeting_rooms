@@ -11,6 +11,9 @@ This app requires the set up of the following environmental variables containing
   * MAILER_PASSWORD
   * MAILER_DOMAIN
 
+This app expects the Devise secret key to be kept in the environment variable:
+  * DEVISE_SECRET_KEY
+
 This app requires the set up of the following environmental variables in order for sign in with social network providers to work
 
   * For sign in with Facebook (ensure the app is recorded as a 'web app' with Facebook in the Advanced settings)

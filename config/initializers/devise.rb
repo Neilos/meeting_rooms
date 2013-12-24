@@ -24,7 +24,7 @@ Devise.setup do |config|
   require "omniauth-twitter"
   config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
 
-
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
