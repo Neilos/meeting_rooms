@@ -1,7 +1,5 @@
 MeetingRooms::Application.routes.draw do
 
-  get "calendars/index"
-  get "reservations/index"
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks',                                   :registrations      => "registrations"} 
 
   devise_scope :user do
@@ -9,7 +7,7 @@ MeetingRooms::Application.routes.draw do
   end
   
   authenticated :user do
-   root :to => "users#show", as: "user_root"
+   root :to => "calendars#index", as: "user_root"
   end
 
   resources :users, only: [:index, :show] do 
@@ -34,8 +32,8 @@ MeetingRooms::Application.routes.draw do
 
   resources :custom_attributes, :only => [:destroy]
 
-
-  # resources :memberships
+  resources :calendars, only: :index
+  resources :reservations, only: :index
 
   root to: "application#initial_home"
 
