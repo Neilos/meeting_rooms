@@ -5,14 +5,14 @@ class Reservation
   delegate :url_helpers, to: 'Rails.application.routes'
   attr_accessor :title, :start, :end, :allDay, :booking_id, :color, :url, :background_color, :textColor
 
-  def self.occurrences_between(begin_date,end_date, room_ids = '')
+  def self.occurrences_between(begin_date, end_date, calendar_ids = "")
     # Using Squeel
     # line 1 = Booking doesn't repeat, but ends in window
     # line 2 = Booking doesn't repeat, but starts in window
     # line 2 = Booking doesn't repeat, but starts before and ends after
     # line 4 = Booking starts before our end date and repeats until a certain point of time, and that point of time after our begin date
     # line 5 = Booking repeats indefinitely, then all we care about is that it has started at somepoint in the last
-    if !room_ids.empty?
+    if !calendar_ids.empty?
       results = Booking.where{
         (
           (repeats == 'never') &
@@ -36,7 +36,7 @@ class Reservation
           (repeat_ends == 'never') &
           (from_date <= end_date)
         )
-      }.where(:room_id => room_ids.split(',').reject{ |c| c.empty? }.uniq)
+      }.where(:calendar_id => calendar_ids.split(',').reject{ |c| c.empty? }.uniq)
     else
      results = Booking.where{
        (
@@ -64,7 +64,7 @@ class Reservation
      }
     end
     results.map { |booking|
-      booking.schedule.occurrences_between(begin_date,end_date).map { |date|
+      booking.schedule.occurrences_between(begin_date, end_date).map { |date|
         i = Reservation.new()
         i.title = booking.name
         i.color = "red"

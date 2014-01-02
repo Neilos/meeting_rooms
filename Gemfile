@@ -49,7 +49,6 @@ end
 gem 'rest-client'
 
 group :test, :development do 
-  gem 'debugger'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
@@ -58,6 +57,7 @@ group :test, :development do
   gem 'email_spec'
   gem 'mailcatcher'
   gem 'launchy'
+  gem 'pry'
 end
 
 gem 'devise'
