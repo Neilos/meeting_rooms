@@ -12,7 +12,7 @@
         <div class="panel-heading">
           <span class="panel-title col-xs-8 col-sm-10 col-md-10">Custom attribute</span>
           <span>
-            <%= link_to "Delete attribute", custom_attribute_path(@room, builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger btn-xs' %>
+            <%= link_to "Delete attribute", custom_attribute_path(builder.object), :method => :delete,  :remote => true, :onclick => "$(this).closest('.custom-attribute').remove()", :class => 'delete_custom_attribute btn btn-danger btn-xs' %>
           </span>
         </div>
 
