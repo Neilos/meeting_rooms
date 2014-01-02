@@ -59,27 +59,27 @@ FactoryGirl.define do
 
     trait :ends_in_20_days do
       repeat_ends 'on'
-      repeat_ends_on (DateTime.now + 20.days).beginning_of_day
+      repeat_ends_on (Time.now + 20.days).beginning_of_day
     end
 
     trait :ends_in_20_weeks do
       repeat_ends 'on'
-      repeat_ends_on (DateTime.now + 20.weeks).beginning_of_day
+      repeat_ends_on (Time.now + 20.weeks).beginning_of_day
     end
 
     trait :ends_in_20_months do
       repeat_ends 'on'
-      repeat_ends_on (DateTime.now + 20.months).beginning_of_day
+      repeat_ends_on (Time.now + 20.months).beginning_of_day
     end
 
     trait :ends_in_20_months do
       repeat_ends 'on'
-      repeat_ends_on (DateTime.now + 20.months).beginning_of_day
+      repeat_ends_on (Time.now + 20.months).beginning_of_day
     end
 
     trait :ends_in_20_years do
       repeat_ends 'on'
-      repeat_ends_on (DateTime.now + 20.years).beginning_of_day
+      repeat_ends_on (Time.now + 20.years).beginning_of_day
     end
   end
 end

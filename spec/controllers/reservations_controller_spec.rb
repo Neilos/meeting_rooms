@@ -5,10 +5,10 @@ describe ReservationsController do
   describe "GET 'index'" do
 
     let!(:repeating_booking) { FactoryGirl.create(:booking,
-      from_date: DateTime.now.beginning_of_day,
-      from_time: DateTime.now.beginning_of_day,
-      to_date: DateTime.now.beginning_of_day,
-      to_time: DateTime.now.beginning_of_day + 1.hour,
+      from_date: Time.now.beginning_of_day,
+      from_time: Time.now.beginning_of_day,
+      to_date: Time.now.beginning_of_day,
+      to_time: Time.now.beginning_of_day + 1.hour,
       repeats: "daily",
       repeats_every_n_days: 1,
       repeat_ends: 'never')
@@ -16,8 +16,8 @@ describe ReservationsController do
 
     it "returns the correct number of reservations for the specified period" do
       params = {
-        begin_date: DateTime.now.beginning_of_day,
-        end_date: DateTime.now.beginning_of_day + 5.days - 1.second,
+        begin_date: Time.now.beginning_of_day,
+        end_date: Time.now.beginning_of_day + 5.days - 1.second,
         calendar_ids: repeating_booking.calendar.id.to_s,
       }
       get 'index', params

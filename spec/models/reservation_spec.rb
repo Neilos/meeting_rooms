@@ -5,17 +5,17 @@ describe Reservation do
   describe "occurrences_between" do
 
     let!(:repeating_booking) { FactoryGirl.create(:booking,
-      from_date: DateTime.now.beginning_of_day,
-      from_time: DateTime.now.beginning_of_day,
-      to_date: DateTime.now.beginning_of_day,
-      to_time: DateTime.now.beginning_of_day + 1.hour,
+      from_date: Time.now.beginning_of_day,
+      from_time: Time.now.beginning_of_day,
+      to_date: Time.now.beginning_of_day,
+      to_time: Time.now.beginning_of_day + 1.hour,
       repeats: "daily",
       repeats_every_n_days: 1,
       repeat_ends: 'never')
     }
 
-    let(:begin_date){DateTime.now.beginning_of_day}
-    let(:end_date){DateTime.now.beginning_of_day + 5.day - 1.second}
+    let(:begin_date){Time.now.beginning_of_day}
+    let(:end_date){Time.now.beginning_of_day + 5.day - 1.second}
     let(:calendar_ids){repeating_booking.calendar.id.to_s}
 
     subject{ Reservation.occurrences_between(begin_date, end_date, calendar_ids) }
