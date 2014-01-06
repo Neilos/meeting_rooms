@@ -17,5 +17,6 @@
 //= require ember
 //= require d3
 //= require bootstrap
+//= require infinite-scroll
 //= require ember_app/app
 //= require_tree .
