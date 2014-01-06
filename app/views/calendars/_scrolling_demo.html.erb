@@ -1,11 +1,6 @@
-<script data-template-name="application" type="text/x-handlebars">
-<div class="container">
-  {{partial 'about'}}
-  {{outlet}}
-</div>
-</script>
 
 <script data-template-name="index" type="text/x-handlebars">
+{{partial 'about'}}
 <h2>Widgets (Page {{page}}: {{content.length}} total widgets)</h2>
 
 <!-- // add class 'vertical' on outer-container for vertical scrolling (and remove 'horizontal' class)
