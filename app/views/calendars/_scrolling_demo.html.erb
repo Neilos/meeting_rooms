@@ -1,6 +1,8 @@
 <script data-template-name="application" type="text/x-handlebars">
-{{partial 'about'}}
-{{outlet}}
+<div class="container">
+  {{partial 'about'}}
+  {{outlet}}
+</div>
 </script>
 
 <script data-template-name="index" type="text/x-handlebars">
@@ -25,33 +27,13 @@
 </script>
 
 <style type="text/css">
-  /* OPTIONAL STYLING FOR DEMO PURPOSES ONLY */
-  ul.inf-scroll-inner-container {
-    padding: 0;
-  }
-
-  ul.inf-scroll-inner-container > li {
-    list-style: none;
-    margin: 10px;
-    padding: 10px;
-    background-color: #CCC;
-    line-height: 10px;
-    text-align: center;
-  }
-  .inf-scroll-outer-container {
-    width: 300px;
-    height: 200px;
-    margin: 20px;
-    background-color: yellow;
-  }
-  
   /*  RECOMMENDED STYLING FOR INFINITE SCROLLING
     Styling included for both HORIZONTAL and VERTICAL scrolling.
     Select type of scrolling by adding either the class 'horizontal' or 'vertical' on the inf-scroll-outer-container. */
   .inf-scroll-outer-container.horizontal {
     overflow-x: scroll; /* <-- required for horizontal scrolling */
     white-space: nowrap; /* <-- required for horizontal scrolling; optional for vertical scrolling*/
-    width: 200px; /* a set width is required for horizontal scrolling */
+    width: 100%; /* a set width is required for horizontal scrolling */
   }
   .inf-scroll-outer-container.horizontal > .inf-scroll-inner-container {
     display: inline; /* <--'display: inline' for horizontal scrolling or remove/comment out for vertical scrolling */
@@ -61,13 +43,32 @@
   }
   .inf-scroll-outer-container.vertical {
     overflow-y: scroll; /* <-- required for vertical scrolling */
-    height: 200px; /* a set height is required for horizontal scrolling */
+    height: 300px; /* a set height is required for horizontal scrolling */
   }
   .inf-scroll-outer-container.vetical > .inf-scroll-inner-container > * {
     display: block;
   }
   .inf-scroll-inner-container {
     overflow: visible; /* <-- required to ensure inner container fully contains the scroll items */
+  }
+
+  /* OPTIONAL STYLING FOR DEMO PURPOSES ONLY */
+  ul.inf-scroll-inner-container {
+    padding: 0;
+  }
+
+  ul.inf-scroll-inner-container > li {
+    list-style: none;
+    margin: 5px;
+    padding: 5px;
+    background-color: #CCC;
+    line-height: 10px;
+    text-align: center;
+  }
+  .inf-scroll-outer-container {
+    width: 300px;
+    height: 200px;
+    background-color: yellow;
   }
 </style>
 
