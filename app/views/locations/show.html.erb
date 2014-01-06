@@ -7,9 +7,9 @@
   <%= link_to t('.back', :default => t("helpers.links.back")),
               organization_path(@location.organization_id), :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_organization_location_path(@location.organization_id, @location), :class => 'btn btn-default' %>
+              edit_location_path(@location), :class => 'btn btn-default' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              organization_location_path(@location.organization_id, @location),
+              location_path(@location),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

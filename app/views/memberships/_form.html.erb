@@ -81,7 +81,7 @@
   </div>
 </form>
 
-<%= form_for [@membership.organization || @membership.user, @membership], :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for shallow_routing_args(@membership.organization || @membership.user, @membership), :html => { :class => 'form-horizontal' } do |f| %>
   <% if @membership.errors.any? %>
     <div id="error_explanation" class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -116,10 +116,10 @@
   <div class="form-group">
     <div class="col-sm-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <% if params[:user_id] %>
+      <% if @membership.user %>
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   user_path(@membership.user), :class => 'btn btn-default' %>
-      <% elsif params[:organization_id] %>
+      <% elsif @membership.organization %>
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   organization_path(@membership.organization), :class => 'btn btn-default' %>
       <% end %>

@@ -18,11 +18,11 @@
         <td><%= room.location.name %></td>
         <td>
           <%= link_to t('.view', :default => t("helpers.links.view")),
-                      organization_room_path(@organization, room), :class => 'btn btn-default' %>
+                      room_path(room), :class => 'btn btn-default' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_organization_room_path(@organization, room), :class => 'btn btn-default' %>
+                      edit_room_path(room), :class => 'btn btn-default' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      organization_room_path(@organization, room),
+                      room_path(room),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>

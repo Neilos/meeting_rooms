@@ -7,4 +7,8 @@ module ApplicationHelper
     when :alert then "alert alert-danger alert-dismissable"
     end
   end
+
+  def shallow_routing_args(parent, child)
+    child.try(:new_record?) ? [parent, child] : child
+  end
 end

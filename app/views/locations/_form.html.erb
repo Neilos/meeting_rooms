@@ -1,4 +1,4 @@
-<%= form_for(@location , :url => organization_location_path(@organization, @location), :html => { :class => 'form-horizontal' }) do |f| %>
+<%= form_for( shallow_routing_args(@organization, @location), :html => { :class => 'form-horizontal' }) do |f| %>
 
   <% if @location.errors.any? %>
     <div id="error_explanation" class="alert alert-danger alert-dismissable">
