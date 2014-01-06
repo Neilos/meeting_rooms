@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  console.log('booking form executing...')
 
   var toggle_repeats_yearly_on = function(speed){
     if($('#booking_repeats_yearly_on').is(':checked')){
@@ -66,7 +65,6 @@ $(document).ready(function(){
       $('#booking_repeat_ends_on').show(speed);
       break;
     }
-    console.log('finished function...')
   }
   toggle_repeat_ends_on();
   $('#booking_repeat_ends').on('change',function(){
@@ -90,7 +88,5 @@ $(document).ready(function(){
   $('#booking_repeats_monthly').on('change',function(){
     toggle_repeats_monthly("medium");
   });
-
-  console.log('booking form finished executing...')
 
 });
