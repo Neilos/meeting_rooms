@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require handlebars-v1.3.0
 //= require ember
+//= require d3
 //= require bootstrap
 //= require_tree .
