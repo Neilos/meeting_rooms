@@ -74,3 +74,6 @@ gem "less-rails"
 gem "ice_cube"
 gem "squeel"
 
+gem 'ember-rails'
+gem "ember-source", "~> 1.2.0.1"
+gem "ember-data-source", "~> 0.14"

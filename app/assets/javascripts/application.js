@@ -13,10 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require handlebars-v1.3.0
-//= require ember
 //= require d3
 //= require bootstrap
+//= require handlebars
+//= require ember
+//= require ember-data
 //= require infinite-scroll
-//= require ember_app/app
+//= require_self
+//= require app
+
+// for more details see: http://emberjs.com/guides/application/
+App = Ember.Application.create();
+
 //= require_tree .
