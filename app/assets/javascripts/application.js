@@ -32,6 +32,7 @@
 // for more details see: http://emberjs.com/guides/application/
 App = Ember.Application.create({
   LOG_TRANSITIONS: true,
+  rootElement: '#ember-app'
 });
 
 //= require_tree .
