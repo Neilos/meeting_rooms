@@ -41,23 +41,3 @@ App.IndexRoute = Ember.Route.extend({
     // put other non infinite-scroll related actions here.
   })
 });
-
-App.IndexController = Ember.ArrayController.extend(
-  InfiniteScroll.ControllerMixin,
-  {
-    page: 1,
-    perPage: 10
-  }
-);
-
-App.IndexView = Ember.View.extend(
-  InfiniteScroll.ViewMixin, 
-  {
-    didInsertElement: function(){
-      this.setupInfiniteScrollListener();
-    },
-    willDestroyElement: function(){
-      this.teardownInfiniteScrollListener();
-    }
-  }
-);

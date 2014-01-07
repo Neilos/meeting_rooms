@@ -26,8 +26,6 @@
 //= require_tree ./models
 //= require_tree ./templates
 //= require_tree ./views
-
-//= require app
 //= require_tree .
 
 // for more details see: http://emberjs.com/guides/application/
