@@ -1,0 +1,19 @@
+{{partial 'about'}}
+<h2>Widgets (Page {{page}}: {{content.length}} total widgets)</h2>
+
+<!-- // add class 'vertical' on outer-container for vertical scrolling (and remove 'horizontal' class)
+  //...or...
+  // add class 'horizontal' on outer-container for horizontal scrolling (and remove 'vertical' class) -->
+<div class="inf-scroll-outer-container horizontal">
+  <ul class="inf-scroll-inner-container">
+  {{#each widget in controller}}
+    <li>Widget: {{widget.name}}</li>
+  {{/each}}
+  </ul>
+</div>
+
+{{#if loadingMore}}
+  Loading more...
+{{else}}
+  <a href='#' {{action 'getMore'}}>Get More...</a>
+{{/if}}
