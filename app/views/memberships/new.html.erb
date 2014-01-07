@@ -3,6 +3,8 @@
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 <script type="text/javascript">
-  $('#searching_form').modal({keyboard: false, backdrop: 'static', show: true})
+  $(document).ready(function() {
+    $('#searching_form').modal({keyboard: false, backdrop: 'static', show: true});
+  });
 </script>
 <%= render :partial => 'form' %>
