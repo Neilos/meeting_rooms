@@ -1,15 +1,3 @@
-//= require ./store
-//= require_tree ./mixins
-//= require_tree ./models
-//= require_tree ./controllers
-//= require_tree ./views
-//= require_tree ./helpers
-//= require_tree ./components
-//= require_tree ./templates
-//= require ./router
-//= require_tree ./routes
-//= require_self
-
 // Define the Infinite Scroll route actions
 // separately so it's easier to see what
 // other actions the IndexRoute ends up using

@@ -19,6 +19,14 @@
 //= require ember-data
 //= require infinite-scroll
 //= require_self
+//= require store
+//= require router
+//= require_tree ./routes
+//= require_tree ./controllers
+//= require_tree ./models
+//= require_tree ./templates
+//= require_tree ./views
+
 //= require app
 
 // for more details see: http://emberjs.com/guides/application/
