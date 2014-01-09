@@ -1,2 +1,16 @@
-<h1>Calendars#index</h1>
+<h1>Rails route: Calendars#index</h1>
 <hr/>
+
+<script type="text/x-handlebars" data-template-name="calendars">
+<h1>******* Ember template: calendars ********</h1>
+  <ul id="calendar-list">
+    <li>should be more list items than this</li>
+    {{#each calendar in controller}}
+      <li>
+        {{calendar.title}}
+        <input type="checkbox" class="toggle">
+        <label>{{calendar.title}}</label><button class="destroy"></button>
+      </li>
+    {{/each}}
+  </ul>
+</script>

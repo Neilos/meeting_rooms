@@ -34,4 +34,9 @@ App = Ember.Application.create({
   rootElement: '#ember-app'
 });
 
+// add some fixture data
+App.CalendarAdapter = DS.FixtureAdapter.extend({
+  namespace: 'calendars'
+});
+
 
