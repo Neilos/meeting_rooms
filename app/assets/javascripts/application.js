@@ -18,6 +18,7 @@
 //= require ember
 //= require ember-data
 //= require infinite-scroll
+//= require gantt-chart
 //= require_self
 //= require store
 //= require router
