@@ -1,8 +1,25 @@
+svg.chart {
+  width: 100%;
+  height: 500px;
+}
+
 .axis path, .axis line {
+  stroke-width: 2;
+  fill: none;
+  stroke: grey;
+  shape-rendering: crispEdges;
+}
+
+.tick line {
   fill: none;
   opacity: 0.3;
   stroke: grey;
+  stroke-dasharray: 3, 3;
   shape-rendering: crispEdges;
+}
+
+.tick path {
+  stroke-width: 0;
 }
 
 .booking {
