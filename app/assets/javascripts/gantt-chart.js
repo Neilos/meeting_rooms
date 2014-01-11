@@ -4,10 +4,10 @@ d3.gantt = function () {
         FIXED_TIME_DOMAIN_MODE = "fixed";
 
     var margin = {
-        top: 30,
+        top: 40,
         right: 40,
         bottom: 20,
-        left: 150
+        left: 100
     };
 
      // default initial values, which may be overridden later
@@ -73,7 +73,7 @@ d3.gantt = function () {
         initTimeDomain();
         initAxis();
 
-        var svg = d3.select("body")
+        var svg = d3.select("#chart-container")
             .append("svg")
                 .attr("class", "chart")
                 .attr("width", width + margin.left + margin.right)
@@ -323,11 +323,23 @@ $(document).ready(function () {
     gantt.reservationTypes(reservationNames);
     gantt.reservationStatus(reservationStatus);
     gantt.tickFormat(format);
-    gantt.height(400);
-    gantt.width(500);
-
     gantt.timeDomainMode("fixed");
     changeTimeDomain(timeDomainString);
+
+    gantt.height(1000);
+    gantt.width(1000);
+    var container = $("#chart-container");
+    var aspect = 1
+
+    $(window).on("resize", function() {
+        var targetWidth = container.width() - gantt.margin().left - gantt.margin().right;
+        gantt.width(targetWidth);
+        gantt.height(Math.max(Math.round(targetWidth / aspect), 400));
+        var targetHeight = gantt.height() + gantt.margin().top + gantt.margin().bottom;
+        container.height(targetHeight)
+        gantt.redraw(reservations)
+        $('svg.chart').height(targetHeight);
+    }).trigger("resize");
 
     gantt(reservations);
 });
