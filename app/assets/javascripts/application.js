@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require d3
 //= require bootstrap
+//= require bootstrap-datepicker.js
 //= require handlebars
 //= require ember
 //= require ember-data
