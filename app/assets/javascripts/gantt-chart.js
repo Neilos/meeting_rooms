@@ -14,22 +14,22 @@ d3.gantt = function () {
     var timeDomainStart = d3.time.day.offset(new Date(), -3),
         timeDomainEnd = d3.time.hour.offset(new Date(), +3),
         timeDomainMode = FIT_TIME_DOMAIN_MODE, // fixed or fit
-        reservationTypes = [],
+        rooms = [],
         reservationStatus = [],
         height = 500,
         width = 500,
         tickFormat = "%H:%M",
         x = d3.time.scale().domain([timeDomainStart, timeDomainEnd]).range([0, width]).clamp(true),
-        y = d3.scale.ordinal().domain(reservationTypes).rangeRoundBands([0, height - margin.top - margin.bottom], .5, 2),
+        y = d3.scale.ordinal().domain(rooms).rangeRoundBands([0, height - margin.top - margin.bottom], .5, 2),
         xAxis = d3.svg.axis().scale(x).orient("bottom"),
         yAxis = d3.svg.axis().scale(y).orient("left");
 
     var keyFunction = function (d) {
-        return d.startDate + d.reservationName + d.endDate;
+        return d.startDate + d.roomName + d.endDate;
     };
 
     var rectTransform = function (d) {
-        return "translate(" + x(d.startDate) + "," + y(d.reservationName) + ")";
+        return "translate(" + x(d.startDate) + "," + y(d.roomName) + ")";
     };
 
     var initTimeDomain = function () {
@@ -55,7 +55,7 @@ d3.gantt = function () {
 
     var initAxis = function () {
         x = d3.time.scale().domain([timeDomainStart, timeDomainEnd]).range([0, width]).clamp(true).nice();
-        y = d3.scale.ordinal().domain(reservationTypes).rangeRoundBands([0, height - margin.top - margin.bottom], .5, 1);
+        y = d3.scale.ordinal().domain(rooms).rangeRoundBands([0, height - margin.top - margin.bottom], .5, 1);
         xAxis = d3.svg.axis().scale(x).orient("top");
         xAxis.tickFormat(d3.time.format(tickFormat));
         xAxis.ticks(5);
@@ -188,9 +188,9 @@ d3.gantt = function () {
 
     };
 
-    gantt.reservationTypes = function (value) {
-        if (!arguments.length) return reservationTypes;
-        reservationTypes = value;
+    gantt.rooms = function (value) {
+        if (!arguments.length) return rooms;
+        rooms = value;
         return gantt;
     };
 
@@ -223,7 +223,7 @@ d3.gantt = function () {
 
 
 var reservations = [
-{"startDate":new Date("Sun Dec 09 01:36:45 UTC 2013"),"endDate":new Date("Sun Dec 09 02:36:45 UTC 2013"),"reservationName":"Calendar 1","status":"BOOKED"}];
+{"startDate":new Date("Sun Dec 09 01:36:45 UTC 2013"),"endDate":new Date("Sun Dec 09 02:36:45 UTC 2013"),"roomName":"Room 1","status":"BOOKED"}];
 
 var reservationStatus = {
     "BOOKED" : "booking",
@@ -232,7 +232,7 @@ var reservationStatus = {
     "AVAILABLE" : "booking-available"
 };
 
-var reservationNames = [ "Calendar 1", "Calendar 2", "Calendar 3", "Calendar 4", "Calendar 5", "Calendar 6" ];
+var roomNames = [ "Room 1", "Room 2", "Room 3", "Room 4", "Room 5", "Room 6" ];
 
 reservations.sort(function(a, b) {
     return a.endDate - b.endDate;
@@ -298,12 +298,12 @@ function addTask() {
     var lastEndDate = getEndDate();
     var reservationStatusKeys = Object.keys(reservationStatus);
     var reservationStatusName = reservationStatusKeys[Math.floor(Math.random() * reservationStatusKeys.length)];
-    var reservationName = reservationNames[Math.floor(Math.random() * reservationNames.length)];
+    var roomName = roomNames[Math.floor(Math.random() * roomNames.length)];
 
     reservations.push({
         "startDate" : d3.time.hour.offset(lastEndDate, Math.ceil(1 * Math.random())),
         "endDate" : d3.time.hour.offset(lastEndDate, (Math.ceil(Math.random() * 3)) + 1),
-        "reservationName" : reservationName,
+        "roomName" : roomName,
         "status" : reservationStatusName
     });
 
@@ -320,7 +320,7 @@ function removeTask() {
 
 $(document).ready(function () {
     gantt = d3.gantt();
-    gantt.reservationTypes(reservationNames);
+    gantt.rooms(roomNames);
     gantt.reservationStatus(reservationStatus);
     gantt.tickFormat(format);
     gantt.timeDomainMode("fixed");
